@@ -1,8 +1,7 @@
 <html>
   <body>
 <?php
-  $con = mysql_connect("127.0.0.1:3306","root","");
-  mysql_select_db("wine", $con);
+  include("db_connect.php");
   if($_SERVER['REQUEST_METHOD'] === 'POST'){ 
     $jobId = mysql_real_escape_string($_POST["jobId"]);
     $name = mysql_real_escape_string($_POST["name"]);

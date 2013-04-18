@@ -1,9 +1,7 @@
 <html>
   <body>
 <?php
-  $con = mysql_connect("127.0.0.1:3306","root","");
-  mysql_select_db("wine", $con);
-
+  include("db_connect.php");
   if(array_key_exists("imageUrl", $_POST)) {
     $imageUrl = mysql_real_escape_string($_POST["imageUrl"]);
     $query = "INSERT INTO jobs(imageUrl, status) VALUES('$imageUrl','IN_PROGRESS');";
