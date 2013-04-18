@@ -5,7 +5,7 @@
     $query = "INSERT INTO jobs(imageUrl, status) VALUES('$imageUrl','IN_PROGRESS');";
     mysql_query($query, $con);
     $id = mysql_insert_id();
-    header("Location: http://localhost:8888/job_result.php?jobId=$id");
+    header("Location: http://zackg.me/turk_api/job_result.php?jobId=$id");
     die();
   } else {
     $result = mysql_query("SELECT id, imageUrl FROM jobs WHERE status = 'IN_PROGRESS';");

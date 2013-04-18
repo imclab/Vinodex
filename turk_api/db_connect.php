@@ -1,4 +1,4 @@
 <?php
-  $con = mysql_connect("127.0.0.1:3306","root","");
-  mysql_select_db("wine", $con);
+  $con = mysql_connect("mysql.zackg.me","zgrannan","Dd301d155f");
+  mysql_select_db("cse110", $con);
 ?>
