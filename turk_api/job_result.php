@@ -1,5 +1,3 @@
-<html>
-  <body>
 <?php
   $con = mysql_connect("127.0.0.1:3306","root","");
   mysql_select_db("wine", $con);
@@ -11,6 +9,8 @@
     $query = "UPDATE jobs SET name='$name', year=$year, winery='$winery',".
              "status='COMPLETED' WHERE id=$jobId LIMIT 1;";
     mysql_query($query);
+    echo mysql_error();
+    die("Thank you.");
   } elseif (array_key_exists("jobId", $_GET)) {
     $jobId = mysql_real_escape_string($_GET["jobId"]);
     $query = "SELECT name, year, winery FROM jobs WHERE id = $jobId AND status = 'COMPLETED'";
@@ -20,9 +20,17 @@
       $name = $row["name"];
       $year = $row["year"];
       $winery = $row["winery"];
-      echo "$name, $year, $winery";
-    } else {
-      echo "No results at this time";
-    }
+      die("$name, $year, $winery");
+    } 
   } 
 ?>
+<html>
+  <head>
+    <script type="text/javascript">
+      setTimeout(window.location.reload.bind(window.location), 250);
+    </script>
+  <body>
+    Waiting for result...
+  </body>
+  </head>
+</html>
