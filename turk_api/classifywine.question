@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalQuestion xmlns="[the ExternalQuestion schema URL]">
+  <ExternalURL>http://zackg.me/turk_api/job.php</ExternalURL>
+  <FrameHeight>800</FrameHeight>
+</ExternalQuestion>
