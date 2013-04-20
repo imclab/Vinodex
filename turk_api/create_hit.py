@@ -6,7 +6,7 @@ print m.create_request("CreateHIT",
      "Description":                 "Enter the wine name, year, and winery",
      "Question":                    file("classifywine.question").read(),
      "Reward": {
-         "Amount":       0.25,
+         "Amount":       1.00,
          "CurrencyCode": "USD"
      },
      "AssignmentDurationInSeconds": 60,
