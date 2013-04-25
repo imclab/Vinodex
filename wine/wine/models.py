@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.gis.db import models
 
-class User(models.Model):
-    username = models.TextField()
-    password = models.TextField()
+class UserProfile(models.Model):
     email = models.EmailField()
     first_name = models.TextField()
     last_name = models.TextField()
@@ -16,7 +14,7 @@ class Winery(models.Model):
     url = models.URLField()
 
 class Cellar(models.Model):
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(UserProfile)
     location = models.TextField()
     name = models.TextField()
     photo = models.URLField()
