@@ -1,12 +1,8 @@
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
+from tastypie import fields
 from wine.models import Wine, Winery
 from django.contrib.gis.geos import Point
-
-class WineResource(ModelResource):
-    class Meta:
-        queryset = Wine.objects.all()
-        authorization = Authorization() # TODO: Proper auth
 
 class WineryResource(ModelResource):
     class Meta:
@@ -28,3 +24,8 @@ class WineryResource(ModelResource):
             bundle.obj.location = Point(lat,lon)
         return bundle
 
+class WineResource(ModelResource):
+    winery = fields.ToOneField(WineryResource, "winery", full=True)
+    class Meta:
+        queryset = Wine.objects.all()
+        authorization = Authorization() # TODO: Proper auth
