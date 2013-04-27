@@ -13,6 +13,13 @@ class WineryResource(ModelResource):
         queryset = Winery.objects.all()
         authorization = Authorization() # TODO: Proper auth
         excludes = ['location']
+
+    def dehydrate(self, bundle):
+        bundle.data["location"] = {
+            "lat": bundle.obj.location[0],
+            "lon": bundle.obj.location[1]
+            }
+        return bundle
     
     def hydrate(self, bundle):
         lat, lon = (bundle.data["location"]["lat"],
