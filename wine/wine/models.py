@@ -29,7 +29,7 @@ class Wine(models.Model):
     max_price = models.IntegerField(null=True, blank=True)
     retail_price = models.IntegerField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
-    label_photo = models.TextField(null=True, blank=True)
+    label_photo = models.URLField(null=True, blank=True)
 
 class Bottle(models.Model):
     wine = models.ForeignKey(Wine)
