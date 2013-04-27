@@ -22,8 +22,9 @@ class WineryResource(ModelResource):
         return bundle
     
     def hydrate(self, bundle):
-        lat, lon = (bundle.data["location"]["lat"],
-                    bundle.data["location"]["lon"])
-        bundle.obj.location = Point(lat,lon)
+        if "location" in bundle.data:
+            lat, lon = (bundle.data["location"]["lat"],
+                        bundle.data["location"]["lon"])
+            bundle.obj.location = Point(lat,lon)
         return bundle
 

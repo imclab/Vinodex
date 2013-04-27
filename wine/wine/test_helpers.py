@@ -1,29 +1,41 @@
 from json.encoder import JSONEncoder
 from json.decoder import JSONDecoder
+from django.test.client import Client
 
 toJson = JSONEncoder().encode
 fromJson = JSONDecoder().decode
 
-def getOK(url, client, tester):
-    response = client.get(url)
-    tester.assertEqual(response.status_code, 200)
-    return fromJson(response.content)
+class UnitTestHelper(object):
+    
+    def __init__(self, tester):
+        self.client = Client()
+        self.tester = tester
 
-def postOK(url, data, client, tester):
-    json = toJson(data)
-    response = client.post(url, json, content_type="application/json")
-    tester.assertEqual(response.status_code, 201)
-    return response["Location"]
+    def getOK(self,url):
+        response = self.client.get(url)
+        self.tester.assertEqual(response.status_code, 200)
+        return fromJson(response.content)
 
-def deleteOK(url, client, tester):
-    # Ensure Delete Works
-    response = client.delete(url)
-    tester.assertEqual(response.status_code, 204)
+    def postOK(self, url, data):
+        json = toJson(data)
+        response = self.client.post(url, json, content_type="application/json")
+        self.tester.assertEqual(response.status_code, 201)
+        return response["Location"]
 
-    # Try to get it again, just to make sure
-    response = client.delete(url)
-    tester.assertEqual(response.status_code, 404)
+    def deleteOK(self, url):
+        # Ensure Delete Works
+        response = self.client.delete(url)
+        self.tester.assertEqual(response.status_code, 204)
 
-def both_contain(dict1, dict2, fields, tester):
-    for field in fields:
-        tester.assertEqual(dict1[field], dict2[field])
+        # Try to get it again, just to make sure
+        response = self.client.delete(url)
+        self.tester.assertEqual(response.status_code, 404)
+
+    def putOK(self, url, data):
+        json = toJson(data)
+        response = self.client.put(url, json, content_type="application/json")
+        self.tester.assertEqual(response.status_code, 204)
+
+    def fields_match(self, dict1, dict2, fields):
+        for field in fields:
+            self.tester.assertEqual(dict1[field], dict2[field])
