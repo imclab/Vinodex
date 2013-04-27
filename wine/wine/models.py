@@ -9,33 +9,34 @@ class UserProfile(models.Model):
 
 class Winery(models.Model):
     name = models.TextField()
-    address = models.TextField()
-    location = models.PointField()
-    url = models.URLField()
+    address = models.TextField(null=True, blank=True)
+    location = models.PointField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
 
 class Cellar(models.Model):
     owner = models.ForeignKey(UserProfile)
     location = models.TextField()
     name = models.TextField()
-    photo = models.URLField()
+    photo = models.URLField(null=True, blank=True)
 
 class Wine(models.Model):
-    photo = models.TextField()
+    name = models.TextField()
+    photo = models.URLField(null=True, blank=True)
     winery = models.ForeignKey(Winery)
-    vintage = models.TextField()
-    wine_type = models.TextField()
-    min_price = models.IntegerField()
-    max_price = models.IntegerField()
-    retail_price = models.IntegerField()
-    url = models.URLField()
-    label_photo = models.TextField()
+    vintage = models.TextField(null=True, blank=True)
+    wine_type = models.TextField(null=True, blank=True)
+    min_price = models.IntegerField(null=True, blank=True)
+    max_price = models.IntegerField(null=True, blank=True)
+    retail_price = models.IntegerField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
+    label_photo = models.TextField(null=True, blank=True)
 
 class Bottle(models.Model):
     wine = models.ForeignKey(Wine)
     cellar = models.ForeignKey(Cellar)
-    photo = models.URLField()
-    rating = models.IntegerField()
-    price = models.IntegerField()
+    photo = models.URLField(null=True, blank=True)
+    rating = models.IntegerField(null=True, blank=True)
+    price = models.IntegerField(null=True, blank=True)
 
 class Annotation(models.Model):
     bottle = models.ForeignKey(Bottle)
