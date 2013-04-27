@@ -1,8 +1,12 @@
 from django.conf.urls import patterns, include, url
+from wine.api import WineResource, WineryResource
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
+
+wine_resource = WineResource()
+winery_resource = WineryResource()
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,5 +17,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    (r'^api/', include (wine_resource.urls)),
+    (r'^api/', include (winery_resource.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 )
