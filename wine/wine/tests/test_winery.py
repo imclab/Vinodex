@@ -1,5 +1,8 @@
 from django.utils import unittest
-from test_helpers import UnitTestHelper
+from unittest_helper import UnitTestHelper
+from wine.models import Winery
+from test_annotation import AnnotationTestCase
+
 
 class WineryTestCase(unittest.TestCase):
     sample_winery = {
