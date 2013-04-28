@@ -16,7 +16,7 @@ class WineryTestCase(unittest.TestCase):
         self.helper = UnitTestHelper(self)
 
     def create_winery(self):
-        return self.helper.postOK("/api/winery/?format=json", self.sample_winery)
+        return self.helper.postOK("/api/v1/winery/?format=json", self.sample_winery)
 
     def test_can_create_winery(self):
         self.create_winery()
