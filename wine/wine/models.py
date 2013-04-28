@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.gis.db import models
 
 class UserProfile(models.Model):
-    email = models.EmailField()
     first_name = models.TextField()
     last_name = models.TextField()
     avatar = models.TextField()
