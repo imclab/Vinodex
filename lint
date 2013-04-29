@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pylint --disable=all --enable=format --reports=n wine/wine/
