@@ -33,11 +33,10 @@ class WineTestCase(unittest.TestCase):
         self.helper.putOK(wine_url, {"retail_price": 4.01})
         wine = self.helper.getOK(wine_url)
         self.assertEqual(wine["retail_price"], 4.01)
-        self.fail("Not implemented")
 
-    @unittest.skip("Wine has not yet been implemented")
     def test_can_get_wine(self):
-        self.fail("Not implemented")
+        wine_url = self.create_wine()
+        return self.helper.getOK(wine_url)
 
     @unittest.skip("Wine has not yet been implemented")
     def test_min_price_must_be_lt_max_price(self):
