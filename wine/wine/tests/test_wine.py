@@ -8,7 +8,7 @@ class WineTestCase(unittest.TestCase):
         self.helper = UnitTestHelper(self)
 
     def create_winery(self):
-        winery = Winery(name="sample winery")
+        winery = Winery(name="Sample Winery")
         winery.save()
         return "/api/v1/winery/%d/" % winery.id
 
@@ -38,23 +38,29 @@ class WineTestCase(unittest.TestCase):
         wine_url = self.create_wine()
         return self.helper.getOK(wine_url)
 
-    @unittest.skip("Wine has not yet been implemented")
-    def test_min_price_must_be_lt_max_price(self):
-        self.fail("Not implemented")
+    def test_min_price_must_be_lte_max_price(self):
+        bad_wine = {
+            "name": "Sample Wine",
+            "winery": self.create_winery(),
+            "min_price": 2.00,
+            "max_price": 1.00
+        }
+        return self.helper.postBad("/api/v1/wine/?format=json", bad_wine)
     
-    @unittest.skip("Wine has not yet been implemented")
-    def test_min_price_must_be_lt_retail_price(self):
-        self.fail("Not implemented")
+    def test_min_price_must_be_lte_retail_price(self):
+        bad_wine = {
+            "name": "Sample Wine",
+            "winery": self.create_winery(),
+            "min_price": 2.00,
+            "retail_price": 1.00
+        }
+        return self.helper.postBad("/api/v1/wine/?format=json", bad_wine)
 
-    @unittest.skip("Wine has not yet been implemented")
-    def test_max_price_must_be_gt_retail_price(self):
-        self.fail("Not implemented")
-
-    @unittest.skip("Wine has not yet been implemented")
-    def test_prices_must_be_gt_0(self):
-        self.fail("Not implemented")
-
-    @unittest.skip("Wine has not yet been implemented")
-    def test_vintage_must_be_postitive(self):
-        self.fail("Not implemented")
-
+    def test_max_price_must_be_gte_retail_price(self):
+        bad_wine = {
+            "name": "Sample Wine",
+            "winery": self.create_winery(),
+            "max_price": 2.00,
+            "retail_price": 3.00
+        }
+        return self.helper.postBad("/api/v1/wine/?format=json", bad_wine)

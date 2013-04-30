@@ -9,6 +9,7 @@ OK = 200
 CREATED = 201
 NO_CONTENT = 204
 NOT_FOUND = 404
+BAD_REQUEST = 400
 
 
 class UnitTestHelper(object):
@@ -27,6 +28,11 @@ class UnitTestHelper(object):
         response = self.client.post(url, json, content_type="application/json")
         self.tester.assertEqual(response.status_code, CREATED)
         return response["Location"]
+
+    def postBad(self, url, data):
+        json = toJson(data)
+        response = self.client.post(url, json, content_type="application/json")
+        self.tester.assertEqual(response.status_code, BAD_REQUEST)
 
     def deleteOK(self, url):
         # Ensure Delete Works
