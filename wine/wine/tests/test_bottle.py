@@ -1,8 +1,9 @@
+import django
 from django.utils import unittest
 from unittest_helper import UnitTestHelper
 
 @unittest.skip("Bottle has not yet been implemented")
-class BottleTestCase(unittest.TestCase):
+class BottleTestCase(django.test.TestCase):
 
     def setUp(self):
         self.helper = UnitTestHelper(self)

@@ -1,15 +1,24 @@
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
 from tastypie import fields
-from wine.models import Wine, Winery
+from wine.models import Wine, Winery, UserProfile
 from django.contrib.gis.geos import Point
 from django.contrib.auth.models import User
 import traceback
 
+
 class UserResource(ModelResource):
     class Meta:
+        resource_name = "auth/user"
         queryset = User.objects.all()
-        authorization =Authorization() # TODO: Proper auth
+        authorization = Authorization() # TODO: Proper auth
+
+class UserProfileResource(ModelResource):
+    user = fields.ToOneField(UserResource, "user", blank=False)
+    class Meta:
+        resource_name = "profile"
+        queryset = UserProfile.objects.all()
+        authorization = Authorization()
 
 class WineryResource(ModelResource):
     class Meta:

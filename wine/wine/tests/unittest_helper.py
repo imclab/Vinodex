@@ -26,6 +26,8 @@ class UnitTestHelper(object):
     def postOK(self, url, data):
         json = toJson(data)
         response = self.client.post(url, json, content_type="application/json")
+        if (response.status_code != CREATED):
+            print response.content
         self.tester.assertEqual(response.status_code, CREATED)
         return response["Location"]
 
