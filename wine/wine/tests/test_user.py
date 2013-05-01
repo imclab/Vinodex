@@ -21,8 +21,8 @@ class UserTestCase(unittest.TestCase):
     }
 
     sample_user4 = {
-        "username": "Sample User3",
-        "email": "sampleuser3@email.com",
+        "username": "Sample User4",
+        "email": "sampleuser4@email.com",
         "password": "password"
     }
 
