@@ -1,10 +1,11 @@
+import django
 from django.utils import unittest
 from unittest_helper import UnitTestHelper
 from wine.models import Winery
 from test_annotation import AnnotationTestCase
 
 
-class WineryTestCase(unittest.TestCase):
+class WineryTestCase(django.test.TestCase):
     sample_winery = {
         "name": "Zack's Winery",
         "address": "Home",

@@ -1,8 +1,9 @@
+import django
 from django.utils import unittest
 from unittest_helper import UnitTestHelper
 from wine.models import Winery
 
-class WineTestCase(unittest.TestCase):
+class WineTestCase(django.test.TestCase):
 
     def setUp(self):
         self.helper = UnitTestHelper(self)

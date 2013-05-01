@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.gis.db import models
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     first_name = models.TextField()
     last_name = models.TextField()
-    avatar = models.TextField()
+    avatar = models.URLField(blank=True, null=True)
+    user = models.OneToOneField(User)
 
 class Winery(models.Model):
     name = models.TextField()

@@ -1,8 +1,9 @@
+import django
 from django.utils import unittest
 from unittest_helper import UnitTestHelper
 
 @unittest.skip("Annotation has not yet been implemented")
-class AnnotationTestCase(unittest.TestCase):
+class AnnotationTestCase(django.test.TestCase):
 
     def setUp(self):
         self.helper = UnitTestHelper(self)
