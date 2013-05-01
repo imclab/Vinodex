@@ -16,7 +16,7 @@ class Winery(models.Model):
     url = models.URLField(null=True, blank=True)
 
 class Cellar(models.Model):
-    owner = models.ForeignKey(UserProfile)
+    owner = models.ForeignKey(UserProfile, related_name="cellars")
     location = models.TextField()
     name = models.TextField()
     photo = models.URLField(null=True, blank=True)
@@ -24,7 +24,7 @@ class Cellar(models.Model):
 class Wine(models.Model):
     name = models.TextField()
     photo = models.URLField(null=True, blank=True)
-    winery = models.ForeignKey(Winery)
+    winery = models.ForeignKey(Winery, related_name="wines")
     vintage = models.TextField(null=True, blank=True)
     wine_type = models.TextField(null=True, blank=True)
     min_price = models.PositiveIntegerField(null=True, blank=True)
