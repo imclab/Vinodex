@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from wine.api import (WineResource, WineryResource, UserResource,
-                     UserProfileResource)
+                     UserProfileResource, CellarResource)
 from tastypie.api import Api
 
 # Uncomment the next two lines to enable the admin:
@@ -12,6 +12,7 @@ v1_api.register(UserResource())
 v1_api.register(WineResource())
 v1_api.register(WineryResource())
 v1_api.register(UserProfileResource())
+v1_api.register(CellarResource())
 
 urlpatterns = patterns('',
     # Examples:

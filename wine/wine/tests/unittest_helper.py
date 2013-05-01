@@ -46,6 +46,15 @@ class UnitTestHelper(object):
         self.tester.assertEqual(response.status_code, CREATED)
         return response["Location"]
 
+    def create_and_get_ok(self, url, data):
+        """ Creates the given object, and verifies that the object
+            can be retreived. Also verifies that the fields in the 
+            posted object have the same values in the retrieved 
+            object """
+        obj_url = self.postOK(url, data)
+        retrieved = self.getOK(obj_url)
+        self.fields_match(data, retrieved, data.keys())
+
     def postBad(self, url, data):
         """ Makes A POST request to the given URL. This method will 
             JSON-ENCODE the data and send it a JSON to the server. This method
@@ -81,3 +90,34 @@ class UnitTestHelper(object):
         """ This method ensures that the given fields in two dictionaries match """
         for field in fields:
             self.tester.assertEqual(dict1[field], dict2[field])
+
+
+    def remove_hostname(self,url):
+        return "/" + "/".join(url.split("/")[3:])
+
+    # All users need unique username and passwords. This varible 
+    # is used to ensure that all users created have unique usernames
+    # and passwords
+    current_user_id = 0
+
+    def create_user(self):
+        self.current_user_id += 1
+        sample_user = {
+                "username": "sampleUser" +str(self.current_user_id),
+                "password": "password",
+                "email": "sample" + str(self.current_user_id) + "@user.com"
+        }
+
+        url = self.postOK("/api/v1/auth/user/?format=json", sample_user)
+
+        return self.remove_hostname(url)
+
+
+    def create_profile(self):
+        user_url = self.create_user()
+        profile = {
+            "first_name": "Sample",
+            "last_name": "User",
+            "user": user_url
+        }
+        return self.postOK("/api/v1/profile/?format=json", profile)
