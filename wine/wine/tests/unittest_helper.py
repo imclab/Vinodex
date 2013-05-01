@@ -53,7 +53,7 @@ class UnitTestHelper(object):
             object """
         obj_url = self.postOK(url, data)
         retrieved = self.getOK(obj_url)
-        self.fieldsMatch(data, retreived, data.__fields__)
+        self.fields_match(data, retrieved, data.keys())
 
     def postBad(self, url, data):
         """ Makes A POST request to the given URL. This method will 
