@@ -67,6 +67,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'coffeescript.finders.CoffeescriptFinder'
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -102,6 +103,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'coffeescript',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.humanize', # Required for registration templates

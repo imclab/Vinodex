@@ -1,0 +1,9 @@
+{% load coffeescript %}
+{% block scripts %}
+  <script type="text/javascript" 
+          src="{{STATIC_URL}}{% coffeescript "coffee/inventory.coffee" %}">
+  </script>
+{% endblock %}
+{% block content %}
+  Hello World!
+{% endblock %}

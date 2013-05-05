@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 @login_required
 def home(request):
-    return HttpResponse("You are now logged in.")
+    return render(request,"inventory.html")
