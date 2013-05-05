@@ -104,6 +104,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize', # Required for registration templates
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
@@ -112,11 +113,16 @@ INSTALLED_APPS = (
     'south',
     'tastypie',
     'wine',
+    'registration',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7 # Users have 7 days to activate their account
+                            # We will probably not require account activation
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
