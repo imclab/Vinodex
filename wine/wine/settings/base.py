@@ -67,7 +67,8 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'coffeescript.finders.CoffeescriptFinder'
+    'coffeescript.finders.CoffeescriptFinder',
+    'django_scss.finders.SCSSFinder'
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -112,6 +113,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'django_scss',
     'south',
     'tastypie',
     'wine',
@@ -121,6 +123,10 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+SCSS_EXECUTABLE = "scss"
+SCSS_USE_COMPASS = False
+
 
 ACCOUNT_ACTIVATION_DAYS = 7 # Users have 7 days to activate their account
                             # We will probably not require account activation

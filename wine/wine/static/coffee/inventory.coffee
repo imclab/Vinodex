@@ -1,1 +1,1 @@
-alert "Hello World"
+alert "Coffeescript Compilation Works!"

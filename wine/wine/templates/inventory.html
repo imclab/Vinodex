@@ -1,5 +1,10 @@
+{% extends "base.html" %}
 {% load coffeescript %}
+{% block title %}
+  Winodex - Inventory
+{% endblock %}
 {% block scripts %}
+  <link rel="stylesheet" href="{{STATIC_URL}}css/inventory.css" />
   <script type="text/javascript" 
           src="{{STATIC_URL}}{% coffeescript "coffee/inventory.coffee" %}">
   </script>
