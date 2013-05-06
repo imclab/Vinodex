@@ -1,4 +1,5 @@
   helpers = {}
+
   helpers.handleApiResponseForOneElement = (response, callback) ->
     objects = response.objects
     if objects.length == 0
@@ -14,21 +15,28 @@
     $.get("/api/v1/profile", {"user_id": userId}, (response) ->
       helpers.handleApiResponseForOneElement(response, callback))
 
+  helpers.getMyCellars = (callback) ->
+    $.get("/api/v1/cellar", {"owner_id": userId, limit: 0}, (response) ->
+      callback(response.objects))
+
+  helpers.post = (uri, data, callback) ->
+    $.ajax
+      url: uri
+      contentType: "application/json"
+      type: "POST"
+      data: JSON.stringify(data)
+      dataType: "text/json"
+      processData: false
+      complete: callback
+
+
   helpers.createCellar = (name, location, point, callback) ->
     cellar =
       "owner": {pk: window.userId}
       "name": name
       "location": location
-      # "point": point or undefined
+      "point": point or undefined
 
-    $.ajax
-      url: "/api/v1/cellar/",
-      contentType: "application/json"
-      type: "POST"
-      data: JSON.stringify(cellar)
-      dataType: "text/json"
-      processData: false
-      success: callback
-    
+    helpers.post("/api/v1/cellar/", cellar, callback)
 
   window.helpers = helpers

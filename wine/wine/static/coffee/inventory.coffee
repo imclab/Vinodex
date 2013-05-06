@@ -13,11 +13,24 @@ $ ->
         lat: parseFloat(lat)
         lon: parseFloat(lon)
 
-    helpers.createCellar(name, location, point)
+    clicked = ->
+      window.helpers.getMyCellars (cellars) ->
+        window.helpers.getUserInfo window.userId, displayUserInfo
+        renderCellars(cellars)
+
+    helpers.createCellar(name, location, point, clicked)
 
   displayUserInfo = (userInfo) ->
-    alert "Hello #{userInfo.first_name} #{userInfo.last_name}"
     numCellars = userInfo.cellars.length
-    $("#cellar-text").html "You have #{numCellars} cellars"
+    $("#user-info").html "Hello #{userInfo.first_name}, you have #{numCellars} cellars."
+
+  renderCellars = (cellars) ->
+    # TODO: This should be using JST
+    tableString = "<table><tr><td>Cellar Name</td><td>Cellar Location</td>"
+    for cellar in cellars
+      tableString += "<tr><td>#{cellar.name}</td><td>#{cellar.location}</td>"
+    tableString += "</table>"
+    $("#cellar-table").html(tableString)
 
   window.helpers.getUserInfo window.userId, displayUserInfo
+  window.helpers.getMyCellars(renderCellars)
