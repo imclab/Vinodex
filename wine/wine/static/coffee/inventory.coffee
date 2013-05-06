@@ -25,12 +25,7 @@ $ ->
     $("#user-info").html "Hello #{userInfo.first_name}, you have #{numCellars} cellars."
 
   renderCellars = (cellars) ->
-    # TODO: This should be using JST
-    tableString = "<table><tr><td>Cellar Name</td><td>Cellar Location</td>"
-    for cellar in cellars
-      tableString += "<tr><td>#{cellar.name}</td><td>#{cellar.location}</td>"
-    tableString += "</table>"
-    $("#cellar-table").html(tableString)
+    helpers.template("cellar_table", {cellars:cellars}, $("#cellar-table"))
 
   window.helpers.getUserInfo window.userId, displayUserInfo
   window.helpers.getMyCellars(renderCellars)

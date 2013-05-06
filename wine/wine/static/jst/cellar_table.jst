@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <td> Cellar Name </td>
+    <td> Cellar Location </td>
+  </tr>
+  <% _.each(cellars, function(cellar) { %>
+    <tr>
+      <td> <%= cellar.name %></td>
+      <td> <%= cellar.location %></td>
+    </tr>
+  <% }) %>
+</table>

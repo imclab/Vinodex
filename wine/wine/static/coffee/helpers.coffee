@@ -29,6 +29,14 @@
       processData: false
       complete: callback
 
+  helpers.templateNameToUrl = (templateName) ->
+    "/static/jst/#{templateName}.jst"
+
+  helpers.template = (templateName, data, $div) ->
+    templateUrl = helpers.templateNameToUrl templateName
+    templateFunction = (templateText) -> $div.html(_.template(templateText)(data))
+    $.get(templateUrl, {}, templateFunction, "text")
+
 
   helpers.createCellar = (name, location, point, callback) ->
     cellar =
