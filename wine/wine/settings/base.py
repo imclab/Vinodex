@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+COFFEESCRIPT_EXECUTABLE = "iced" # Iced Coffeescript
 SCSS_EXECUTABLE = "scss"
 SCSS_USE_COMPASS = False
 

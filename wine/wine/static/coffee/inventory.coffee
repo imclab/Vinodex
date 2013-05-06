@@ -1,5 +1,4 @@
 console.log "Coffeescript Compilation Works!"
-
 $ ->
 
   # Display Functions
@@ -9,7 +8,7 @@ $ ->
     updateButtonListener = ->
       $(".delete-cellar-button").click ->
         id = $(this).data("id")
-        window.helpers.deleteCellar(id, updatePage)
+        await window.helpers.deleteCellar id, defer nothing
         updatePage()
     setTimeout(updateButtonListener, 100)
 
@@ -18,9 +17,10 @@ $ ->
     $("#user-info").html "Hello #{userInfo.first_name}, you have #{numCellars} cellars."
 
   updatePage = ->
-    window.helpers.getMyCellars (cellars) ->
-      window.helpers.getUserInfo window.userId, displayUserInfo
-      renderCellars(cellars)
+    await window.helpers.getMyCellars defer cellars
+    await window.helpers.getUserInfo window.userId, defer userInfo
+    displayUserInfo(userInfo)
+    renderCellars(cellars)
 
   # Interactions
 
@@ -36,6 +36,7 @@ $ ->
         lat: parseFloat(lat)
         lon: parseFloat(lon)
 
-    helpers.createCellar(name, location, point, updatePage)
+    await helpers.createCellar(name, location, point) defer nothing
+    updatePage()
 
   updatePage()

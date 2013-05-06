@@ -41,7 +41,7 @@
     $.ajax
       url: resource_uri + "/" + id + "/"
       type: "DELETE"
-      callback: callback
+      complete: callback
       dataType: "json"
 
   helpers.deleteCellar = (id, callback) ->
