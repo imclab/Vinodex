@@ -1,8 +1,25 @@
+{% load coffeescript %}
 <!DOCTYPE html> 
 <html>
   <head>
+    <!-- Ubiquitous Scripts -->
+    <script type="text/javascript" 
+            src="{{STATIC_URL}}js/jquery-1.8.2.js"> </script>
+    <script type="text/javascript" 
+            src="{{STATIC_URL}}{% coffeescript "coffee/helpers.coffee" %}">
+    </script>
     {% block scripts %}
     {% endblock %}
+
+    <!-- Provide the logged-in user for javascript -->
+    <script>
+      {% if user %}
+        window.userId = {{user.get_profile.id}};
+      {% else %}
+        window.userId = 0;
+      {% endif %}
+    </script>
+
     <title>{% block title %}Winodex{% endblock %}</title>
   </head>
   <body>
