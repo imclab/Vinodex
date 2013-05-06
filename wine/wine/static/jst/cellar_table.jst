@@ -2,11 +2,17 @@
   <tr>
     <td> Cellar Name </td>
     <td> Cellar Location </td>
+    <td></td>
   </tr>
   <% _.each(cellars, function(cellar) { %>
     <tr>
       <td> <%= cellar.name %></td>
       <td> <%= cellar.location %></td>
+      <td> 
+        <button class="delete-cellar-button" data-id="<%= cellar.id %>">
+          Delete Cellar
+        </button>
+      </td>
     </tr>
   <% }) %>
 </table>

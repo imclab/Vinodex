@@ -37,6 +37,16 @@
     templateFunction = (templateText) -> $div.html(_.template(templateText)(data))
     $.get(templateUrl, {}, templateFunction, "text")
 
+  helpers.deleteObj = (resource_uri, id, callback) ->
+    $.ajax
+      url: resource_uri + "/" + id + "/"
+      type: "DELETE"
+      callback: callback
+      dataType: "json"
+
+  helpers.deleteCellar = (id, callback) ->
+    helpers.deleteObj("/api/v1/cellar", id, callback)
+
 
   helpers.createCellar = (name, location, point, callback) ->
     cellar =
