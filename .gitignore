@@ -2,4 +2,8 @@
 *.pot
 *.pyc
 *.swp
+*.scssc
+.sass_cache
 local_settings.py
+COFFEESCRIPT_CACHE
+__MACOSX

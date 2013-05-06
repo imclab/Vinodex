@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from registration.forms import RegistrationFormUniqueEmail
 from wine.api import (WineResource, WineryResource, UserResource,
                      UserProfileResource, CellarResource)
 from tastypie.api import Api
@@ -15,8 +16,12 @@ v1_api.register(UserProfileResource())
 v1_api.register(CellarResource())
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'wine.views.home', name='home'),
+    url(r'^$', 'wine.views.home', name='home'),
+
+    # This is just a hack for now, all user pages will redirect to 
+    # home. TODO: Actually implement this
+    url(r'^users/*', 'wine.views.home', name='home'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
     # url(r'^wine/', include('wine.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

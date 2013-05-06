@@ -67,6 +67,8 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'coffeescript.finders.CoffeescriptFinder',
+    'django_scss.finders.SCSSFinder'
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -102,21 +104,33 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'coffeescript',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize', # Required for registration templates
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'django_scss',
     'south',
     'tastypie',
     'wine',
+    'registration',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+SCSS_EXECUTABLE = "scss"
+SCSS_USE_COMPASS = False
+
+
+ACCOUNT_ACTIVATION_DAYS = 7 # Users have 7 days to activate their account
+                            # We will probably not require account activation
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
