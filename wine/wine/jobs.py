@@ -1,11 +1,12 @@
 import requests
 from wine.models import Wine, Winery
+from django.db import IntegrityError, transaction
 
 class WineDataJob(object):
     APIKEY ="e45f4f430bfbeef004461424b26e3859"
     API_URL =\
     "http://services.wine.com/api/beta2/service.svc/json/catalog?sortby=popularity%7Cdescending"
-    API_DAILY_LIMIT = 300
+    API_DAILY_LIMIT = 100
     LIMIT = 100
     
     @staticmethod
@@ -35,12 +36,34 @@ class WineDataJob(object):
             return None
 
     @staticmethod
+    def create_winery(winery_data):
+        url = winery_data.get("Url")
+        name = winery_data["Name"]
+        location = WineDataJob.get_winery_location(winery_data.get("GeoLocation"))
+        winery = Winery(name = name, url = url, location = location)
+        winery.save()
+        return winery
+
+    @staticmethod
+    def find_existing_winery(winery_data):
+        url = winery_data.get("Url")
+        if url is not None:
+           existing_wineries = Winery.objects.filter(url=url) 
+           if existing_wineries:
+               return existing_wineries[0]
+           else:
+               return None
+        else:
+            return None
+
+    @staticmethod
     def get_winery_info(winery_data):
         if winery_data is not None:
-            name = winery_data["Name"]
-            url = winery_data.get("Url")
-            location = WineDataJob.get_winery_location(winery_data.get("GeoLocation"))
-            return Winery(name = name, url = url, location = location)
+            existing_winery = WineDataJob.find_existing_winery(winery_data)
+            if existing_winery:
+                return existing_winery
+            else:
+                return WineDataJob.create_winery(winery_data)
         else:
             return None
 
@@ -118,7 +141,5 @@ class WineDataJob(object):
             wines = self.get_data(self.LIMIT, offset)
             for wine_data in wines:
                 wine, winery = self.parse_wine_data(wine_data)
-                if winery is not None:
-                    winery.save()
                 wine.winery = winery
                 wine.save()
