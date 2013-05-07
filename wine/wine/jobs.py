@@ -6,7 +6,7 @@ class WineDataJob(object):
     APIKEY ="e45f4f430bfbeef004461424b26e3859"
     API_URL =\
     "http://services.wine.com/api/beta2/service.svc/json/catalog?sortby=popularity%7Cdescending"
-    API_DAILY_LIMIT = 100
+    API_DAILY_LIMIT = 500
     LIMIT = 100
     
     @staticmethod
@@ -126,7 +126,8 @@ class WineDataJob(object):
                     min_price=min_price,
                     max_price=max_price,
                     retail_price=retail_price,
-                    url=url)
+                    url=url,
+                    label_photo=label_photo)
 
     @staticmethod
     def wine_already_exists(wine):
