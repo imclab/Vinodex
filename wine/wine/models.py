@@ -7,19 +7,25 @@ class UserProfile(models.Model):
     first_name = models.TextField()
     last_name = models.TextField()
     avatar = models.URLField(blank=True, null=True)
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, unique=True)
 
 class Winery(models.Model):
     name = models.TextField()
     address = models.TextField(null=True, blank=True)
     location = models.PointField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
+    
+    class Meta:
+        unique_together = ["name", "address", "location", "url"]
 
 class Cellar(models.Model):
     owner = models.ForeignKey(UserProfile, related_name="cellars")
     location = models.TextField()
     name = models.TextField()
     photo = models.URLField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ["owner", "name"]
 
 class Wine(models.Model):
     name = models.TextField()
@@ -32,6 +38,9 @@ class Wine(models.Model):
     retail_price = models.PositiveIntegerField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     label_photo = models.URLField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ["name", "winery", "vintage"]
 
     def save(self, *args, **kwargs):
         if ( self.min_price is not None and self.max_price is not None
@@ -51,6 +60,7 @@ class Wine(models.Model):
 
         super(Wine, self).save(*args, **kwargs)
 
+
 class Bottle(models.Model):
     wine = models.ForeignKey(Wine)
     cellar = models.ForeignKey(Cellar)
@@ -62,3 +72,6 @@ class Annotation(models.Model):
     bottle = models.ForeignKey(Bottle)
     key = models.TextField()
     value = models.TextField()
+
+    class Meta:
+        unique_together = ["bottle", "key", "value"]
