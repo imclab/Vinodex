@@ -128,6 +128,14 @@ class WineDataJob(object):
                     retail_price=retail_price,
                     url=url)
 
+    @staticmethod
+    def wine_already_exists(wine):
+        if wine.winery:
+            return Wine.objects.filter(name=wine.name,vintage=wine.vintage,winery_id
+                    = wine.winery.id)
+        else:
+            return Wine.objects.filter(name=wine.name,vintage=wine.vintage)
+
 
     @staticmethod
     def parse_wine_data(wine_data):
@@ -142,4 +150,5 @@ class WineDataJob(object):
             for wine_data in wines:
                 wine, winery = self.parse_wine_data(wine_data)
                 wine.winery = winery
-                wine.save()
+                if not self.wine_already_exists(wine):
+                    wine.save()

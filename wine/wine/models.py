@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
 
 class Winery(models.Model):
-    name = models.TextField()
+    name = models.TextField(db_index=True)
     address = models.TextField(null=True, blank=True)
     location = models.PointField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
@@ -28,10 +28,11 @@ class Cellar(models.Model):
         unique_together = ["owner", "name"]
 
 class Wine(models.Model):
-    name = models.TextField()
+    name = models.TextField(db_index=True)
     photo = models.URLField(null=True, blank=True)
-    winery = models.ForeignKey(Winery, related_name="wines", null=True, blank=True)
-    vintage = models.TextField(null=True, blank=True)
+    winery = models.ForeignKey(Winery, related_name="wines", null=True,
+            blank=True, db_index=True)
+    vintage = models.TextField(null=True, blank=True, db_index=True)
     wine_type = models.TextField(null=True, blank=True)
     min_price = models.PositiveIntegerField(null=True, blank=True)
     max_price = models.PositiveIntegerField(null=True, blank=True)
@@ -63,13 +64,13 @@ class Wine(models.Model):
 
 class Bottle(models.Model):
     wine = models.ForeignKey(Wine)
-    cellar = models.ForeignKey(Cellar)
+    cellar = models.ForeignKey(Cellar, db_index=True)
     photo = models.URLField(null=True, blank=True)
     rating = models.PositiveIntegerField(null=True, blank=True)
     price = models.PositiveIntegerField(null=True, blank=True)
 
 class Annotation(models.Model):
-    bottle = models.ForeignKey(Bottle)
+    bottle = models.ForeignKey(Bottle, db_index=True)
     key = models.TextField()
     value = models.TextField()
 
