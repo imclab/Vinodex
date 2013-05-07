@@ -5,7 +5,7 @@ class WineDataJob(object):
     APIKEY ="e45f4f430bfbeef004461424b26e3859"
     API_URL =\
     "http://services.wine.com/api/beta2/service.svc/json/catalog?sortby=popularity%7Cdescending"
-    API_DAILY_LIMIT = 100
+    API_DAILY_LIMIT = 300
     LIMIT = 100
     
     @staticmethod
@@ -114,7 +114,7 @@ class WineDataJob(object):
 
     def start(self):
         for request_index in range(self.API_DAILY_LIMIT):
-            offset = self.initial_offset + self.API_DAILY_LIMIT * request_index
+            offset = self.initial_offset + self.LIMIT * request_index
             wines = self.get_data(self.LIMIT, offset)
             for wine_data in wines:
                 wine, winery = self.parse_wine_data(wine_data)
