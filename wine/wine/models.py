@@ -30,7 +30,7 @@ class Cellar(models.Model):
 class Wine(models.Model):
     name = models.TextField()
     photo = models.URLField(null=True, blank=True)
-    winery = models.ForeignKey(Winery, related_name="wines")
+    winery = models.ForeignKey(Winery, related_name="wines", null=True, blank=True)
     vintage = models.TextField(null=True, blank=True)
     wine_type = models.TextField(null=True, blank=True)
     min_price = models.PositiveIntegerField(null=True, blank=True)
