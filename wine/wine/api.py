@@ -99,6 +99,9 @@ class WineResource(ModelResource):
     class Meta:
         queryset = Wine.objects.all()
         authorization = Authorization() # TODO: Proper auth
+        filtering = {
+            "name": ['istartswith']       
+        }
 
     def hydrate(self, bundle):
         """ Convert client-side floating-point price representation into
