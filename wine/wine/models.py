@@ -83,27 +83,6 @@ class Winery(models.Model, Recognizable):
     location = models.PointField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
 
-    @staticmethod
-    def create_name_cache(ttl_seconds):
-        all_winery_names = list(set([obj[0].lower().encode('ascii','ignore') for obj in
-            Winery.objects.values_list('name')]))
-        Wine.create_data_file(all_winery_names, "winery_names.dat")
-        cache.set('winery_names', all_winery_names, ttl_seconds)
-        return all_winery_names
-
-    @staticmethod
-    def get_winery_names():
-        names = cache.get('winery_names')
-        if names:
-            return names
-        else:
-            return Winery.create_name_cache(7200)
-
-    @staticmethod
-    def create_data_file(winery_names, filename):
-        handle = open(filename, 'w')
-        handle.writelines(wine_names)
-    
     class Meta:
         unique_together = ["name", "address", "location", "url"]
 
