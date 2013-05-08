@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     # home. TODO: Actually implement this
     url(r'^users/*', 'wine.views.home', name='home'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'api/v1/wine/ocr', 'wine.views.wine_ocr', name='wine_ocr'),
     # url(r'^wine/', include('wine.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
