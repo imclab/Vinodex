@@ -135,3 +135,7 @@ class Annotation(models.Model):
 
     class Meta:
         unique_together = ["bottle", "key", "value"]
+
+class SommelierTable(models.Model):
+    wine_type = models.TextField()
+    pairing = models.TextField()
