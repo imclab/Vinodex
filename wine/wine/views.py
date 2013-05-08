@@ -53,9 +53,9 @@ def wine_ocr(request):
     if not url:
         return response
     filename = download_file(url)
-    wine = Wine.identify_from_label(filename)
-    if wine:
-        return render_wine(wine, request)
+    wines = Wine().identify_from_label(filename)
+    if wines:
+        return render_wine(wines[0], request)
     else:
         response = {"message": "Wine could not be identified, sorry"}
         return HttpResponseNotFound(json.dumps(response),
