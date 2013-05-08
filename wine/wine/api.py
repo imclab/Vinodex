@@ -95,10 +95,13 @@ def dehydrate_price(field, bundle):
 
 
 class WineResource(ModelResource):
-    winery = fields.ForeignKey(WineryResource, "winery", blank=False)
+    winery = fields.ForeignKey(WineryResource, "winery", blank=False, full=True)
     class Meta:
         queryset = Wine.objects.all()
         authorization = Authorization() # TODO: Proper auth
+        filtering = {
+            "name": ['istartswith']       
+        }
 
     def hydrate(self, bundle):
         """ Convert client-side floating-point price representation into
