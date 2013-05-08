@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils import simplejson as json
 from django.core.cache import cache
-from wine.models import Wine
+from wine.models import Wine, Winery
 from wine.api import WineResource
 
 @login_required
@@ -40,6 +40,13 @@ def render_wine(wine, request):
     json = wr.serialize(None, wr.full_dehydrate(bundle), "application/json")
     return HttpResponse(json, mimetype="application/json")
 
+def find_best_match(wines, wineries):
+    for wine in wines:
+        if wine.winery in wineries:
+            return wine
+
+    # No match found
+    return wines[0]
 
 def wine_ocr(request):
     def get_url(request):
@@ -54,7 +61,11 @@ def wine_ocr(request):
         return response
     filename = download_file(url)
     wines = Wine().identify_from_label(filename)
-    if wines:
+    wineries = Winery().identify_from_label(filename)
+    if wines and wineries:
+        best_wine = find_best_match(wines, wineries)
+        return render_wine(best_wine, request)
+    elif wines:
         return render_wine(wines[0], request)
     else:
         response = {"message": "Wine could not be identified, sorry"}
