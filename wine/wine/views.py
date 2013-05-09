@@ -9,6 +9,7 @@ from django.utils import simplejson as json
 from django.core.cache import cache
 from wine.models import Wine, Winery
 from wine.api import WineResource
+from tastypie.serializers import Serializer
 import zxing
 
 @login_required
@@ -35,11 +36,17 @@ def download_file(url):
     handle.write(result.content)
     return handle.name
 
-def render_wine(wine, request):
+def render_wines(wines, request):
     wr = WineResource()
-    bundle = wr.build_bundle(obj=wine, request=request)
-    json = wr.serialize(None, wr.full_dehydrate(bundle), "application/json")
-    return HttpResponse(json, mimetype="application/json")
+    rendered_wines = [wr.full_dehydrate(wr.build_bundle(obj=wine, request=request)) for wine in wines]
+    response = []
+    if request.GET.get("limit"):
+        limit = int(request.GET["limit"])
+        response = Serializer().serialize(rendered_wines[:limit])
+    else:
+        response = Serializer().serialize(rendered_wines)
+
+    return HttpResponse(response, mimetype="application/json")
 
 def find_best_match(wines, wineries):
     for wine in wines:
@@ -52,10 +59,21 @@ def find_best_match(wines, wineries):
 def get_barcode_from_image(url):
     reader = zxing.BarCodeReader("/opt/local/zxing-1.6/")
     barcode = reader.decode(url, try_harder=True)
-    if barcode:
+    if barcode and barcode.raw:
         return barcode.raw.split()[0] # Remove trailing EOL
     else:
         return None
+
+def render_result(wines, wineries, request):
+    if not wines:
+        response = {"message": "Wine could not be identified, sorry"}
+        return HttpResponseNotFound(json.dumps(response),
+                mimetype="application/json")
+
+    wines_with_wineries = [wine for wine in wines if wine.winery and wine.winery in wineries]
+    wines_without_wineries = [wine for wine in wines if wine not in
+            wines_with_wineries]
+    return render_wines(wines_with_wineries + wines_without_wineries, request)
 
 def wine_barcode(request):
     def get_barcode(request):
@@ -74,15 +92,7 @@ def wine_barcode(request):
 
     wines = Wine().identify_from_barcode(barcode)
     wineries = Winery().identify_from_barcode(barcode)
-    if wines and wineries:
-        best_wine = find_best_match(wines, wineries)
-        return render_wine(best_wine, request)
-    elif wines:
-        return render_wine(wines[0], request)
-    else:
-        response = {"message": "Wine could not be identified, sorry"}
-        return HttpResponseNotFound(json.dumps(response),
-                mimetype="application/json")
+    return render_result(wines, wineries, request)
     
      
 def wine_ocr(request):
@@ -99,12 +109,4 @@ def wine_ocr(request):
     filename = download_file(url)
     wines = Wine().identify_from_label(filename)
     wineries = Winery().identify_from_label(filename)
-    if wines and wineries:
-        best_wine = find_best_match(wines, wineries)
-        return render_wine(best_wine, request)
-    elif wines:
-        return render_wine(wines[0], request)
-    else:
-        response = {"message": "Wine could not be identified, sorry"}
-        return HttpResponseNotFound(json.dumps(response),
-                mimetype="application/json")
+    return render_result(wines, wineries, request)
