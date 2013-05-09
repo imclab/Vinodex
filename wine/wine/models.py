@@ -25,19 +25,43 @@ class Cellar(models.Model):
         unique_together = ["owner", "name"]
 
 def create_data_file(names, filename):
+    """
+        Exports the names to a given file.
+        Important: All of the names must be ascii. Unicode is not allowed, sorry
+    """
     handle = open(filename, 'w')
     handle.writelines(names)
 
 class Recognizable(object):
+    """
+        Mixin for objects that can be recognized from a barcode or wine label.
+        In our case, this will be wines and wineries
+    """
+
+    # TODO: The cacheing works, but the code is kind of sloppy.
+    # Any method that uses the cache should also ensure that the cache is
+    # updated. Currently, the cache update status is checked in the public
+    # facing methods, which works, but is not good practice.
 
     def _guess_from_product_name(self, name):
+        """
+            Returns a list of objects that have a name that's pretty 
+            close to the provided name. If no objects could be found,
+            this creates a new object with that name, and returns a 
+            list containing just that object.
+        """
         guesses = self._guess_from_label_text([name])
         if guesses:
             return guesses
         else:
+            # TODO: Probably should be self.__class__.create
             return [Wine.create(name=name)]
 
     def identify_from_barcode(self, barcode):
+        """
+            Returns a list of objects in our database that could be matched
+            to the given barcode
+        """
         self._update_name_cache_if_necessary()
         wine_data = query_scandit_api(barcode)
         if wine_data and wine_data.get("basic"):
@@ -46,7 +70,14 @@ class Recognizable(object):
             return None
 
     def identify_from_label(self, image_filename):
+        """
+            Returns a list of objects in our database that could be matched
+            to the given barcode
+        """
         self._update_name_cache_if_necessary()
+
+        # The resulting file has the same name as the filename, but with a ".txt"
+        # extension
         subprocess.call(["tesseract", image_filename, image_filename])
         lines = [line.lower() for line in open(image_filename +
             ".txt").readlines()]
@@ -62,6 +93,7 @@ class Recognizable(object):
         return cache.get(self._names_cache_key())
 
     def _update_name_cache_if_necessary(self):
+        # TODO: This should be a decorator
         if not cache.get(self._names_cache_key()):
             return self._update_name_cache()
 
@@ -73,6 +105,11 @@ class Recognizable(object):
         return all_names
 
     def _guess_from_label_text(self, label_lines):
+        """
+            Looks through all of the lines, and compares each line
+            to the list of names. Returns the objects with the name 
+            that is the closest match to any line in `label_lines`
+        """
         names = self._get_names()
         best_ratio = 0
         best_name = None
