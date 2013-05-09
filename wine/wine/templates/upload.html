@@ -20,5 +20,21 @@
   <input type="file" name="image" />
   <input type="submit">
 </form>
+
+<br />
+
+<form method="GET" action="/api/v1/wine/ocr"> 
+  Label Recognize
+  <input type="text" name="url" />
+  <input type="submit">
+</form>
+
+<br />
+
+<form method="GET" action="/api/v1/wine/barcode"> 
+  Barcode Recognize
+  <input type="text" name="url" />
+  <input type="submit">
+</form>
 {% endblock %}
 

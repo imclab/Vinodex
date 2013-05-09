@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from tastypie.serializers import Serializer
 from tools import (safe_get, download_file, get_filename,
                    get_barcode_from_image, render_result,
-                   download_image_from_request)
+                   download_image_from_request, bad_request)
 
 @login_required
 def home(request):
@@ -39,7 +39,7 @@ def wine_barcode(request):
         if image_filename:
             return get_barcode_from_image(image_filename), None
         else:
-            return None, badRequest("A barcode or image is required")
+            return None, bad_request("A barcode or image is required")
 
     barcode, response = get_barcode(request)
     if not barcode:
@@ -63,7 +63,7 @@ def wine_ocr(request):
         if image_filename:
             return image_filename, None
         elif not request.GET.get("url"):
-            return None, badRequest("An image file is required")
+            return None, bad_request("An image file is required")
 
     filename, response = get_image_filename(request)
     if not filename:

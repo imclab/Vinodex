@@ -55,7 +55,7 @@ def get_barcode_from_image(url):
 def download_image_from_request(request):
 
     def download_remote_image(url):
-        filename = download_file("url")
+        filename = download_file(url)
         return filename
 
     def download_uploaded_image(image_file):
@@ -71,9 +71,9 @@ def download_image_from_request(request):
         image_file = request.FILES["image"]
         return download_uploaded_image(image_file)
 
-def badRequest(message):
+def bad_request(message):
     response = {"message": "A `url` or an `image` is required"}
-    return None, HttpResponseBadRequest(json.dumps(response),
+    return HttpResponseBadRequest(json.dumps(response),
             mimetype="application/json")
 
 def render_result(wines, wineries, request):
