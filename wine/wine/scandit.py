@@ -1,5 +1,8 @@
 import requests
 
+SCANDIT_URL = "https://api.scandit.com/v2/products/"
+API_KEY = "QMXnoEqepvSpQe0cRC--7PUBKocQQmMoN29FxKYMO96"
+
 def make_scandit_url(barcode):
     return "%s/%s?key=%s" % (SCANDIT_URL, barcode, API_KEY)
 

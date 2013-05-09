@@ -1,6 +1,7 @@
 import os
 import requests
 import tempfile
+import zxing
 from django.http import (HttpResponse, HttpResponseBadRequest,
                         HttpResponseNotFound)
 from django.contrib.auth.decorators import login_required
@@ -9,8 +10,6 @@ from django.utils import simplejson as json
 from django.core.cache import cache
 from wine.api import WineResource
 
-SCANDIT_URL = "https://api.scandit.com/v2/products/"
-API_KEY = "QMXnoEqepvSpQe0cRC--7PUBKocQQmMoN29FxKYMO96"
 
 def safe_get(url):
     """ Makes a GET request to the given url. If the request does not succeed,
@@ -52,6 +51,30 @@ def get_barcode_from_image(url):
         return barcode.raw.split()[0] # Remove trailing EOL
     else:
         return None
+
+def download_image_from_request(request):
+
+    def download_remote_image(url):
+        filename = download_file("url")
+        return filename
+
+    def download_uploaded_image(image_file):
+        filename = get_filename()
+        output_file = open(filename, 'w')
+        output_file.write(image_file.read())
+        return filename
+
+    if request.GET.get("url"):
+        url = request.GET.get("url")
+        return download_remote_image(url)
+    elif request.FILES.get("image"):
+        image_file = request.FILES["image"]
+        return download_uploaded_image(image_file)
+
+def badRequest(message):
+    response = {"message": "A `url` or an `image` is required"}
+    return None, HttpResponseBadRequest(json.dumps(response),
+            mimetype="application/json")
 
 def render_result(wines, wineries, request):
     """

@@ -12,7 +12,8 @@ from wine.api import WineResource
 from django.views.decorators.csrf import csrf_exempt
 from tastypie.serializers import Serializer
 from tools import (safe_get, download_file, get_filename,
-                   get_barcode_from_image, render_result)
+                   get_barcode_from_image, render_result,
+                   download_image_from_request)
 
 @login_required
 def home(request):
@@ -33,12 +34,12 @@ def wine_barcode(request):
     def get_barcode(request):
         if request.GET.get("barcode"):
             return request.GET["barcode"], None
-        elif request.GET.get("url"):
-            return get_barcode_from_image(request.GET["url"]), None
+        
+        image_filename = download_image_from_request(request)
+        if image_filename:
+            return get_barcode_from_image(image_filename), None
         else:
-            response = {"message": "Either `url` or `barcode` is required"}
-            return None, HttpResponseBadRequest(json.dumps(response),
-                    mimetype="application/json")
+            return None, badRequest("A barcode or image is required")
 
     barcode, response = get_barcode(request)
     if not barcode:
@@ -57,25 +58,17 @@ def wine_ocr(request):
         TODO: Should take a `image` parameter with the actaul image
         uploaded in FILES.
     """
-    def get_url(request):
-        if request.GET.get("url"):
-            url = request.GET.get("url")
-            filename = download_file("url")
-            return filename, None
-        elif request.FILES.get("image"):
-            image_file = request.FILES["image"]
-            image_filename = get_filename()
-            output_file = open(image_filename, 'w')
-            output_file.write(image_file.read())
+    def get_image_filename(request):
+        image_filename = download_image_from_request(request)
+        if image_filename:
             return image_filename, None
         elif not request.GET.get("url"):
-            response = {"message": "A `url` or an `image` is required"}
-            return None, HttpResponseBadRequest(json.dumps(response),
-                    mimetype="application/json")
+            return None, badRequest("An image file is required")
 
-    filename, response = get_url(request)
+    filename, response = get_image_filename(request)
     if not filename:
         return response
+
     wines = Wine().identify_from_label(filename)
     wineries = Winery().identify_from_label(filename)
     return render_result(wines, wineries, request)

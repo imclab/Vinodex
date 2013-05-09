@@ -15,7 +15,7 @@
 
 <br />
 
-<form target="/api/v1/wine/barcode">
+<form method="POST" action="/api/v1/wine/barcode" enctype="multipart/form-data">
   Barcode Recognize
   <input type="file" name="image" />
   <input type="submit">
