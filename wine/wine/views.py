@@ -4,26 +4,20 @@ import tempfile
 from django.http import (HttpResponse, HttpResponseBadRequest,
                         HttpResponseNotFound)
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
-from django.shortcuts import render
 from django.utils import simplejson as json
 from django.core.cache import cache
-from wine.models import Wine, Winery
+from wine.models import Wine, Winery, UserProfile
 from wine.api import WineResource
 from tastypie.serializers import Serializer
 import zxing
-=======
 from django.shortcuts import render, redirect
 from registration.backends.simple.views import RegistrationView
-from wine.models import UserProfile
 from wine.forms import NewUserRegistrationForm
->>>>>>> bad_frontend
 
 @login_required
 def home(request):
     return render(request,"inventory.html")
 
-<<<<<<< HEAD
 def safe_get(url):
     """ Makes a GET request to the given url. If the request does not succeed,
         then an exception is thrown """
@@ -153,7 +147,7 @@ def wine_ocr(request):
     wines = Wine().identify_from_label(filename)
     wineries = Winery().identify_from_label(filename)
     return render_result(wines, wineries, request)
-=======
+
 class NewUserRegistrationView(RegistrationView):
     form_class = NewUserRegistrationForm
 
@@ -179,4 +173,3 @@ class NewUserRegistrationView(RegistrationView):
             return redirect(to, *args, **kwargs)
         except ValueError:
             return redirect(success_url)
->>>>>>> bad_frontend
