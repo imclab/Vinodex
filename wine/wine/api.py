@@ -1,10 +1,13 @@
 from tastypie.resources import ModelResource, ALL
 from tastypie.authorization import Authorization
+from tastypie.serializers import Serializer
 from tastypie import fields
 from wine.models import Wine, Winery, UserProfile, Cellar, Sommelier
 from django.contrib.gis.geos import Point
 from django.contrib.auth.models import User
 import traceback
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                        HttpResponseNotFound)
 
 class UserResource(ModelResource):
     profile = fields.ToOneField("wine.api.UserProfileResource", "profile",
@@ -114,6 +117,24 @@ class WineResource(ModelResource):
         for field in ["min_price", "max_price", "retail_price"]:
             bundle = dehydrate_price(field, bundle)
         return bundle
+
+    def render_wines(self, wines, request):
+        """
+            Returns an HTTPResponse object containing a list of wines. If the user
+            has passed in the `limit` parameter in their request, this is limited
+            to that amount. This returns this list of wines in the order they
+            were provided to this method
+        """
+        rendered_wines = [self.full_dehydrate(self.build_bundle(obj=wine, request=request)) 
+                          for wine in wines]
+        response = []
+        if request.GET.get("limit"):
+            limit = int(request.GET["limit"])
+            response = Serializer().serialize(rendered_wines[:limit])
+        else:
+            response = Serializer().serialize(rendered_wines)
+
+        return HttpResponse(response, mimetype="application/json")
 
 class SommelierResource(ModelResource):
     class Meta:

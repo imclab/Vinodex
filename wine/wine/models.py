@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from difflib import SequenceMatcher
-from tools import query_scandit_api
+from scandit import query_scandit_api
 import subprocess
 import tempfile
 

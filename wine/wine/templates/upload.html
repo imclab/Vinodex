@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load coffeescript %}
+{% block title %}
+  File Upload
+{% endblock %}
+{% block scripts %}
+{% endblock %}
+{% block content %}
+
+<form method="POST" action="/api/v1/wine/ocr" enctype="multipart/form-data">
+  Label Recognize
+  <input type="file" name="image" />
+  <input type="submit">
+</form>
+
+<br />
+
+<form method="POST" action="/api/v1/wine/barcode" enctype="multipart/form-data">
+  Barcode Recognize
+  <input type="file" name="image" />
+  <input type="submit">
+</form>
+
+<br />
+
+<form method="GET" action="/api/v1/wine/ocr"> 
+  Label Recognize
+  <input type="text" name="url" />
+  <input type="submit">
+</form>
+
+<br />
+
+<form method="GET" action="/api/v1/wine/barcode"> 
+  Barcode Recognize
+  <input type="text" name="url" />
+  <input type="submit">
+</form>
+{% endblock %}
+
