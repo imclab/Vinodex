@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from difflib import SequenceMatcher
+from tools import query_scandit_api
 import subprocess
 import tempfile
 
@@ -28,6 +29,21 @@ def create_data_file(names, filename):
     handle.writelines(names)
 
 class Recognizable(object):
+
+    def _guess_from_product_name(self, name):
+        guesses = self._guess_from_label_text([name])
+        if guesses:
+            return guesses
+        else:
+            return [Wine.create(name=name)]
+
+    def identify_from_barcode(self, barcode):
+        self._update_name_cache_if_necessary()
+        wine_data = query_scandit_api(barcode)
+        if wine_data:
+            return self._guess_from_product_name(wine_data["basic"]["name"]) 
+        else:
+            return None
 
     def identify_from_label(self, image_filename):
         self._update_name_cache_if_necessary()

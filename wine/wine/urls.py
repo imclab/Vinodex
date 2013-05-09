@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^users/*', 'wine.views.home', name='home'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'api/v1/wine/ocr', 'wine.views.wine_ocr', name='wine_ocr'),
+    url(r'api/v1/wine/barcode', 'wine.views.wine_barcode', name='wine_barcode'),
 
     (r'^api/', include (v1_api.urls)),
     url(r'^admin/', include(admin.site.urls)),

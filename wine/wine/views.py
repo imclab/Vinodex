@@ -48,6 +48,32 @@ def find_best_match(wines, wineries):
     # No match found
     return wines[0]
 
+
+def wine_barcode(request):
+    def get_barcode(request):
+        if not request.GET.get("barcode"):
+            response = {"message": "The parameter `barcode` is required"}
+            return None, HttpResponseBadRequest(json.dumps(response),
+                    mimetype="application/json")
+        return request.GET["barcode"], None
+
+    barcode, response = get_barcode(request)
+    if not barcode:
+        return response
+
+    wines = Wine().identify_from_barcode(barcode)
+    wineries = Winery().identify_from_barcode(barcode)
+    if wines and wineries:
+        best_wine = find_best_match(wines, wineries)
+        return render_wine(best_wine, request)
+    elif wines:
+        return render_wine(wines[0], request)
+    else:
+        response = {"message": "Wine could not be identified, sorry"}
+        return HttpResponseNotFound(json.dumps(response),
+                mimetype="application/json")
+    
+     
 def wine_ocr(request):
     def get_url(request):
         if not request.GET.get("url"):
