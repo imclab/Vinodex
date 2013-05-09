@@ -3,6 +3,11 @@ from wine.models import Wine, Winery
 from django.db import IntegrityError, transaction
 
 class WineDataJob(object):
+    """
+        This job queries the Wine.com API for their first 50000 wines.
+        Note that we are actually limited to 1000 API queries per day on 
+        the provded API key
+    """
     APIKEY ="e45f4f430bfbeef004461424b26e3859"
     API_URL =\
     "http://services.wine.com/api/beta2/service.svc/json/catalog?sortby=popularity%7Cdescending"
