@@ -9,6 +9,7 @@ from django.utils import simplejson as json
 from django.core.cache import cache
 from wine.models import Wine, Winery
 from wine.api import WineResource
+import zxing
 
 @login_required
 def home(request):
@@ -48,14 +49,24 @@ def find_best_match(wines, wineries):
     # No match found
     return wines[0]
 
+def get_barcode_from_image(url):
+    reader = zxing.BarCodeReader("/opt/local/zxing-1.6/")
+    barcode = reader.decode(url, try_harder=True)
+    if barcode:
+        return barcode.raw.split()[0] # Remove trailing EOL
+    else:
+        return None
 
 def wine_barcode(request):
     def get_barcode(request):
-        if not request.GET.get("barcode"):
-            response = {"message": "The parameter `barcode` is required"}
+        if request.GET.get("barcode"):
+            return request.GET["barcode"], None
+        elif request.GET.get("url"):
+            return get_barcode_from_image(request.GET["url"]), None
+        else:
+            response = {"message": "Either `url` or `barcode` is required"}
             return None, HttpResponseBadRequest(json.dumps(response),
                     mimetype="application/json")
-        return request.GET["barcode"], None
 
     barcode, response = get_barcode(request)
     if not barcode:

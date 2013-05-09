@@ -40,7 +40,7 @@ class Recognizable(object):
     def identify_from_barcode(self, barcode):
         self._update_name_cache_if_necessary()
         wine_data = query_scandit_api(barcode)
-        if wine_data:
+        if wine_data and wine_data.get("basic"):
             return self._guess_from_product_name(wine_data["basic"]["name"]) 
         else:
             return None
