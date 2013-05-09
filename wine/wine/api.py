@@ -1,12 +1,10 @@
-from tastypie.resources import ModelResource
+from tastypie.resources import ModelResource, ALL
 from tastypie.authorization import Authorization
 from tastypie import fields
-from wine.models import Wine, Winery, UserProfile, Cellar
+from wine.models import Wine, Winery, UserProfile, Cellar, Sommelier
 from django.contrib.gis.geos import Point
 from django.contrib.auth.models import User
 import traceback
-
-
 
 class UserResource(ModelResource):
     profile = fields.ToOneField("wine.api.UserProfileResource", "profile",
@@ -116,3 +114,12 @@ class WineResource(ModelResource):
         for field in ["min_price", "max_price", "retail_price"]:
             bundle = dehydrate_price(field, bundle)
         return bundle
+
+class SommelierResource(ModelResource):
+    class Meta:
+        queryset = Sommelier.objects.all()
+        authorization = Authorization() # TODO: Proper auth
+        filtering = {
+            "wine_type": ALL,
+            "pairing": ALL
+        }
