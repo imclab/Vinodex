@@ -4,6 +4,7 @@ import tempfile
 from django.http import (HttpResponse, HttpResponseBadRequest,
                         HttpResponseNotFound)
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from django.shortcuts import render
 from django.utils import simplejson as json
 from django.core.cache import cache
@@ -11,11 +12,18 @@ from wine.models import Wine, Winery
 from wine.api import WineResource
 from tastypie.serializers import Serializer
 import zxing
+=======
+from django.shortcuts import render, redirect
+from registration.backends.simple.views import RegistrationView
+from wine.models import UserProfile
+from wine.forms import NewUserRegistrationForm
+>>>>>>> bad_frontend
 
 @login_required
 def home(request):
     return render(request,"inventory.html")
 
+<<<<<<< HEAD
 def safe_get(url):
     """ Makes a GET request to the given url. If the request does not succeed,
         then an exception is thrown """
@@ -145,3 +153,30 @@ def wine_ocr(request):
     wines = Wine().identify_from_label(filename)
     wineries = Winery().identify_from_label(filename)
     return render_result(wines, wineries, request)
+=======
+class NewUserRegistrationView(RegistrationView):
+    form_class = NewUserRegistrationForm
+
+    def create_profile(self, request, user, **cleaned_data):
+        first_name, last_name, avatar = (cleaned_data["first_name"],
+        cleaned_data["last_name"], cleaned_data.get("avatar"))
+        profile = UserProfile(user = user, first_name=first_name, last_name = last_name,
+                avatar = avatar)
+        profile.save()
+        return profile
+
+    def form_valid(self, request, form):
+        new_user = self.register(request, **form.cleaned_data)
+        new_user.profile = self.create_profile(request, new_user, **form.cleaned_data)
+        new_user.save()
+        success_url = self.get_success_url(request, new_user)
+        
+        # success_url may be a simple string, or a tuple providing the
+        # full argument set for redirect(). Attempting to unpack it
+        # tells us which one it is.
+        try:
+            to, args, kwargs = success_url
+            return redirect(to, *args, **kwargs)
+        except ValueError:
+            return redirect(success_url)
+>>>>>>> bad_frontend

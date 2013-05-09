@@ -1,7 +1,9 @@
 from django.conf.urls import patterns, include, url
 from registration.forms import RegistrationFormUniqueEmail
+from wine.forms import NewUserRegistrationForm
 from wine.api import (WineResource, WineryResource, UserResource,
                      UserProfileResource, CellarResource, SommelierResource)
+from wine.views import NewUserRegistrationView
 from tastypie.api import Api
 
 from django.contrib import admin
@@ -21,6 +23,7 @@ urlpatterns = patterns('',
     # This is just a hack for now, all user pages will redirect to 
     # home. TODO: Actually implement this
     url(r'^users/*', 'wine.views.home', name='home'),
+    url(r"^accounts/register/$", NewUserRegistrationView.as_view(),name="Register"),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'api/v1/wine/ocr', 'wine.views.wine_ocr', name='wine_ocr'),
     url(r'api/v1/wine/barcode', 'wine.views.wine_barcode', name='wine_barcode'),

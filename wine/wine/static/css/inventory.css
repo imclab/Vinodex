@@ -1,3 +1,6 @@
 body {
-  text-transform: uppercase;
+  font-family: sans-serif;
+  table {
+    cell-border: 2px solid #000;
+  }
 };

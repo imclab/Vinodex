@@ -1,7 +1,7 @@
 Django==1.5.1
 South==0.7.6
--e git+git@github.com:zgrannan/django-coffeescript.git@1e127de5ed55f4b6d8cbebb0e312859e4e2e460f#egg=django_coffeescript-dev
 -e git+git@github.com:oostendo/python-zxing.git#egg=python-zxing
+-e git+git@github.com:zgrannan/django-coffeescript.git#egg=django-coffeescript
 -e hg+https://bitbucket.org/ubernostrum/django-registration@b3c41b3c7f50523b4ecb8267d6d27a918adc2e1f#egg=django_registration-dev
 django-scss==0.6.1
 django-tastypie==0.9.14

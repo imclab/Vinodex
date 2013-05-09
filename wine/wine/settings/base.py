@@ -29,6 +29,9 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
+# Associates our UserProfile object with the user
+AUTH_PROFILE_MODULE = 'wine.UserProfile'
+
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
 USE_L10N = True
@@ -85,7 +88,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
@@ -124,6 +127,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+COFFEESCRIPT_EXECUTABLE = "iced" # Iced Coffeescript
 SCSS_EXECUTABLE = "scss"
 SCSS_USE_COMPASS = False
 
@@ -150,12 +154,21 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
         }
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
+            'propagate': True,
+        },
+        'coffeescript': {
+            'handlers': ['console'],
+            'level': 'WARN',
             'propagate': True,
         },
     }
