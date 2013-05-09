@@ -93,12 +93,12 @@ def dehydrate_price(field, bundle):
 
 
 class WineResource(ModelResource):
-    winery = fields.ForeignKey(WineryResource, "winery", blank=False, full=True)
+    winery = fields.ForeignKey(WineryResource, "winery", null=True, blank=False, full=True)
     class Meta:
         queryset = Wine.objects.all()
         authorization = Authorization() # TODO: Proper auth
         filtering = {
-            "name": ['istartswith']       
+            "name": ALL
         }
 
     def hydrate(self, bundle):
