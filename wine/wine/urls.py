@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'api/v1/wine/ocr', 'wine.views.wine_ocr', name='wine_ocr'),
     url(r'api/v1/wine/barcode', 'wine.views.wine_barcode', name='wine_barcode'),
     url(r'^wine/image', 'wine.views.upload_image', name='wine_upload_image'),
+    url(r'^pie', 'wine.views.pie', name='pie'),
 
     (r'^api/', include (v1_api.urls)),
     url(r'^admin/', include(admin.site.urls)),

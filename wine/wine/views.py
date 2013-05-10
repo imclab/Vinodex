@@ -25,6 +25,9 @@ def home(request):
 def upload_image(request):
     return render(request,"upload.html")
 
+def pie(request):
+    return render(request, "pie.html")
+
 @csrf_exempt
 def wine_barcode(request):
     """

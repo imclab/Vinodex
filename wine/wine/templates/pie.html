@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load coffeescript %}
+{% block title %}
+  Price Pie Chart
+{% endblock %}
+{% block scripts %}
+  <script type="text/javascript" 
+    src="{{STATIC_URL}}{% coffeescript "coffee/pie.coffee" %}" ></script>
+  <link rel="stylesheet" href="{{STATIC_URL}}css/pie.css">
+{% endblock %}
+{% block content %}
+  <div id="pie"></div>
+{% endblock %}
+
