@@ -9,6 +9,9 @@ from django.shortcuts import render
 from django.utils import simplejson as json
 from django.core.cache import cache
 from wine.api import WineResource
+from wine.decorators import timed
+
+
 
 
 def safe_get(url):
@@ -30,6 +33,7 @@ def get_filename():
         file_num = cache.incr("filename_index")
         return "temp/%d.jpg" % file_num
 
+@timed
 def download_file(url):
     """ Downloads a file from the given url. Returns the filename of the downloaded
         file"""
@@ -39,6 +43,7 @@ def download_file(url):
     handle.write(result.content)
     return handle.name
 
+@timed
 def get_barcode_from_image(url):
     """
         Returns the barcode number (as a String), analyzed from the 

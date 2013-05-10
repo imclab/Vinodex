@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from difflib import SequenceMatcher
 from scandit import query_scandit_api
+from decorators import timed
 import subprocess
 import tempfile
 
@@ -69,6 +70,7 @@ class Recognizable(object):
         else:
             return None
 
+    @timed
     def identify_from_label(self, image_filename):
         """
             Returns a list of objects in our database that could be matched
