@@ -2,7 +2,8 @@ from tastypie.resources import ModelResource, ALL
 from tastypie.authorization import Authorization
 from tastypie.serializers import Serializer
 from tastypie import fields
-from wine.models import Wine, Winery, UserProfile, Cellar, Sommelier
+from wine.models import (Wine, Winery, UserProfile, Cellar, Sommelier, Bottle,
+                        Annotation)
 from django.contrib.gis.geos import Point
 from django.contrib.auth.models import User
 import traceback
@@ -135,6 +136,22 @@ class WineResource(ModelResource):
             response = Serializer().serialize(rendered_wines)
 
         return HttpResponse(response, mimetype="application/json")
+
+class BottleResource(ModelResource):
+    wine = fields.ForeignKey(WineResource, "wine", full=True)
+    cellar = fields.ForeignKey(CellarResource, "cellar")
+    
+    class Meta:
+        queryset = Bottle.objects.all()
+        authorization = Authorization()
+
+class AnnotationResource(ModelResource):
+    bottle = fields.ForeignKey(BottleResource, "bottle")
+
+    class Meta:
+        queryset = Annotation.objects.all()
+        authorization = Authorization()
+
 
 class SommelierResource(ModelResource):
     class Meta:

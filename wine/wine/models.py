@@ -183,6 +183,14 @@ class Bottle(models.Model):
     rating = models.PositiveIntegerField(null=True, blank=True)
     price = models.PositiveIntegerField(null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        if self.rating < 0:
+            raise VaidationError("Rating must be greater or equal to 0")
+        if self.rating > 5:
+            raise VaidationError("Rating must be less than or equal to 5")
+
+        super(Bottle, self).save(*args, **kwargs)
+
 class Annotation(models.Model):
     bottle = models.ForeignKey(Bottle, db_index=True)
     key = models.TextField()
