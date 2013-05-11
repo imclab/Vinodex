@@ -74,7 +74,7 @@ class UnitTestHelper(object):
         self.tester.assertEqual(response.status_code, NO_CONTENT)
 
         # Try to get it again, just to make sure
-        response = self.client.delete(url)
+        response = self.client.get(url)
         self.tester.assertEqual(response.status_code, NOT_FOUND)
 
     def putOK(self, url, data):
@@ -111,6 +111,15 @@ class UnitTestHelper(object):
         url = self.postOK("/api/v1/auth/user/?format=json", sample_user)
 
         return self.remove_hostname(url)
+
+    def create_cellar(self):
+        profile_url = self.create_profile()
+        cellar = {
+                "name": "Sample Cellar",
+                "location": "Basement",
+                "owner": self.helper.remove_hostname(user_profile)
+        }
+        return self.postOK("/api/v1/cellar/?format=json", cellar)
 
 
     def create_profile(self):

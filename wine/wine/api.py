@@ -145,6 +145,18 @@ class BottleResource(ModelResource):
         queryset = Bottle.objects.all()
         authorization = Authorization()
 
+    def hydrate(self, bundle):
+        """ Convert client-side floating-point price representation into
+            the server-side representation """
+        bundle = hydrate_price("price", bundle)
+        return bundle
+
+    def dehydrate(self, bundle):
+        """ Convert server-side integer price representation into
+            the client-side floating-point representation """
+        bundle = dehydrate_price("price", bundle)
+        return bundle
+
 class AnnotationResource(ModelResource):
     bottle = fields.ForeignKey(BottleResource, "bottle")
 
