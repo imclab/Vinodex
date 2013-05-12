@@ -1,4 +1,5 @@
 import requests
+import pickle
 from wine.models import Wine, Winery
 from django.db import IntegrityError, transaction
 
@@ -11,7 +12,6 @@ class WineDataJob(object):
     APIKEY ="e45f4f430bfbeef004461424b26e3859"
     API_URL =\
     "http://services.wine.com/api/beta2/service.svc/json/catalog?sortby=popularity%7Cdescending"
-    API_DAILY_LIMIT = 500
     LIMIT = 100
     
     @staticmethod
@@ -98,6 +98,13 @@ class WineDataJob(object):
             return None
 
     @staticmethod
+    def extract_wine_color(varietal):
+        if varietal and varietal.get("WineType"):
+            return varietal["WineType"].get("Name")
+        else:
+            return None
+
+    @staticmethod
     def extract_price(price):
         if price is not None:
             return int(price*100.0)
@@ -119,6 +126,7 @@ class WineDataJob(object):
         name, vintage = WineDataJob.extract_name_and_vintage(wine_data["Name"])
         label_photo = WineDataJob.extract_photo_url(wine_data.get("Labels"))
         wine_type = WineDataJob.extract_wine_type(wine_data.get("Varietal"))
+        wine_color = WineDataJob.extract_wine_color(wine_data.get("Varietal"))
         min_price = WineDataJob.extract_price(wine_data.get("PriceMin"))
         max_price = WineDataJob.extract_price(wine_data.get("PriceMax"))
         retail_price = WineDataJob.extract_price(wine_data.get("PriceRetail"))
@@ -128,6 +136,7 @@ class WineDataJob(object):
         return Wine(name=name,
                     vintage=vintage,
                     wine_type=wine_type,
+                    color=wine_color,
                     min_price=min_price,
                     max_price=max_price,
                     retail_price=retail_price,
@@ -149,12 +158,20 @@ class WineDataJob(object):
         winery = WineDataJob.get_winery_info(wine_data.get("Vineyard"))
         return wine, winery
 
-    def start(self):
-        for request_index in range(self.API_DAILY_LIMIT):
+    def download(self, num_entries, filename = "wine_dotcom_api_data"):
+        wines = []
+        for request_index in range(num_entries / self.LIMIT):
             offset = self.initial_offset + self.LIMIT * request_index
-            wines = self.get_data(self.LIMIT, offset)
-            for wine_data in wines:
-                wine, winery = self.parse_wine_data(wine_data)
-                wine.winery = winery
-                if not self.wine_already_exists(wine):
-                    wine.save()
+            wines += self.get_data(self.LIMIT, offset)
+        file = open(filename, 'w')
+        pickle.dump(wines, file)
+
+    def process(self, filename = "wine_dotcom_api_data"):
+        file = open(filename)
+        print "Loading wines from data file"
+        wines = pickle.load(file)
+        print "Importing wines into the database"
+        for wine_data in wines:
+            wine, winery = self.parse_wine_data(wine_data)
+            if not self.wine_already_exists(wine):
+                wine.save()

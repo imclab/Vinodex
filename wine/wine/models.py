@@ -153,6 +153,7 @@ class Wine(models.Model, Recognizable):
     retail_price = models.PositiveIntegerField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     label_photo = models.URLField(null=True, blank=True)
+    color = models.TextField(null=True, blank=True)
 
     class Meta:
         unique_together = ["name", "winery", "vintage"]
@@ -182,6 +183,14 @@ class Bottle(models.Model):
     photo = models.URLField(null=True, blank=True)
     rating = models.PositiveIntegerField(null=True, blank=True)
     price = models.PositiveIntegerField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.rating <= 0:
+            raise ValidationError("Rating must be greater than 0")
+        if self.rating > 5:
+            raise ValidationError("Rating must be less than or equal to 5")
+
+        super(Bottle, self).save(*args, **kwargs)
 
 class Annotation(models.Model):
     bottle = models.ForeignKey(Bottle, db_index=True)

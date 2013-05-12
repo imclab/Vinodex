@@ -2,7 +2,8 @@ from django.conf.urls import patterns, include, url
 from registration.forms import RegistrationFormUniqueEmail
 from wine.forms import NewUserRegistrationForm
 from wine.api import (WineResource, WineryResource, UserResource,
-                     UserProfileResource, CellarResource, SommelierResource)
+                     UserProfileResource, CellarResource, SommelierResource,
+                     BottleResource, AnnotationResource)
 from wine.views import NewUserRegistrationView
 from tastypie.api import Api
 
@@ -16,6 +17,8 @@ v1_api.register(WineryResource())
 v1_api.register(UserProfileResource())
 v1_api.register(CellarResource())
 v1_api.register(SommelierResource())
+v1_api.register(BottleResource())
+v1_api.register(AnnotationResource())
 
 urlpatterns = patterns('',
     url(r'^$', 'wine.views.home', name='home'),
