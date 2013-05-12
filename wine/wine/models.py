@@ -159,6 +159,10 @@ class Wine(models.Model, Recognizable):
         unique_together = ["name", "winery", "vintage"]
 
     def save(self, *args, **kwargs):
+        for price in [self.min_price, self.retail_price, self.max_price]:
+            if price is not None and price < 0:
+                raise ValidationError("Price must be greater than or equal to 0")
+
         if ( self.min_price is not None and self.max_price is not None
              and self.min_price > self.max_price):
             raise ValidationError("Minimum price %d cannot be greater than\
@@ -185,6 +189,8 @@ class Bottle(models.Model):
     price = models.PositiveIntegerField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
+        if self.price is not None and self.price < 0:
+            raise ValidationError("Price must be greater than or equal to 0")
         if self.rating is not None and self.rating <= 0:
             raise ValidationError("Rating must be greater than 0")
         if self.rating > 5:
