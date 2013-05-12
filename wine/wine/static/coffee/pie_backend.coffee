@@ -32,7 +32,7 @@ __createBackend = (bottles) ->
   type: (func) ->
     partitions = _.groupBy(this.bottles, "wine.type")
 
-window.createBackend = (userId, notifyFunc) ->
+window.createBackend = (userId, notifyFunc = () -> null) ->
   await $.get BOTTLE_URI, {"cellar.owner": userId}, defer response
 
   bottles = response.objects

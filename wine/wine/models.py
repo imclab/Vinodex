@@ -185,7 +185,7 @@ class Bottle(models.Model):
     price = models.PositiveIntegerField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        if self.rating <= 0:
+        if self.rating is not None and self.rating <= 0:
             raise ValidationError("Rating must be greater than 0")
         if self.rating > 5:
             raise ValidationError("Rating must be less than or equal to 5")

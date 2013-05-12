@@ -25,6 +25,7 @@ def home(request):
 def upload_image(request):
     return render(request,"upload.html")
 
+@login_required
 def pie(request):
     return render(request, "pie.html")
 
