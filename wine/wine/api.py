@@ -1,4 +1,4 @@
-from tastypie.resources import ModelResource, ALL
+from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from tastypie.authorization import Authorization
 from tastypie.serializers import Serializer
 from tastypie import fields
@@ -31,6 +31,9 @@ class UserProfileResource(ModelResource):
 class CellarResource(ModelResource):
     owner = fields.ForeignKey(UserProfileResource, "owner", blank=False)
     class Meta:
+        filtering = {
+                "owner": ALL_WITH_RELATIONS         
+        }
         queryset = Cellar.objects.all()
         authorization = Authorization() # TODO: Proper auth
 
@@ -139,11 +142,15 @@ class WineResource(ModelResource):
 
 class BottleResource(ModelResource):
     wine = fields.ForeignKey(WineResource, "wine", full=True)
-    cellar = fields.ForeignKey(CellarResource, "cellar")
+    cellar = fields.ForeignKey(CellarResource, "cellar", full=True)
     
     class Meta:
         queryset = Bottle.objects.all()
         authorization = Authorization()
+        filtering = {
+            "cellar": ALL_WITH_RELATIONS,
+            "wine": ALL_WITH_RELATIONS,
+        }
 
     def hydrate(self, bundle):
         """ Convert client-side floating-point price representation into
