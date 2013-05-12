@@ -136,6 +136,7 @@ class WineDataJob(object):
         return Wine(name=name,
                     vintage=vintage,
                     wine_type=wine_type,
+                    color=wine_color,
                     min_price=min_price,
                     max_price=max_price,
                     retail_price=retail_price,
