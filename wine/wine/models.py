@@ -153,6 +153,7 @@ class Wine(models.Model, Recognizable):
     retail_price = models.PositiveIntegerField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     label_photo = models.URLField(null=True, blank=True)
+    color = models.TextField(null=True, blank=True)
 
     class Meta:
         unique_together = ["name", "winery", "vintage"]
