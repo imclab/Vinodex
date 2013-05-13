@@ -42,10 +42,10 @@
     </p>
     <p>
       <label for="id_first_name">First Name:</label>
-      {% if form.first_name.errors %}
-        <p class="errors">{{ form.first_name.errors.as_text }}</p>
+      {% if form.name.errors %}
+        <p class="errors">{{ form.name.errors.as_text }}</p>
       {% endif %}
-      {{ form.first_name }}
+      {{ form.name }}
     </p>
     <p>
       <label for="id_last_name">Last Name:</label>

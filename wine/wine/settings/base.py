@@ -3,6 +3,11 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+EMAIL_HOST = "mail.zackg.me"
+EMAIL_HOST_USER = "wine@zackg.me"
+DEFAULT_FROM_EMAIL = "wine@zackg.me"
+EMAIL_HOST_PASSWORD = "Wd301d155f"
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
