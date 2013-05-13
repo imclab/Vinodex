@@ -60,7 +60,7 @@ __createBackend = (bottles) ->
     this._render(partitions, groupBy)
 
 window.createBackend = (userId, notifyFunc = () -> null) ->
-  await $.get BOTTLE_URI, {"cellar__owner": userId}, defer response
+  await $.get BOTTLE_URI, {"cellar__owner": userId, "limit": 0}, defer response
 
   bottles = response.objects
   window.backend = __createBackend(bottles)

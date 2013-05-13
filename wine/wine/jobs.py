@@ -174,4 +174,5 @@ class WineDataJob(object):
         for wine_data in wines:
             wine, winery = self.parse_wine_data(wine_data)
             if not self.wine_already_exists(wine):
+                wine.winery = winery
                 wine.save()
