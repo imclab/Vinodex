@@ -125,8 +125,7 @@ class UnitTestHelper(object):
     def create_profile(self):
         user_url = self.create_user()
         profile = {
-            "first_name": "Sample",
-            "last_name": "User",
+            "name": "Sample",
             "user": user_url
         }
         return self.postOK("/api/v1/profile/?format=json", profile)
