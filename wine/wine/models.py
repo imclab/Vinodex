@@ -146,6 +146,7 @@ class Wine(models.Model, Recognizable):
     winery = models.ForeignKey(Winery, related_name="wines", null=True,
             blank=True, db_index=True)
     vintage = models.TextField(null=True, blank=True, db_index=True)
+    alcohol_content = models.FloatField(null=True, blank=True, db_index=True)
     wine_type = models.TextField(null=True, blank=True)
     min_price = models.PositiveIntegerField(null=True, blank=True)
     max_price = models.PositiveIntegerField(null=True, blank=True)
