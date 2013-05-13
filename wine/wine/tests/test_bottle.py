@@ -70,7 +70,7 @@ class BottleTestCase(django.test.TestCase):
         }
         url = self.helper.postOK("/api/v1/bottle/?format=json", bottle)
         bottle2 = self.helper.getOK(url)
-        self.helper.fields_match(bottle, bottle2, {"cellar", "rating",
+        self.helper.fields_match(bottle, bottle2, {"rating",
             "photo"})
 
     def test_can_delete_bottle(self):
@@ -95,7 +95,7 @@ class BottleTestCase(django.test.TestCase):
         url = self.helper.postOK("/api/v1/bottle/?format=json", bottle)
         self.helper.putOK(url, {"price": 9.98})
         bottle2 = self.helper.getOK(url)
-        self.helper.fields_match(bottle, bottle2, {"cellar", "rating",
+        self.helper.fields_match(bottle, bottle2, {"rating",
             "photo"})
         self.assertEquals(bottle2["price"], 9.98)
 
