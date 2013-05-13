@@ -10,8 +10,7 @@ import subprocess
 import tempfile
 
 class UserProfile(models.Model):
-    first_name = models.TextField()
-    last_name = models.TextField()
+    name = models.TextField()
     avatar = models.URLField(blank=True, null=True)
     user = models.OneToOneField(User, unique=True)
 
