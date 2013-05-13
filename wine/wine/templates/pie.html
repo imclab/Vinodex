@@ -5,10 +5,14 @@
 {% endblock %}
 {% block scripts %}
   <script type="text/javascript" 
+    src="{{STATIC_URL}}js/pie_frontend.js" ></script>
+  <script type="text/javascript" 
     src="{{STATIC_URL}}{% coffeescript "coffee/pie_backend.coffee" %}" ></script>
   <link rel="stylesheet" href="{{STATIC_URL}}css/pie.css">
 {% endblock %}
 {% block content %}
-  <div id="pie"></div>
+  <body>
+    <div id="pie"></div>
+  </body>
 {% endblock %}
 
