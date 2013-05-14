@@ -1,7 +1,7 @@
 import django
 from django.utils import unittest
 from unittest_helper import UnitTestHelper
-from wine.models import Winery
+from wine.models.winery import Winery
 
 class AnnotationTestCase(django.test.TestCase):
 
