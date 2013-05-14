@@ -21,7 +21,16 @@ class UserProfileTestCase(django.test.TestCase):
         new_profile = self.helper.getOK(profile_url)
         self.assertEquals(new_profile["name"], "Bob")
         
-
     def test_can_get_profile(self):
         profile = self.helper.getOK(self.helper.create_profile())
         self.assertEquals(profile["name"], "Sample")
+
+    def test_can_create_profile_with_user(self):
+        profile = {
+            "name": "Sample User",
+            "email": "Sample_User@sample_user.com",
+            "password": "A password"
+        }
+        profile_url = self.helper.postOK("/api/v1/profile/", profile) 
+        returned_profile = self.helper.getOK(profile_url)
+        self.assertIn("user", returned_profile)

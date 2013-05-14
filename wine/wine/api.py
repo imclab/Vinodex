@@ -28,6 +28,19 @@ class UserProfileResource(ModelResource):
         queryset = UserProfile.objects.all()
         authorization = Authorization()
 
+    def obj_create(self, bundle, **kwargs):
+        if not bundle.data.get("email") and not bundle.data.get("password"):
+            return super(UserProfileResource, self).obj_create(bundle, **kwargs)
+        else:
+            email = bundle.data.get("email")
+            password = bundle.data.get("password")
+            user = User.objects.create(email=email,username=email,password=password)
+            bundle.obj = UserProfile.objects.create(name=bundle.data.get("name"),
+                                                    user=user)
+            bundle.obj.user = user
+            bundle.obj.save()
+            return bundle
+
 class CellarResource(ModelResource):
     owner = fields.ForeignKey(UserProfileResource, "owner", blank=False)
     class Meta:
