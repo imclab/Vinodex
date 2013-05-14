@@ -1,7 +1,44 @@
 import requests
 import pickle
-from wine.models import Wine, Winery
+from wine.models import Wine, Winery, Sommelier
 from django.db import IntegrityError, transaction
+
+class SommelierDataJob(object):
+
+    def __init__(self, handle):
+        self.handle=handle
+
+    @staticmethod
+    def is_food(line):
+        return line[0] != '-'
+
+    @staticmethod
+    def parse_food(line):
+        return line.strip()
+
+    @staticmethod 
+    def parse_wine(line):
+        comment_start, comment_end = line.find("("), line.rfind(")")
+        if comment_start != -1 and comment_end != -1:
+            wine = line[1:comment_start].strip()
+            comment = line[comment_start+1:comment_end].strip()
+            return wine, comment
+        else:
+            return line[1:].strip(), None
+
+    def process(self):
+        food = None
+        for line in self.handle.readlines():
+            print line
+            if (line.isspace()):
+                continue
+            elif (self.is_food(line)):
+                food = self.parse_food(line)
+            else:
+                wine, comment = self.parse_wine(line)
+                Sommelier.objects.create(wine_type = wine,
+                                         pairing = food,
+                                         comment = comment)
 
 class WineDataJob(object):
     """
