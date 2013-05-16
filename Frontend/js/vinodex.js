@@ -2,7 +2,6 @@ $(document).ready(function() {
 	"use strict";
 	var resultswidth = $("#results").width();
 	var relayout480 = false;
-	var errors;
 	$(".winery").each(function() {
 		$(this).parent().addClass($(this).text().toLowerCase().trim().replace(/ /g, "-"));
 	});
@@ -147,51 +146,24 @@ $(document).ready(function() {
 		$(this).next().click();
 	});
 	$("#validatelogin").click(function(event) {
-		errors = false;
-		$("#loginemail").valemail();
-		
-		var email = $("#loginemail").val();
-		$("#loginmodal").find(".control-group").removeClass("error");
-		$("#loginmodal").find(".help-block").addClass("hide");
-		if(email.trim().length === 0) {
-			errors = true;
-			$("#loginemail").valerror();
-		}
-		if(email.indexOf("@") === -1) {
-			errors = true;
-			$("#loginemail").valerror();
-		}
-		if($("#loginpassword").val().trim().length === 0) {
-			errors = true;
-			$("#loginpassword").valerror();
-		}
-		if(errors) {
+		$("#loginmodal").valreset();
+		$("#login").valreset();
+		if($("#loginemail").valemail() && $("#loginpassword").valpassword()) {
 			event.preventDefault();	
 		}
 	});
 	$("#validatesignup").click(function(event) {
-		errors = false;
-		var email = $("#signupemail").val();
-		if($("#signupname").val().trim().length === 0) {
-			errors = true;
-			$("#signupemail").valerror();
-		}
-		if(email.trim().length === 0) {
-			errors = true;
-			$("#signupemail").valerror();
-		}
-		if(email.indexOf("@") === -1) {
-			errors = true;
-			$("#signupemail").valerror();
-		}
-		if($("#signuppassword").val().trim().length === 0) {
-			errors = true;
-			$("#signuppassword").valerror();
-		}
-		if(errors) {
+		$("#signup").valreset();
+		if($("#signupname").vallength() && $("#signupemail").valemail() && $("#signuppassword").valpassword()) {
 			event.preventDefault();	
 		}
 	});
+	$("#forgotpassval").click(function(event) {
+		$("#login").valreset();
+		if($("#forgotemail").valemail()) {
+			event.preventDefault();	
+		}
+	})
 });
 
 function updateResults() {
@@ -226,28 +198,32 @@ function cellsPerRow() {
 }
 
 jQuery.fn.valreset = function() {
-    this.find(".control-group").removeClass("error");
-	this.find(".help-block").addClass("hide");
+    $(this).find(".control-group").removeClass("error");
+	$(this).find(".help-block").addClass("hide");
 };
 
 jQuery.fn.vallength = function() {
-    if(this.val().trim().length === 0) {
-	    this.vallerror();
-	    errors = true;
+    if($(this).val().trim().length === 0) {
+	    $(this).valerror();
+	    return true;
     } else {
-	    return this;
+	    return false;
     }
 };
 
 jQuery.fn.valemail = function() {
-    if(this.val().indexOf("@") === -1) {
-	    this.vallerror();
-	    errors = true;
+    if($(this).val().indexOf("@") === -1) {
+	    $(this).valerror();
+	    return true;
     } else {
-	    return this;
+	   	return false;
     }
 };
 
+jQuery.fn.valpassword = function() {
+    return $(this).vallength();
+};
+
 jQuery.fn.valerror = function() {
-    this.siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+    $(this).siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
 };
