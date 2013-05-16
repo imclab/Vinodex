@@ -171,7 +171,9 @@ $(document).ready(function() {
 	});
 	$("#validatesignup").click(function(event) {
 		errors = false;
+		var name = $("#signupname").val();
 		var email = $("#signupemail").val();
+		var password = $("#signuppassword").val();
 		if($("#signupname").val().trim().length === 0) {
 			errors = true;
 			$("#signupemail").valerror();
@@ -188,8 +190,8 @@ $(document).ready(function() {
 			errors = true;
 			$("#signuppassword").valerror();
 		}
-		if(errors) {
-			event.preventDefault();	
+		if(!errors) {
+          backend.createUserAccount(name, email, password)
 		}
 	});
 });

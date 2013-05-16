@@ -7,6 +7,7 @@ fromJson = JSONDecoder().decode
 
 OK = 200
 CREATED = 201
+ACCEPTED = 202
 NO_CONTENT = 204
 NOT_FOUND = 404
 BAD_REQUEST = 400
@@ -81,10 +82,11 @@ class UnitTestHelper(object):
         """ This server makes a PUT request to the given url. The data will
             be JSON encoded and sent in the body of the request. An 
             AssertionError is thrown if the server does not respond with
-            NO_CONTENT """
+            NO_CONTENT or ACCEPTED """
         json = toJson(data)
         response = self.client.put(url, json, content_type="application/json")
-        self.tester.assertEqual(response.status_code, NO_CONTENT)
+        self.tester.assertTrue(response.status_code == NO_CONTENT or 
+                               response.status_code == ACCEPTED)
 
     def fields_match(self, dict1, dict2, fields):
         """ This method ensures that the given fields in two dictionaries match """

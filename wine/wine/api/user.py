@@ -8,16 +8,18 @@ class UserResource(ModelResource):
     profile = fields.ToOneField("wine.api.UserProfileResource", "profile",
                                 null=True)
     class Meta:
+        excludes = ['password']
         resource_name = "auth/user"
         queryset = User.objects.all()
         authorization = Authorization()
 
 class UserProfileResource(ModelResource):
-    user = fields.ToOneField(UserResource, "user", blank=False)
+    user = fields.ToOneField(UserResource, "user", blank=False, full=True)
     cellars =\
     fields.ToManyField("wine.api.CellarResource","cellars",related_name="owner",
             blank=True)
     class Meta:
+        always_return_data = True
         resource_name = "profile"
         queryset = UserProfile.objects.all()
         authorization = Authorization()

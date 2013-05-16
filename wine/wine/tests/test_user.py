@@ -32,4 +32,3 @@ class UserTestCase(django.test.TestCase):
                 str(user_id))
         self.assertEqual(user_dict["email"], "sample" +
                 str(user_id) + "@user.com")
-        self.assertEqual(user_dict["password"], "password")
