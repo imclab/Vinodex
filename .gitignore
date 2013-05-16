@@ -8,3 +8,6 @@
 local_settings.py
 COFFEESCRIPT_CACHE
 __MACOSX
+venv
+python-zxing
+admin

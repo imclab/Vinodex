@@ -1,8 +1,0 @@
-CREATE TABLE jobs (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  imageUrl VARCHAR(1024),
-  name VARCHAR(1024),
-  year INT,
-  winery VARCHAR(1024),
-  status VARCHAR(256)
-);
