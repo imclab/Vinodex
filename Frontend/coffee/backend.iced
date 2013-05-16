@@ -51,7 +51,7 @@ class Backend
       contentType: "application/json"
       type: "POST"
       data: JSON.stringify(data)
-      dataType: "jsonp"
+      dataType: "json"
       processData: false
       complete: callback
 
@@ -61,7 +61,7 @@ class Backend
       contentType: "application/json"
       type: "PUT"
       data: JSON.stringify(data)
-      dataType: "jsonp"
+      dataType: "json"
       processData: false
       complete: callback
 
@@ -77,7 +77,7 @@ class Backend
       url: uri
       type: "DELETE"
       complete: callback
-      dataType: "jsonp"
+      dataType: "json"
 
   createUserAccount: (name, email, password) ->
     account =

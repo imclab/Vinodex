@@ -2,7 +2,6 @@ $(document).ready(function() {
 	"use strict";
 	var resultswidth = $("#results").width();
 	var relayout480 = false;
-	var errors;
 	$(".winery").each(function() {
 		$(this).parent().addClass($(this).text().toLowerCase().trim().replace(/ /g, "-"));
 	});
@@ -147,51 +146,43 @@ $(document).ready(function() {
 		$(this).next().click();
 	});
 	$("#validatelogin").click(function(event) {
-		errors = false;
-		$("#loginemail").valemail();
-		
-		var email = $("#loginemail").val();
-		$("#loginmodal").find(".control-group").removeClass("error");
-		$("#loginmodal").find(".help-block").addClass("hide");
-		if(email.trim().length === 0) {
-			errors = true;
-			$("#loginemail").valerror();
-		}
-		if(email.indexOf("@") === -1) {
-			errors = true;
-			$("#loginemail").valerror();
-		}
-		if($("#loginpassword").val().trim().length === 0) {
-			errors = true;
-			$("#loginpassword").valerror();
-		}
-		if(errors) {
+		$("#loginmodal").valreset();
+		$("#login").valreset();
+		var email = $("#loginemail").valemail();
+		var pass = $("#loginpassword").valpassword();
+		if(email || pass) {
 			event.preventDefault();	
 		}
 	});
 	$("#validatesignup").click(function(event) {
-		errors = false;
-		var name = $("#signupname").val();
-		var email = $("#signupemail").val();
-		var password = $("#signuppassword").val();
-		if($("#signupname").val().trim().length === 0) {
-			errors = true;
-			$("#signupemail").valerror();
+		$("#signup").valreset();
+		var name = $("#signupname").vallength();
+		var email = $("#signupemail").valemail();
+		var pass = $("#signuppassword").valpassword();
+		if(name || email || pass) {
+			event.preventDefault();	
 		}
-		if(email.trim().length === 0) {
-			errors = true;
-			$("#signupemail").valerror();
+        var nameVal = $("#signupname").val();
+        var emailVal = $("#signupemail").val();
+        var passwordVal = $("#signuppassword").val();
+        backend.createUserAccount(nameVal, emailVal, passwordVal)
+	});
+	$("#forgotpassval").click(function(event) {
+		$("#login").valreset();
+		if($("#forgotemail").valemail()) {
+			event.preventDefault();	
 		}
-		if(email.indexOf("@") === -1) {
-			errors = true;
-			$("#signupemail").valerror();
-		}
-		if($("#signuppassword").val().trim().length === 0) {
-			errors = true;
-			$("#signuppassword").valerror();
-		}
-		if(!errors) {
-          backend.createUserAccount(name, email, password)
+	});
+	$("#valaddwine").click(function(event) {
+		$("#addwine").valreset();
+		var name = $("#winename").vallength();
+		var year = $("#year").valvintageyear();
+		var alcohol = $("#alcoholcontent").vallength();
+		var cellar = $("#cellar").valselect();
+		var type = $("#winetype").valselect();
+		var bottles = $("#numbottles").vallength();
+		if(name || year || alcohol || cellar || type || bottles) {
+			event.preventDefault();	
 		}
 	});
 });
@@ -228,28 +219,54 @@ function cellsPerRow() {
 }
 
 jQuery.fn.valreset = function() {
-    this.find(".control-group").removeClass("error");
-	this.find(".help-block").addClass("hide");
+    $(this).find(".control-group").removeClass("error");
+	$(this).find(".help-block").addClass("hide");
 };
 
 jQuery.fn.vallength = function() {
-    if(this.val().trim().length === 0) {
-	    this.vallerror();
-	    errors = true;
+    if($(this).val().trim().length === 0) {
+	    $(this).valerror();
+	    return true;
     } else {
-	    return this;
+	    return false;
+    }
+};
+
+jQuery.fn.valvintageyear = function() {
+    if($(this).val().trim().length === 0 && !$("#nv").prop("checked")) {
+	    $(this).valerror();
+	    return true;
+    } else {
+	    return false;
     }
 };
 
 jQuery.fn.valemail = function() {
-    if(this.val().indexOf("@") === -1) {
-	    this.vallerror();
-	    errors = true;
+    if($(this).val().indexOf("@") === -1) {
+	    $(this).valerror();
+	    return true;
     } else {
-	    return this;
+	   	return false;
+    }
+};
+
+jQuery.fn.valpassword = function() {
+    return $(this).vallength();
+};
+
+jQuery.fn.valselect = function() {
+    if($(this).val() === null) {
+	    $(this).valerror();
+	    return true;
+    } else {
+	   	return false;
     }
 };
 
 jQuery.fn.valerror = function() {
-    this.siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+	if($(this).parent().hasClass("input-append")) {
+		$(this).parent().siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+	} else {
+		$(this).siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+	}
 };
