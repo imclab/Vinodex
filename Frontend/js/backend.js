@@ -81,6 +81,8 @@
       this.Wine = new Resource("/api/v1/wine/");
       this.Annotation = new Resource("/api/v1/annotation/");
       this.Sommeilier = new Resource("/api/v1/sommeilier/");
+      this.Profile = new Resource("/api/v1/profile/");
+      this.userId = this.getUserCookie();
     }
 
     Backend.prototype.handleApiResponseForOneElement = function(response, callback) {
@@ -95,21 +97,8 @@
       return callback(objects[0]);
     };
 
-    Backend.prototype.getUserInfo = function(userId, callback) {
-      return $.get("/api/v1/profile", {
-        "user_id": userId
-      }, function(response) {
-        return handleApiResponseForOneElement(response, callback);
-      });
-    };
-
-    Backend.prototype.getMyCellars = function(callback) {
-      return $.get("/api/v1/cellar", {
-        "owner_id": userId,
-        limit: 0
-      }, function(response) {
-        return callback(response.objects);
-      });
+    Backend.prototype.isGood = function(response) {
+      return response.statusCode === 304 || parseInt(response.statusCode / 100) === 2;
     };
 
     Backend.prototype.get = function(uri, data, callback) {
@@ -149,8 +138,46 @@
       });
     };
 
-    Backend.prototype.createUserAccount = function(name, email, password) {
-      var account, user, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+    Backend.prototype.login = function(email, password, success, failure) {
+      var account, response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      account = {
+        "username": email,
+        "password": password
+      };
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.login"
+        });
+        _this.post("" + _this.server_url + "/api/v1/user/login", account, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 95
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        if (_this.isGood(response)) {
+          _this.setUserCookie(response.responseJSON.id);
+          return callback(response.responseJSON);
+        } else {
+          return failure();
+        }
+      });
+    };
+
+    Backend.prototype.logout = function() {
+      return this.removeUserCookie();
+    };
+
+    Backend.prototype.createUserAccount = function(name, email, password, success, failure) {
+      var account, response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
       ___iced_passed_deferral = iced.findDeferral(arguments);
@@ -168,30 +195,32 @@
         _this.post("" + _this.server_url + "/api/v1/profile/", account, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
-              return user = arguments[0];
+              return response = arguments[0];
             };
           })(),
-          lineno: 88
+          lineno: 114
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        console.log(user);
-        window.user = user;
-        return $.cookie("user", user.id);
+        if (_this.isGood(response)) {
+          _this.setUserCookie(response.responseJSON.id);
+          return success(response.responseJSON);
+        } else {
+          return failure();
+        }
       });
     };
 
-    Backend.prototype.createCellar = function(name, location, point, callback) {
-      var cellar;
-      cellar = {
-        "owner": {
-          pk: window.userId
-        },
-        "name": name,
-        "location": location,
-        "point": point || void 0
-      };
-      return this.post("/api/v1/cellar/", cellar, callback);
+    Backend.prototype.setUserCookie = function(userId) {
+      return $.cookie("userId", userId);
+    };
+
+    Backend.prototype.getUserCookie = function(userId) {
+      return $.cookie("userId");
+    };
+
+    Backend.prototype.removeUserCookie = function() {
+      return $.removeCookie("userId");
     };
 
     return Backend;

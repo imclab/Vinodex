@@ -146,6 +146,9 @@ $(document).ready(function() {
 		$(this).next().click();
 	});
 	$("#validatelogin").click(function(event) {
+        /**
+         * TODO: Handle login failure
+         */
 		$("#loginmodal").valreset();
 		$("#login").valreset();
 		var email = $("#loginemail").valemail();
@@ -153,19 +156,30 @@ $(document).ready(function() {
 		if(email || pass) {
 			event.preventDefault();	
 		}
+        var emailVal = $("#loginemail").val();
+        var passwordVal = $("#loginpassword").val();
+        backend.login(emailVal, passwordVal, function(){
+          window.location = "collection.html";
+        }, function(){console.log("Login Failed");});
 	});
 	$("#validatesignup").click(function(event) {
+        /**
+         * TODO: Handle account creation failure
+         */
+        event.preventDefault();
 		$("#signup").valreset();
 		var name = $("#signupname").vallength();
 		var email = $("#signupemail").valemail();
 		var pass = $("#signuppassword").valpassword();
 		if(name || email || pass) {
-			event.preventDefault();	
+          return;
 		}
         var nameVal = $("#signupname").val();
         var emailVal = $("#signupemail").val();
         var passwordVal = $("#signuppassword").val();
-        backend.createUserAccount(nameVal, emailVal, passwordVal)
+        backend.createUserAccount(nameVal, emailVal, passwordVal, function(){
+          window.location = "collection.html";
+        }, function(){console.log("Account Creation Failed");});
 	});
 	$("#forgotpassval").click(function(event) {
 		$("#login").valreset();

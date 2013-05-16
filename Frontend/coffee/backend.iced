@@ -22,6 +22,8 @@ class Backend
     @Wine = new Resource("/api/v1/wine/")
     @Annotation = new Resource("/api/v1/annotation/")
     @Sommeilier = new Resource("/api/v1/sommeilier/")
+    @Profile = new Resource("/api/v1/profile/")
+    @userId = @getUserCookie()
 
   handleApiResponseForOneElement: (response, callback) ->
     objects = response.objects
@@ -34,13 +36,18 @@ class Backend
     callback(objects[0])
 
 
-  getUserInfo: (userId, callback) ->
-    $.get("/api/v1/profile", {"user_id": userId}, (response) ->
-      handleApiResponseForOneElement(response, callback))
+# getUserInfo: (userId, callback) ->
+#   $.get("/api/v1/profile", {"user_id": userId}, (response) ->
+#     handleApiResponseForOneElement(response, callback))
 
-  getMyCellars: (callback) ->
-    $.get("/api/v1/cellar", {"owner_id": userId, limit: 0}, (response) ->
-      callback(response.objects))
+# getMyCellars: (callback) ->
+#   $.get("/api/v1/cellar", {"owner_id": userId, limit: 0}, (response) ->
+#     callback(response.objects))
+#
+  isGood: (response) ->
+    # A response is good if it is a 304 (not modified)
+    # or if it is a 2xx response
+    response.statusCode == 304  or parseInt(response.statusCode / 100) == 2
 
   get: (uri, data, callback) ->
     $.get(@server_url + uri, data, callback)
@@ -79,25 +86,54 @@ class Backend
       complete: callback
       dataType: "json"
 
-  createUserAccount: (name, email, password) ->
+  login : (email, password, success, failure) ->
+    account =
+      "username": email
+      "password": password
+
+    await @post "#{@server_url}/api/v1/user/login", account, defer response
+
+    if @isGood response
+      @setUserCookie response.responseJSON.id
+      callback response.responseJSON
+    else
+      failure()
+
+  logout: ->
+    @removeUserCookie()
+
+  createUserAccount: (name, email, password, success, failure) ->
+  # Creates a user account and registers that account 
+  # with the current session
     account =
       "name": name
       "email": email
       "password": password
 
-    await @.post "#{@server_url}/api/v1/profile/", account, defer user
-    console.log(user)
-    window.user = user
-    $.cookie("user", user.id)
+    await @post "#{@server_url}/api/v1/profile/", account, defer response
 
+    if @isGood response
+      @setUserCookie response.responseJSON.id
+      success response.responseJSON
+    else
+      failure()
 
-  createCellar: (name, location, point, callback) ->
-    cellar =
-      "owner": {pk: window.userId}
-      "name": name
-      "location": location
-      "point": point or undefined
+  setUserCookie: (userId) ->
+    $.cookie("userId", userId)
 
-    @.post("/api/v1/cellar/", cellar, callback)
+  getUserCookie: (userId) ->
+    $.cookie "userId"
+
+  removeUserCookie: ->
+    $.removeCookie "userId"
+
+# createCellar: (name, location, point, callback) ->
+#   cellar =
+#     "owner": {pk: window.userId}
+#     "name": name
+#     "location": location
+#     "point": point or undefined
+
+#   @.post("/api/v1/cellar/", cellar, callback)
 
 window.backend = new Backend("http://localhost:8000")
