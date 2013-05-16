@@ -14,6 +14,7 @@
 		<script src="js/prefixfree.jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/vinodex.js"></script>
+		<script src="js/isotope.min.js"></script>
 	</head>
 	<body class="navbarpadding">
 		<div class="navbar navbar-fixed-top navbar-inverse">
@@ -70,12 +71,12 @@
 		<div class="container main">
 			<div class="row">
 				<div class="span6">
-					<form class="form-horizontal">
+					<form class="form-horizontal" id="addwine">
 						<div class="control-group">
 							<label class="control-label" for="imagefile">Image</label>
 							<div class="controls">
 								<div id="apiphoto"></div>
-								<span class="help-block">Or upload your own image</span>
+								<span class="help-inline">Or upload your own image</span>
 								<input type="file" id="imagefile">
 							</div>
 						</div>
@@ -83,6 +84,7 @@
 							<label class="control-label" for="winename">Wine*</label>
 							<div class="controls">
 								<input type="text" id="winename" placeholder="Name">
+								<span class="help-block hide">Invalid Wine Name</span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -96,8 +98,9 @@
 							<div class="controls">
 								<input type="text" id="year" placeholder="Year" class="span1"> 
 								<label class="checkbox inline">
-									<input type="checkbox"> Nonvintage
+									<input type="checkbox" id="nv"> Nonvintage
 								</label>
+								<span class="help-block hide">Invalid Vintage Year</span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -107,28 +110,33 @@
 									<input id="alcoholcontent" type="text" class="span1" placeholder="Percent">
 									<span class="add-on">%</span>
 								</div>
+								<span class="help-block hide">Invalid Alcohol Content</span>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="cellar">Cellar*</label>
 							<div class="controls">
 								<select id="cellar">
+									<option disabled="disabled"></option>
 									<option>Rack A</option>
 									<option>Rack B</option>
 									<option>Rack C</option>
 								</select>
+								<span class="help-block hide">Invalid Cellar</span>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="winetype">Type*</label>
 							<div class="controls">
 								<select id="winetype">
+									<option disabled="disabled"></option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
 									<option>4</option>
 									<option>5</option>
 								</select>
+								<span class="help-block hide">Invalid Wine Type</span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -138,6 +146,7 @@
 									<input id="numbottles" type="text" class="span1" placeholder="Number">
 									<span class="add-on"><i class="icon-bottle"></i></span>
 								</div>
+								<span class="help-block hide">Invalid Number of Bottles</span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -151,7 +160,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" class="btn">Add Wine</button>
+								<button type="submit" class="btn" id="valaddwine">Add Wine</button>
 							</div>
 						</div>
 					</form>

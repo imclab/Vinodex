@@ -148,13 +148,18 @@ $(document).ready(function() {
 	$("#validatelogin").click(function(event) {
 		$("#loginmodal").valreset();
 		$("#login").valreset();
-		if($("#loginemail").valemail() && $("#loginpassword").valpassword()) {
+		var email = $("#loginemail").valemail();
+		var pass = $("#loginpassword").valpassword();
+		if(email || pass) {
 			event.preventDefault();	
 		}
 	});
 	$("#validatesignup").click(function(event) {
 		$("#signup").valreset();
-		if($("#signupname").vallength() && $("#signupemail").valemail() && $("#signuppassword").valpassword()) {
+		var name = $("#signupname").vallength();
+		var email = $("#signupemail").valemail();
+		var pass = $("#signuppassword").valpassword();
+		if(name || email || pass) {
 			event.preventDefault();	
 		}
 	});
@@ -163,7 +168,19 @@ $(document).ready(function() {
 		if($("#forgotemail").valemail()) {
 			event.preventDefault();	
 		}
-	})
+	});
+	$("#valaddwine").click(function(event) {
+		$("#addwine").valreset();
+		var name = $("#winename").vallength();
+		var year = $("#year").valvintageyear();
+		var alcohol = $("#alcoholcontent").vallength();
+		var cellar = $("#cellar").valselect();
+		var type = $("#winetype").valselect();
+		var bottles = $("#numbottles").vallength();
+		if(name || year || alcohol || cellar || type || bottles) {
+			event.preventDefault();	
+		}
+	});
 });
 
 function updateResults() {
@@ -211,6 +228,15 @@ jQuery.fn.vallength = function() {
     }
 };
 
+jQuery.fn.valvintageyear = function() {
+    if($(this).val().trim().length === 0 && !$("#nv").prop("checked")) {
+	    $(this).valerror();
+	    return true;
+    } else {
+	    return false;
+    }
+};
+
 jQuery.fn.valemail = function() {
     if($(this).val().indexOf("@") === -1) {
 	    $(this).valerror();
@@ -224,6 +250,19 @@ jQuery.fn.valpassword = function() {
     return $(this).vallength();
 };
 
+jQuery.fn.valselect = function() {
+    if($(this).val() === null) {
+	    $(this).valerror();
+	    return true;
+    } else {
+	   	return false;
+    }
+};
+
 jQuery.fn.valerror = function() {
-    $(this).siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+	if($(this).parent().hasClass("input-append")) {
+		$(this).parent().siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+	} else {
+		$(this).siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+	}
 };
