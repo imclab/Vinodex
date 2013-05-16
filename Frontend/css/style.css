@@ -1,0 +1,352 @@
+html, body {
+	height: 100%;
+}
+
+.navbarpadding {
+	padding-top: 40px;
+}
+
+.navbar .brand img {
+	margin-top: -11px;
+}
+
+#header {
+	height: 95%;
+	min-height: 600px;
+	position: relative;
+	background-color: #ffffff;
+	background-image: url("../img/headervideostill.jpg");
+	background-size: cover;
+	background-position: left top;
+	overflow: hidden;
+}
+
+#header .inner {
+	position: absolute;
+	top: 50%;
+	margin-top: -80px;
+	right: 5%;
+	width: auto;
+	z-index: 2;
+	text-shadow: 0px 0px 5px #ffffff;
+	text-align: right;
+}
+
+.dropdown-menu .icon-ok {
+	float: right;
+}
+
+#loginbtn {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	z-index: 2;
+}
+
+#header h3 {
+	font-weight: 300;
+	text-align: right;
+}
+
+#header h3 .btn {
+	font-weight: bold;
+	top: -2px;
+	position: relative;
+}
+
+#header video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+@media (max-aspect-ratio: 16/9) {
+	#header video {
+		height: 100%;
+		width: auto;
+	}
+}
+
+.main {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#miniheader {
+	background-color: #383838;
+	height: 250px;
+	background-position: left bottom;
+	background-size: cover;
+	box-sizing: border-box;
+}
+
+#miniheader .container {
+	position: relative;
+	top: 190px;
+}
+
+#miniheader .page_header {
+	color: #ffffff;
+}
+
+#miniheader .page_header small {
+	color: #cdcdcd;
+}
+
+#about .span12 {
+	margin-bottom: 50px;
+}
+
+#login, #signup {
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+}
+
+#login form, #signup form {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+#signup input {
+	margin-bottom: 10px;
+}
+
+#filterselector .well {
+	padding: 8px 0;
+}
+
+#filterselector .well.affix {
+	top: 65px;
+	z-index: 3;
+}
+
+#toolbar.affix {
+	top: 40px;
+	z-index: 3;
+	background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+#toolbar.affix .navbar {
+	margin: 25px 0 0 0;
+}
+
+#filterselector .checked {
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+	color: #3a87ad;
+}
+
+#filterselector .icon-ok {
+	float: right;
+}
+
+#filterselector li a {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#toolbarspacer {
+	height: 62px;
+	display: none;
+}
+
+#toolbarspacer.show {
+	display: block;
+}
+
+#sortmenu {
+	display: none;
+}
+
+#viewmenu {
+	display: none;
+}
+
+#results .result {
+	cursor: pointer;
+}
+
+#results.gridview .result {
+	width: 170px;
+	height: 250px;
+	color: #333;
+	box-sizing: border-box;
+}
+
+#results .wineimg {
+	text-align: center;
+	background-repeat: no-repeat;
+	position: relative;
+	background-size: cover;
+}
+
+#results.gridview .wineimg img {
+	width: 100%;
+}
+
+#results .wineimg div {
+	background-image: url('../img/selected.png');
+	background-size: cover;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    height: 50%;
+    margin: 25%;
+    position: absolute;
+    top: 0;
+    width: 50%;
+}
+
+#results.gridview .result.selected .wineimg div {
+	display: block;
+}
+
+#results p, #results p span {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.icon-bottle {
+	background-image: url("../img/bottle.png");
+	background-position: 0px 0px;
+}
+
+#results.gridview .result {
+	border-radius: 4px;
+	text-align: center;
+	padding: 10px;
+	border: 1px solid rgba(255,255,255,0);
+}
+
+#results.gridview .result:hover, #results.gridview .result.selected {
+	background-color: whiteSmoke;
+	border: 1px solid #E3E3E3;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	color: #333;
+}
+
+#results.gridview .wineimg {
+	width: 100%;
+	margin-bottom: 10px;
+	background-size: cover;
+}
+
+#results.gridview .result p {
+	margin-bottom: 0;
+}
+
+#results.gridview .result p.winery {
+	margin-bottom: 10px;
+}
+
+.gridview .numbottles, .gridview .retailprice, .gridview .alcoholcontent {
+	width: 33%;
+	display: inline-block;
+	text-align: center;
+}
+
+.gridview .numbottles {
+	text-align: left;
+}
+
+.gridview .alcoholcontent {
+	text-align: right;
+}
+
+#results.tableview .result {
+	height: 100px;
+	width: 100%;
+	background-color: #fff;
+}
+
+#results.tableview .result {
+	border-bottom: 1px solid #dddddd;
+}
+
+#results.tableview .result:last-child {
+	border-bottom: none;
+}
+
+#results.tableview .result:hover {
+	background-color: #f5f5f5;
+}
+
+#results.tableview .result.selected {
+	background-color: #d6d6d6;
+}
+
+#results.tableview .wineimg {
+	width: 15%;
+	height: 100%;
+	background-position: left center;
+	float: left;
+}
+
+#results.tableview .wineimg img {
+	height: 100%;
+	width: auto;
+}
+
+#results.tableview p {
+	line-height: 100px;
+	margin-bottom: 0;
+	float: left;
+	width: 28%;
+	padding: 0 2%;
+}
+
+#results.tableview p:last-child {
+	width: 20%;
+	padding: 0;
+}
+
+#results.tableview p span {
+	width: 21%;
+	padding: 0 2%;
+	float: left;
+	text-align: right;
+}
+
+#results.tableview p span:last-child {
+	width: 46%;
+}
+
+#results.tableview .dateadded span {
+	display: none;
+}
+
+.plural .singular {
+	display: none;
+}
+
+.singular .plural {
+	display: none;
+}
+
+#autocompleteresults .span2 {
+	margin-bottom: 20px;
+}
+
+#autocompleteresults .span2 div {
+	border-radius: 4px;
+	text-align: center;
+	border: 1px solid rgba(255,255,255,0);
+}
+
+#autocompleteresults .span2 div img {
+	margin-bottom: 10px;
+} 
+
+#cellars tr .editdelete a {
+	visibility: hidden;
+}
+
+#cellars tr:hover .editdelete a {
+	visibility: visible;
+}

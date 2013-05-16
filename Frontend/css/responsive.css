@@ -1,0 +1,127 @@
+/* Large desktop */
+@media (min-width: 1200px) {
+	
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (max-width: 979px) {
+	.navbarpadding {
+		padding-top: 0;
+	}
+	.navbar.navbar-fixed-top {
+		margin-bottom: 0;
+	}
+	#header, #miniheader {
+		width: 100%;
+	}
+	#filterselector .well.affix {
+		top: 25px;
+	}
+	
+	#toolbar.affix {
+		top: 0px;
+	}
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	#header {
+		background-size: cover;
+	}
+	#header video {
+		display: none;
+	}
+	#header, #miniheader {
+		margin: 0 -20px;
+		padding: 0 20px;
+		width: auto;
+	}
+	.affix {
+		position: static;
+		top: 0;
+	}
+	#toolbar.affix .navbar {
+		margin: 0;
+	}
+	#toolbarspacer.show {
+		display: none;
+	}
+	#about .span5 {
+		margin-top: 0px !important;
+	}
+	#about .span12 {
+		margin-bottom: 0px !important;
+	}
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 575px) {
+	#header .inner img {
+		width: 95%;
+	}
+}
+
+/* Landscape phones and down */
+@media (max-width: 490px) { /* changed to 490 for buttons on collection page */
+	#header {
+		background: none;
+		height: auto;
+		min-height: 0;
+	}
+	#header #loginbtn {
+		display: block;
+		position: static;
+		margin: 20px 0;
+	}
+	#header .inner {
+		position: static;
+		margin: 20px 0;
+		text-align: center;
+	}
+	#header .inner h3 {
+		text-align: center;
+	}
+	#header .inner .btn {
+		display: block;
+		top: 0;
+		position: static;
+		margin: 20px 0 0 0;
+	}
+	#miniheader small {
+		display: none;
+	}
+	#results.gridview .result {
+		width: 50%;
+	}
+	#results.tableview .result {
+		height: auto;
+	}
+	#results.tableview p {
+		line-height: 30px;
+	}
+	#results.tableview .result .wineimg, #results.tableview .result .winery, #results.tableview .result .retailprice, #results.tableview .result .dateadded  {
+		display: none;
+	}
+	#results.tableview .result .name {
+		width: 75%;
+	}
+	#results.tableview .result .numbottles {
+		width: 96%;
+	}
+	#options {
+		float: left;
+		margin-right: 7px;
+	}
+	#sortbtn {
+		display: none;
+	}
+	#sortmenu {
+		display: list-item;
+	}
+	#viewbtn {
+		display: none;
+	}
+	#viewmenu {
+		display: list-item;
+	}
+}

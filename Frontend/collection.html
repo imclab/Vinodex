@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Vinodex - Collection</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/responsive.css" rel="stylesheet">
+		<link href="css/isotope.css" rel="stylesheet">
+		<script src="js/jquery.js"></script>
+		<script src="js/prefixfree.js"></script>
+		<script src="js/prefixfree.jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/isotope.min.js"></script>
+		<script src="js/vinodex.js"></script>
+	</head>
+	<body class="navbarpadding">
+		<div class="navbar navbar-fixed-top navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="index.html"><img src="img/logonavbar.png" alt="vinodex"</img></a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li class="dropdown active">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Collection<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Manage Cellars</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Statistics</a></li>
+							<li><a href="#">Sommelier</a></li>
+						</ul>
+						
+						<ul class="nav pull-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-cog"></i>
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Settings</a></li>
+									<li><a href="#">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+						<form class="navbar-search pull-right">
+							<input type="text" class="search-query" placeholder="Search Library">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="miniheader" style="background-image: url(img/libraryheader.jpg)">
+			<div class="container">
+				<div class="row">
+					<div class="span_12">
+						<div class="page_header">
+							<h1>Collection <small>All Wines</small></h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container main">
+			<div class="row">
+				<div class="span2" id="filterselector">
+					<div class="row">
+					<div class="well span2" data-spy="affix" data-offset-top="275">
+						<ul class="nav nav-list">
+							<li class="nav-header">Cellars</li>
+							<li><a href="#">Rack A</i></a></li>
+							<li><a href="#">Rack B</i></a></li>
+							<li><a href="#">Rack C</i></a></li>
+							<li class="nav-header">Types</li>
+							<li><a href="#">Port</a></li>
+							<li><a href="#">Merlot</a></li>
+							<li><a href="#">Zinfandel</a></li>
+							<li><a href="#">Moscato</a></li>
+							<li><a href="#">Chardonnay</a></li>
+							<li><a href="#">Pinot Gris</a></li>
+							<li class="nav-header">Winery</li>
+							<li><a href="#">Example Winery 1</a></li>
+							<li><a href="#">Example Winery 2</a></li>
+							<li><a href="#">Example Winery 3</a></li>
+						</ul>
+					</div>
+					</div>
+				</div>
+				<div class="span10">
+					<div class="row">
+						<div class="span10" id="toolbarspacer"></div>
+						<div class="span10" id="toolbar" data-spy="affix" data-offset-top="275">
+							<div class="navbar">
+								<div class="navbar-inner">
+									<a href="#addwine" class="btn" data-toggle="modal"><i class="icon-plus"></i> Add Wine</a>
+									<div class="btn-group" id="options">
+										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+											<i class="icon-check"></i> Options
+											<span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#" id="selectall">Select All</a></li>
+											<li><a href="#" id="selectnone">Select None</a></li>
+											<li><a href="#deletewine">Delete</a></li>
+											<li class="dropdown-submenu sortoptions" id="sortmenu">
+												<a href="#">Sort</a>
+												<ul class="dropdown-menu">
+													<li class="sortoption"><a href="#" data-sort-attr="name">Name</a></li>
+												    <li class="sortoption"><a href="#" data-sort-attr="date">Date Added</a></li>
+												    <li class="sortoption"><a href="#" data-sort-attr="bottles">Bottles</a></li>
+												    <li class="sortoption"><a href="#" data-sort-attr="retailprice">Retail Price</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu sortoptions" id="sortmenu">
+												<a href="#">View</a>
+												<ul class="dropdown-menu">
+													<li class="sortoption"><a href="#" class="gridbtn">Grid</a></li>
+												    <li class="sortoption"><a href="#" class="tablebtn">Table</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu">
+												<a href="#">Print</a>
+												<ul class="dropdown-menu">
+													<li><a href="#printselected">Selected</a></li>
+													<li><a href="#">All</a></li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+									<div class="btn-group sortoptions" id="sortbtn">
+										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+											<i class="icon-random"></i> Sort
+											<span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu">
+											<li class="dropdown-submenu sortoption">
+												<a href="#" data-sort-attr="name">Name</a>
+												<ul class="dropdown-menu">
+													<li><a href="#" data-sort-order="asc">Alphabetical</a></li>
+													<li><a href="#" data-sort-order="desc">Reverse Alphabetical</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu sortoption">
+												<a href="#" data-sort-attr="date">Date Added</a>
+												<ul class="dropdown-menu">
+													<li><a href="#" data-sort-order="desc">Recent First</a></li>
+													<li><a href="#" data-sort-order="asc">Earlier First</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu sortoption">
+												<a href="#" data-sort-attr="bottles">Bottles</a>
+												<ul class="dropdown-menu">
+													<li><a href="#" data-sort-order="asc">Ascending</a></li>
+													<li><a href="#" data-sort-order="desc">Descending</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu sortoption">
+												<a href="#" data-sort-attr="retailprice">Retail Price</a>
+												<ul class="dropdown-menu">
+													<li><a href="#" data-sort-order="asc">Ascending</a></li>
+													<li><a href="#" data-sort-order="desc">Descending</a></li>
+												</ul>
+											</li>
+											<li class="dropdown-submenu sortoption">
+												<a href="#" data-sort-attr="alcoholcontent">Alcohol Content</a>
+												<ul class="dropdown-menu">
+													<li><a href="#" data-sort-order="asc">Ascending</a></li>
+													<li><a href="#" data-sort-order="desc">Descending</a></li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+									<div class="btn-group pull-right" data-toggle="buttons-radio" id="viewbtn">
+										<a href="#" class="btn active gridbtn"><i class="icon-th"></i></a>
+										<a href="#" class="btn tablebtn"><i class="icon-list"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span10 gridview" id="results">
+								<div class="result port cellar-a" data-timestamp="1">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Port Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">30<i class="icon-bottle"></i></span><span class="retailprice">$50</span><span class="alcoholcontent">14.7%</span></p>
+								</div>
+								<div class="result port cellar-b" data-timestamp="2">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Port Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">30<i class="icon-bottle"></i></span><span class="retailprice">$50</span><span class="alcoholcontent">14.8%</span></p>
+								</div>
+								<div class="result port cellar-c" data-timestamp="4">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Port Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 3</a></p>
+									<p><span class="numbottles">32<i class="icon-bottle"></i></span><span class="retailprice">$51</span><span class="alcoholcontent">12.7%</span></p>
+								</div>
+								<div class="result port cellar-a" data-timestamp="1">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Port Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">34<i class="icon-bottle"></i></span><span class="retailprice">$52</span><span class="alcoholcontent">5.7%</span></p>
+								</div>
+								<div class="result merlot cellar-b" data-timestamp="3">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Merlot Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 2</a></p>
+									<p><span class="numbottles">31<i class="icon-bottle"></i></span><span class="retailprice">$53</span><span class="alcoholcontent">2.7%</span></p>
+								</div>
+								<div class="result merlot cellar-c" data-timestamp="6">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Merlot Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">36<i class="icon-bottle"></i></span><span class="retailprice">$54</span><span class="alcoholcontent">14.4%</span></p>
+								</div>
+								<div class="result zinfandel cellar-a" data-timestamp="5">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Zinfandel Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 3</a></p>
+									<p><span class="numbottles">24<i class="icon-bottle"></i></span><span class="retailprice">$55</span><span class="alcoholcontent">17.9%</span></p>
+								</div>
+								<div class="result moscato cellar-b" data-timestamp="9">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Moscato Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">3<i class="icon-bottle"></i></span><span class="retailprice">$56</span><span class="alcoholcontent">14.7%</span></p>
+								</div>
+								<div class="result moscato cellar-c" data-timestamp="8">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Moscato Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 2</a></p>
+									<p><span class="numbottles">10<i class="icon-bottle"></i></span><span class="retailprice">$57</span><span class="alcoholcontent">10.7%</span></p>
+								</div>
+								<div class="result chardonnay cellar-a" data-timestamp="7">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Chardonnay Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">20<i class="icon-bottle"></i></span><span class="retailprice">$58</span><span class="alcoholcontent">13.4%</span></p>
+								</div>
+								<div class="result pinot-gris cellar-b" data-timestamp="4">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Pinot Gris Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 3</a></p>
+									<p><span class="numbottles">60<i class="icon-bottle"></i></span><span class="retailprice">$59</span><span class="alcoholcontent">2.9%</span></p>
+								</div>
+								<div class="result port cellar-c" data-timestamp="10">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Port Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">30<i class="icon-bottle"></i></span><span class="retailprice">$50</span><span class="alcoholcontent">10.6%</span></p>
+								</div>
+								<div class="result port cellar-a" data-timestamp="3">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Port Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 3</a></p>
+									<p><span class="numbottles">32<i class="icon-bottle"></i></span><span class="retailprice">$51</span><span class="alcoholcontent">1.53%</span></p>
+								</div>
+								<div class="result port cellar-b" data-timestamp="5">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Port Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">34<i class="icon-bottle"></i></span><span class="retailprice">$52</span><span class="alcoholcontent">16.5%</span></p>
+								</div>
+								<div class="result merlot cellar-c" data-timestamp="2">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Merlot Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 2</a></p>
+									<p><span class="numbottles">31<i class="icon-bottle"></i></span><span class="retailprice">$53</span><span class="alcoholcontent">11.3%</span></p>
+								</div>
+								<div class="result merlot cellar-a" data-timestamp="29">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Merlot Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">36<i class="icon-bottle"></i></span><span class="retailprice">$54</span><span class="alcoholcontent">10.9%</span></p>
+								</div>
+								<div class="result zinfandel cellar-b" data-timestamp="23">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Zinfandel Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 3</a></p>
+									<p><span class="numbottles">24<i class="icon-bottle"></i></span><span class="retailprice">$55</span><span class="alcoholcontent">11%</span></p>
+								</div>
+								<div class="result moscato cellar-c" data-timestamp="20">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Moscato Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">3<i class="icon-bottle"></i></span><span class="retailprice">$56</span><span class="alcoholcontent">15.3%</span></p>
+								</div>
+								<div class="result moscato cellar-a" data-timestamp="1">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Moscato Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 2</a></p>
+									<p><span class="numbottles">10<i class="icon-bottle"></i></span><span class="retailprice">$57</span><span class="alcoholcontent">17.4%</span></p>
+								</div>
+								<div class="result chardonnay cellar-b" data-timestamp="21">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Chardonnay Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 1</a></p>
+									<p><span class="numbottles">20<i class="icon-bottle"></i></span><span class="retailprice">$58</span><span class="alcoholcontent">12.4%</span></p>
+								</div>
+								<div class="result pinot-gris cellar-c" data-timestamp="19">
+									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
+									<p class="name"><a href="#">Example Pinot Gris Wine</a></p>
+									<p class="winery"><a href="#">Example Winery 3</a></p>
+									<p><span class="numbottles">60<i class="icon-bottle"></i></span><span class="retailprice">$59</span><span class="alcoholcontent">12.3%</span></p>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="addwine" class="modal hide fade" tabindex="-1" role="dialog">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add Wine</h3>
+			</div>
+			<div class="modal-body text-center">
+				<p>Take a picture of your wine's label or enter its name and Autocomplete will take care of the rest. Barcodes work too!</p>
+				<a href="#uploadimage" class="btn btn-primary">Upload image</a>
+				<input type="file" style="display: none;"/>
+				<hr>
+				<div class="input-append">
+					<input class="span2" type="text" placeholder="Wine Name">
+					<a class="btn btn-primary">Go!</a>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Close</a>
+			</div>
+		</div>
+		<div id="deletewine" class="modal hide fade" tabindex="-1" role="dialog">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Delete Wine<span class="plural">s</span></h3>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure you want to remove <span class="plural">these</span><span class="singular">this</span> wine<span class="plural">s</span> from your collection?</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</a>
+				<a href="#" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Yes</a>
+			</div>
+		</div>
+		<div id="noneselected" class="modal hide fade" tabindex="-1" role="dialog">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>No Wines Selected</h3>
+			</div>
+			<div class="modal-body">
+				<p>Select wines by clicking on them and then try your action again.</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Okay</a>
+			</div>
+		</div>
+		<div class="container" id="footer">
+			<div class="row">
+				<div class="span12">
+					<ul class="inline">
+						<li>&copy; 2013 Wine That's Fine</li>
+						<li><a href="attribution.html">API/Image Attribution</a></li>
+						<li><a href="http://www.wine.com/" title="Wine.com the destination for Wine and Wine Gifts"><img src="http://cache.wine.com/images/logos/80x20_winecom_logo.png" alt="Wine.com the destination for Wine and Wine Gifts" /></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

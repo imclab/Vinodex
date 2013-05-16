@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Vinodex</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/responsive.css" rel="stylesheet">
+		<script src="js/jquery.js"></script>
+		<script src="js/prefixfree.js"></script>
+		<script src="js/prefixfree.jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/vinodex.js"></script>
+		<script src="js/isotope.min.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<a href="#loginmodal" class="btn" id="loginbtn" data-toggle="modal">Login</a>
+			<div class="inner">
+				<img src="img/logo.png" alt="vinodex"/>
+				<h3>Catalog your wine collection. <a href="#signup" class="btn btn-primary">Get Started</a></h3>
+			</div>
+			<video id="video_background" preload="auto" autoplay="true" loop="loop" muted="" volume="0"> 
+				<source src="https://dl.dropboxusercontent.com/s/93bkaoj84djwg86/headervideo.mp4?token_hash=AAFjEGSgWR21h-1TAiD8JlHTHGUMd-_E-vw5SbW4S0AzNw&dl=1" type="video/mp4"> 
+				<source src="https://dl.dropboxusercontent.com/s/j5yzln7daal0pgj/headervideo.webm?token_hash=AAEowCHXUF3CrkW84vjkR0e9qVtuYZymxYOt2TLgILmZKg&dl=1" type="video/webm"> 
+			</video>
+		</div>
+		<div id="loginmodal" class="modal hide fade" tabindex="-1" role="dialog">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Login</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="loginemail">Email</label>
+						<div class="controls">
+							<input type="email" id="loginemail" placeholder="Address">
+							<span class="help-block hide">Invalid Email Address</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="loginpassword">Password</label>
+						<div class="controls">
+							<input type="password" id="loginpassword" placeholder="Password">
+							<span class="help-block hide">Invalid Password</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<label class="checkbox">
+								<input type="checkbox"> Remember me
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="forgotpassword.html" class="btn pull-left">Forgot Password</a>
+				<a href="collection.html" class="btn btn-primary" id="validatelogin">Login</a>
+			</div>
+		</div>
+		<div class="container main" id="about">
+			<div class="row">
+				<div class="span12">
+					<div class="page_header">
+					    <h1>Wine + Index <small>Your Wines, Managed</small></h1>
+					</div>
+					<p>Vinodex makes managing your wine collection a snap! Want to organize your collection of wines without breaking a sweat? With Vinodex, you can organize your wines by vintage, winery, grape varietal, or even the real-time market price.</p>
+				</div>
+				<div class="span12">
+					<div class="row">
+						<div class="span5 offset1 text-right">
+						    <img src="img/labelscan.jpg" alt="scanning labels"/>
+						</div>
+						<div class="span5" style="margin-top: 161px;">
+						    <div class="page_header">
+						        <h1>Autocomplete <small>1, 2, 3, Cheese!</small></h1>
+						    </div>
+						    <p>Purchased a new wine recently?  Be sure to add that wine to your virtual wine collection. Vinodex makes this easy for you.  All you have to do is take a picture of the label of your newly purchased wine or type in its name. A picture of its barcode will work too!</p>
+						</div>
+					</div>
+				</div>
+				<div class="span12">
+					<div class="row">
+						<div class="span5 offset1 text-right" style="margin-top: 72px">
+						    <div class="page_header">
+						        <h1>Cellars <small>Put a Location on It</small></h1>
+						    </div>
+						    <p>Want to impress your hot date but having trouble locating a particular wine in your collection? Simply log in to Vinodex and search for that wine you know will impress. Vinodex lets you organized your wines into cellars, so you'll know where exactly you stored it and spend more time impressing your significant other.</p>
+						</div>
+						<div class="span5">
+						    <img src="img/winerack.jpg" alt="cellars"/>
+						</div>
+					</div>
+				</div>
+				<div class="span12">
+					<div class="row">
+						<div class="span5 text-right offset1">
+						    <img src="img/sommelier.jpg" alt="cellars"/>
+						</div>
+						<div class="span5" style="margin-top: 55px">
+						    <div class="page_header">
+						        <h1>Sommelier <small>At Your Service </small></h1>
+						    </div>
+						    <p>Wish you knew what wine to pair with a given meal, or vice versa? Tingle your taste buds. Give the Sommelier feature a try. Just input the type of meal you will be eating and Vinodex will tell you which of your wines will pair best with your meal.  </p>
+						</div>
+					</div>
+				</div>
+				<div class="span12">
+					<div class="row">
+						<div class="span5 offset1">
+						    <div class="page_header">
+						        <h1>Hard Copies <small></small></h1>
+						    </div>
+						    <p>Rather have a physical copy of your wine collection? Maybe you want to show off your wine collection to guests without having to turn on a computer? Vinodex provides you with the option to print a catalog of your wine collection!</p>
+						</div>
+						<div class="span5 text-right">
+						    <div class="page_header">
+						        <h1>Market Price <small></small></h1>
+						    </div>
+						    <p>Interested in the market price of a given wine? Vinodex provides the market price of any wine.  Simply type in the wine you are interested in purchasing and Vinodex will provide you with the current market price. </p>
+						</div>
+					</div>
+				</div>
+				<div class="span12">
+					<div class="span3 well text-center" id="signup">
+						<h3>Get Started</h3>
+						<hr>
+					    <form>
+					    	<div class="control-group">
+					    		<div class="controls">
+					    			<input class="span3" type="text" id="signupname" placeholder="Name">
+					    			<span class="help-block hide">Invalid Name</span>
+					    		</div>
+					    	</div>
+					    	<div class="control-group">
+					    		<div class="controls">
+						    		<input class="span3" type="email" id="signupemail" placeholder="Email">
+						    		<span class="help-block hide">Invalid Email</span>
+						    	</div>
+					    	</div>
+					    	<div class="control-group">
+					    		<div class="controls">
+						    		<input class="span3" type="password" id="signuppassword" placeholder="Password">
+						    		<span class="help-block hide">Invalid Password</span>
+						    	</div>
+					    	</div>
+					    	<a href="collection.html" class="btn btn-primary btn-block" id="validatesignup">Sign Up</a>
+					    </form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="footer">
+			<div class="row">
+				<div class="span12">
+					<ul class="inline">
+						<li>&copy; 2013 Wine That's Fine</li>
+						<li><a href="attribution.html">API/Image Attribution</a></li>
+						<li><a href="http://www.wine.com/" title="Wine.com the destination for Wine and Wine Gifts"><img src="http://cache.wine.com/images/logos/80x20_winecom_logo.png" alt="Wine.com the destination for Wine and Wine Gifts" /></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
