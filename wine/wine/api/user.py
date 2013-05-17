@@ -11,7 +11,7 @@ class UserResource(ModelResource):
         excludes = ['password']
         resource_name = "auth/user"
         queryset = User.objects.all()
-        authorization = Authorization
+        authorization = Authorization()
 
         def override_urls(self):
             return [
