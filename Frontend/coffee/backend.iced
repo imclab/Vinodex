@@ -47,7 +47,7 @@ class Backend
   isGood: (response) ->
     # A response is good if it is a 304 (not modified)
     # or if it is a 2xx response
-    response.statusCode == 304  or parseInt(response.statusCode / 100) == 2
+    response.status== 304  or parseInt(response.status/ 100) == 2
 
   get: (uri, data, callback) ->
     $.get(@server_url + uri, data, callback)
