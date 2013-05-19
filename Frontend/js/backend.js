@@ -218,12 +218,16 @@
       return $.cookie("userId", userId);
     };
 
-    Backend.prototype.getUserCookie = function(userId) {
+    Backend.prototype.getUserCookie = function() {
       return $.cookie("userId");
     };
 
     Backend.prototype.removeUserCookie = function() {
       return $.removeCookie("userId");
+    };
+
+    Backend.prototype.userIsLoggedIn = function() {
+      return !!($.cookie("userId"));
     };
 
     return Backend;

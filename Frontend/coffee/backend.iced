@@ -121,19 +121,13 @@ class Backend
   setUserCookie: (userId) ->
     $.cookie("userId", userId)
 
-  getUserCookie: (userId) ->
+  getUserCookie: ->
     $.cookie "userId"
 
   removeUserCookie: ->
     $.removeCookie "userId"
 
-# createCellar: (name, location, point, callback) ->
-#   cellar =
-#     "owner": {pk: window.userId}
-#     "name": name
-#     "location": location
-#     "point": point or undefined
-
-#   @.post("/api/v1/cellar/", cellar, callback)
+  userIsLoggedIn: ->
+    !!($.cookie "userId")
 
 window.backend = new Backend("http://localhost:8000")
