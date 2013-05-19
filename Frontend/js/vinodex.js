@@ -5,6 +5,11 @@ $(document).ready(function() {
 	$(".winery").each(function() {
 		$(this).parent().addClass($(this).text().toLowerCase().trim().replace(/ /g, "-"));
 	});
+    $('#logout').click(function(event){
+      event.preventDefault();
+      backend.logout();
+      window.location="/";
+    });
 	$('#results').isotope({
 		itemSelector : '.result',
 		resizable: false,

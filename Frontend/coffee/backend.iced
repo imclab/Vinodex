@@ -47,7 +47,7 @@ class Backend
   isGood: (response) ->
     # A response is good if it is a 304 (not modified)
     # or if it is a 2xx response
-    response.status== 304  or parseInt(response.status/ 100) == 2
+    response.status == 304  or parseInt(response.status / 100) == 2
 
   get: (uri, data, callback) ->
     $.get(@server_url + uri, data, callback)
@@ -71,13 +71,6 @@ class Backend
       dataType: "json"
       processData: false
       complete: callback
-
-# helpers.templateNameToUrl = (templateName) ->
-#   "/static/jst/#{templateName}.jst"
-# helpers.template = (templateName, data, $div) ->
-#   templateUrl = helpers.templateNameToUrl templateName
-#   templateFunction = (templateText) -> $div.html(_.template(templateText)(data))
-#   $.get(templateUrl, {}, templateFunction, "text")
 
   delete: (uri,callback) ->
     $.ajax
