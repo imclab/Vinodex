@@ -91,11 +91,11 @@ class Backend
       "username": email
       "password": password
 
-    await @post "#{@server_url}/api/v1/user/login", account, defer response
+    await @post "#{@server_url}/api/v1/auth/user/login/", account, defer response
 
     if @isGood response
-      @setUserCookie response.responseJSON.id
-      callback response.responseJSON
+      @setUserCookie response.responseJSON.userId
+      success response.responseJSON
     else
       failure()
 

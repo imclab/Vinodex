@@ -149,13 +149,11 @@ $(document).ready(function() {
         /**
          * TODO: Handle login failure
          */
+        event.preventDefault();	
 		$("#loginmodal").valreset();
 		$("#login").valreset();
 		var email = $("#loginemail").valemail();
 		var pass = $("#loginpassword").valpassword();
-		if(email || pass) {
-			event.preventDefault();	
-		}
         var emailVal = $("#loginemail").val();
         var passwordVal = $("#loginpassword").val();
         backend.login(emailVal, passwordVal, function(){

@@ -156,7 +156,7 @@
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
           funcname: "Backend.login"
         });
-        _this.post("" + _this.server_url + "/api/v1/user/login", account, __iced_deferrals.defer({
+        _this.post("" + _this.server_url + "/api/v1/auth/user/login/", account, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
               return response = arguments[0];
@@ -167,8 +167,8 @@
         __iced_deferrals._fulfill();
       })(function() {
         if (_this.isGood(response)) {
-          _this.setUserCookie(response.responseJSON.id);
-          return callback(response.responseJSON);
+          _this.setUserCookie(response.responseJSON.userId);
+          return success(response.responseJSON);
         } else {
           return failure();
         }
