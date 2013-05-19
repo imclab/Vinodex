@@ -42,7 +42,7 @@ class UserResource(ModelResource):
         if users:
             return self.create_response(request, {
                 "success":True,
-                "userId": users[0].id
+                "userId": users[0].get_profile().id
             })
         else:
             return self.create_response(request, {

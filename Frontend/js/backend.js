@@ -50,11 +50,30 @@
       this.backend = backend;
     }
 
-    Resource.prototype.get = function(filters, callback, limit) {
+    Resource.prototype.get = function(filters, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
       if (filters == null) filters = {};
-      if (limit == null) limit = 20;
-      filters.limit = limit;
-      return backend.get(this.api_endpoint_url, filters, callback);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Resource.get"
+        });
+        backend.get(_this.api_endpoint_url, filters, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 5
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response.objects);
+      });
     };
 
     Resource.prototype["delete"] = function(id, callback) {
@@ -104,8 +123,8 @@
       return response.status === 304 || parseInt(response.status / 100) === 2;
     };
 
-    Backend.prototype.get = function(uri, data, callback) {
-      return $.get(this.server_url + uri, data, callback);
+    Backend.prototype.get = function(uri, options, callback) {
+      return $.get(this.server_url + uri, options, callback);
     };
 
     Backend.prototype.post = function(uri, data, callback) {
@@ -162,7 +181,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 88
+          lineno: 79
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -201,7 +220,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 107
+          lineno: 98
         }));
         __iced_deferrals._fulfill();
       })(function() {

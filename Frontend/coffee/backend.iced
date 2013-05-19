@@ -1,9 +1,9 @@
 class Resource
   constructor : (@api_endpoint_url, @backend) ->
 
-  get: (filters = {}, callback, limit = 20) ->
-    filters.limit = limit
-    backend.get(@api_endpoint_url, filters, callback)
+  get: (filters = {}, callback) ->
+    await backend.get @api_endpoint_url, filters, defer response
+    callback(response.objects)
 
   delete: (id, callback) ->
     backend.delete("#{@api_endpoint_url}/#{id}", callback)
@@ -35,22 +35,13 @@ class Backend
       console.warn "Only using the first object"
     callback(objects[0])
 
-
-# getUserInfo: (userId, callback) ->
-#   $.get("/api/v1/profile", {"user_id": userId}, (response) ->
-#     handleApiResponseForOneElement(response, callback))
-
-# getMyCellars: (callback) ->
-#   $.get("/api/v1/cellar", {"owner_id": userId, limit: 0}, (response) ->
-#     callback(response.objects))
-#
   isGood: (response) ->
     # A response is good if it is a 304 (not modified)
     # or if it is a 2xx response
     response.status == 304  or parseInt(response.status / 100) == 2
 
-  get: (uri, data, callback) ->
-    $.get(@server_url + uri, data, callback)
+  get: (uri, options, callback) ->
+    $.get(@server_url + uri, options, callback)
 
   post: (uri, data, callback) ->
     $.ajax
