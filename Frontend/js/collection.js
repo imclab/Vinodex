@@ -120,7 +120,7 @@
             return bottles = arguments[0];
           };
         })(),
-        lineno: 43
+        lineno: 41
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -144,7 +144,7 @@
               return collection = arguments[0];
             };
           })(),
-          lineno: 48
+          lineno: 46
         }));
         window.frontend.renderTemplate("collection_nav", {
           wineTypes: wineTypes,
@@ -156,12 +156,13 @@
               return nav = arguments[0];
             };
           })(),
-          lineno: 52
+          lineno: 50
         }));
         __iced_deferrals._fulfill();
       })(function() {
         $("#results").isotope("destroy");
         $("#results").html(collection);
+        $("#collection-nav-list").html(nav);
         window.init();
         console.log("Cellars:");
         console.log(cellars);

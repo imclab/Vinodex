@@ -4,11 +4,9 @@
 {{/cellars}}
 <li class="nav-header">Types</li>
 {{#wineTypes}}
-<li><a href="#">{{this}}</a></li>
+<li><a href="#">{{.}}</a></li>
 {{/wineTypes}}
 <li class="nav-header">Winery</li>
 {{#wineries}}
-<li><a href="#">Example Winery 1</a></li>
-<li><a href="#">Example Winery 2</a></li>
-<li><a href="#">Example Winery 3</a></li>
+<li><a href="#">{{name}}</a></li>
 {{/wineries}}

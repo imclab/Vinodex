@@ -36,13 +36,11 @@ byId = (obj) -> obj.id
 flatMap = (list, fn) ->
   return _.reject _.map(list, fn), (elem) -> not elem
 
-  
-
 $ ->
   await
     backend.Bottle.get {cellar__owner: backend.userId, limit: 1000}, defer bottles
   wineTypes = _.uniq flatMap(bottles, (bottle) -> bottle.wine.wine_type)
-  wineries = _.uniq flatMap(bottles, (bottle) -> bottle.wine.winery), false, byId
+  wineries = _.uniq(flatMap(bottles, (bottle) -> bottle.wine.winery), false, byId)
   cellars = _.uniq _.pluck(bottles, "cellar"), false, byId
   await
     window.frontend.renderTemplate "collection_wines", {bottles: bottles}, defer collection
@@ -52,6 +50,7 @@ $ ->
       wineries: wineries, defer nav
   $("#results").isotope("destroy")
   $("#results").html(collection)
+  $("#collection-nav-list").html(nav)
   
   window.init()
 
