@@ -7,6 +7,7 @@ from django.contrib.gis.geos import Point
 class WineryResource(ModelResource):
     wines = fields.ToManyField("wine.api.WineResource", "wines", null=True)
     class Meta:
+        always_return_data = True
         queryset = Winery.objects.all()
         authorization = Authorization()
         excludes = ['location']

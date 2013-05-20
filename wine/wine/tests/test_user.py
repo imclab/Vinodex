@@ -13,10 +13,12 @@ class UserTestCase(django.test.TestCase):
     def test_can_create_user(self):
         self.helper.create_user()
 
+    @unittest.skip("Not implemented")
     def test_can_delete_user(self):
         user_url = self.helper.create_user()
         return self.helper.deleteOK(user_url)
 
+    @unittest.skip("Not implemented")
     def test_can_update_user(self):
         user_url = self.helper.create_user()
         self.helper.putOK(user_url, {"username" : "bob"})

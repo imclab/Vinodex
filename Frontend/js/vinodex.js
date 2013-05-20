@@ -157,18 +157,6 @@ window.init = function() {
 			event.preventDefault();	
 		}
 	});
-	$("#valaddwine").click(function(event) {
-		$("#addwine").valreset();
-		var name = $("#winename").vallength();
-		var year = $("#year").valvintageyear();
-		var alcohol = $("#alcoholcontent").vallength();
-		var cellar = $("#cellar").valselect();
-		var type = $("#winetype").valselect();
-		var bottles = $("#numbottles").vallength();
-		if(name || year || alcohol || cellar || type || bottles) {
-			event.preventDefault();	
-		}
-	});
 };
 $(document).ready(window.init)
 

@@ -12,11 +12,14 @@
 		<script src="js/jquery.js"></script>
         <script src="js/jquery.cookie.js"></script>
         <script src="js/backend.js"></script>
+        <script src="js/frontend.js"></script>
+        <script src="js/mustache.js"><script>
 		<script src="js/prefixfree.js"></script>
 		<script src="js/prefixfree.jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/vinodex.js"></script>
 		<script src="js/isotope.min.js"></script>
+        <script src="js/addwine.js"></script>
 	</head>
 	<body class="navbarpadding">
 		<div class="navbar navbar-fixed-top navbar-inverse">
@@ -120,9 +123,6 @@
 							<div class="controls">
 								<select id="cellar">
 									<option disabled="disabled"></option>
-									<option>Rack A</option>
-									<option>Rack B</option>
-									<option>Rack C</option>
 								</select>
 								<span class="help-block hide">Invalid Cellar</span>
 							</div>
@@ -132,11 +132,64 @@
 							<div class="controls">
 								<select id="winetype">
 									<option disabled="disabled"></option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
+                                    <option>Nero d'Avola</option>
+                                    <option>Gamay</option>
+                                    <option>Rhone White Blends</option>
+                                    <option>Cabernet Franc</option>
+                                    <option>Petite Sirah</option>
+                                    <option>Tempranillo</option>
+                                    <option>Pinot Blanc</option>
+                                    <option>Vermouth</option>
+                                    <option>Liqueur</option>
+                                    <option>Zinfandel</option>
+                                    <option>Primitivo</option>
+                                    <option>Bordeaux White Blends</option>
+                                    <option>Bordeaux Red Blends</option>
+                                    <option>Grenache</option>
+                                    <option>Chenin Blanc</option>
+                                    <option>Tequila</option>
+                                    <option>Pinot Gris/Grigio</option>
+                                    <option>Madeira</option>
+                                    <option>Other Red Wine</option>
+                                    <option>Sauvignon Blanc</option>
+                                    <option>Other Dessert</option>
+                                    <option>Barbera</option>
+                                    <option>Gruner Veltliner</option>
+                                    <option>Pinotage</option>
+                                    <option>Chardonnay</option>
+                                    <option>Vintage</option>
+                                    <option>Sherry</option>
+                                    <option>Dolcetto</option>
+                                    <option>Marsala</option>
+                                    <option>Cabernet Sauvignon</option>
+                                    <option>Straight Vodka</option>
+                                    <option>Torrontes</option>
+                                    <option>Carmenere</option>
+                                    <option>Junmai-Daiginjo</option>
+                                    <option>Rosé</option>
+                                    <option>Junmai-Ginjo</option>
+                                    <option>Semillon</option>
+                                    <option>Merlot</option>
+                                    <option>Other White Wine</option>
+                                    <option>Rose</option>
+                                    <option>Gewurztraminer</option>
+                                    <option>Single-malt Scotch Whisky</option>
+                                    <option>Albarino</option>
+                                    <option>Sangiovese</option>
+                                    <option>Mourvedre</option>
+                                    <option>Viognier</option>
+                                    <option>Chianti</option>
+                                    <option>Junmai</option>
+                                    <option>Syrah/Shiraz</option>
+                                    <option>Nebbiolo</option>
+                                    <option>Riesling</option>
+                                    <option>Rhone Red Blends</option>
+                                    <option>Muscat</option>
+                                    <option>Malbec</option>
+                                    <option>Fruit Wine</option>
+                                    <option>Pinot Noir</option>
+                                    <option>Non-Vintage</option>
+                                    <option>Port</option>
 								</select>
 								<span class="help-block hide">Invalid Wine Type</span>
 							</div>

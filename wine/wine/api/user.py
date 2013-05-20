@@ -9,8 +9,6 @@ from tastypie import fields
 from tastypie.http import HttpUnauthorized
 
 class UserResource(ModelResource):
-    #profile = fields.ToOneField("wine.api.UserProfileResource", "profile",
-    #                           null=True)
     class Meta:
         excludes = ['password']
         resource_name = "auth/user"
@@ -34,9 +32,6 @@ class UserResource(ModelResource):
         username = data.get('username', '')
         password = data.get('password', '')
 
-        print "U: ", username
-        print "P: ", password
-            
         users = User.objects.filter(username=username, password=password)
 
         if users:

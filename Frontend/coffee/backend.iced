@@ -1,6 +1,8 @@
 class Resource
   constructor : (@api_endpoint_url, @backend) ->
 
+  # TODO: Handle error conditions
+
   get: (filters = {}, callback) ->
     await backend.get @api_endpoint_url, filters, defer response
     callback(response.objects)

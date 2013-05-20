@@ -36,7 +36,15 @@ byId = (obj) -> obj.id
 flatMap = (list, fn) ->
   return _.reject _.map(list, fn), (elem) -> not elem
 
+addListeners = ->
+  $("#add-wine-name-button").click (event) ->
+    event.preventDefault()
+    wineName = $("#wine-name-input").val()
+    window.location = "/addwine.html##{wineName}"
+
 $ ->
+
+  addListeners()
   await
     backend.Bottle.get {cellar__owner: backend.userId, limit: 1000}, defer bottles
   wineTypes = _.uniq flatMap(bottles, (bottle) -> bottle.wine.wine_type)
@@ -48,7 +56,6 @@ $ ->
       wineTypes: wineTypes
       cellars: cellars
       wineries: wineries, defer nav
-  $("#results").isotope("destroy")
   $("#results").html(collection)
   $("#collection-nav-list").html(nav)
   window.isotopeResults()
