@@ -10,7 +10,6 @@ window.init = function() {
       backend.logout();
       window.location="/";
     });
-    window.isotopeResults()
 	$("#filterselector").on("click", "a", function(event) {
 		event.preventDefault();
 		$(this).toggleClass("checked");

@@ -51,8 +51,7 @@ $ ->
   $("#results").isotope("destroy")
   $("#results").html(collection)
   $("#collection-nav-list").html(nav)
-  
-  window.init()
+  window.isotopeResults()
 
   console.log("Cellars:")
   console.log(cellars)
