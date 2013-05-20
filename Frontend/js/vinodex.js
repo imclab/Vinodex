@@ -208,7 +208,12 @@ jQuery.fn.valemail = function() {
 };
 
 jQuery.fn.valpassword = function() {
-    return $(this).vallength();
+    if($(this).val().trim().length < 6) {
+	    $(this).valerror();
+	    return true;
+    } else {
+	    return false;
+    }
 };
 
 jQuery.fn.valselect = function() {
