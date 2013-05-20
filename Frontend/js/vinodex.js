@@ -1,4 +1,4 @@
-$(document).ready(function() {
+window.init = function() {
 	"use strict";
 	var resultswidth = $("#results").width();
 	var relayout480 = false;
@@ -10,39 +10,7 @@ $(document).ready(function() {
       backend.logout();
       window.location="/";
     });
-	$('#results').isotope({
-		itemSelector : '.result',
-		resizable: false,
-		layoutMode: 'cellsByRow',
-		cellsByRow: {
-			columnWidth: $('#results').width() / cellsPerRow(),
-			rowHeight: 270
-		},
-		getSortData : {
-			name : function ( $elem ) {
-				return $elem.find('.name').text();
-			},
-			date : function ( $elem ) {
-				return parseInt($elem.data("timestamp"), 10);
-			},
-			bottles : function ( $elem ) {
-				return parseInt($elem.find('.numbottles').text(), 10);
-			},
-			retailprice : function ( $elem ) {
-				return parseInt($elem.find('.retailprice').text().replace("$",""), 10);
-			},
-			alcoholcontent : function ( $elem ) {
-				return parseInt($elem.find('.alcoholcontent').text().replace("%",""), 10);
-			}
-		}
-	});
-	$("#results").mouseenter(function() {
-		$(window).resize();
-		$('#results').isotope("reLayout");
-	});
-	$("#results").on("click", ".result", function() {
-		$(this).toggleClass("selected");
-	})
+    window.isotopeResults()
 	$("#filterselector").on("click", "a", function(event) {
 		event.preventDefault();
 		$(this).toggleClass("checked");
@@ -202,7 +170,8 @@ $(document).ready(function() {
 			event.preventDefault();	
 		}
 	});
-});
+};
+$(document).ready(window.init)
 
 function updateResults() {
 	"use strict";
@@ -217,22 +186,6 @@ function updateResults() {
 	}
 	$('#results').isotope({ filter: filters });
 	console.log(filters);
-}
-
-function cellsPerRow() {
-	"use strict";
-	var width = $("#results").width();
-	console.log(width);
-	switch(true) {
-		case (width>960):
-			return 5;
-		case (width>768):
-			return 4;
-		case (width>480):
-			return 3;
-		case (width<=480):
-			return 2;
-	}
 }
 
 jQuery.fn.valreset = function() {

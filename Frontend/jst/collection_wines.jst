@@ -1,0 +1,21 @@
+{{#bottles}}
+<div class="result {{wine.wine_type}} {{cellar.name}}" data-timestamp="21">
+{{#wine.photo}}
+  <div class="wineimg" style="background-image: url({{wine.photo}})">
+{{/wine.photo}}
+{{^wine.photo}}
+  <div class="wineimg" style="background-image: url(img/WineBottle.jpg)">
+{{/wine.photo}}
+    <img src="img/spacer.png" alt=""/>
+    <div>
+    </div>
+  </div>
+  <p class="name"><a href="#">{{wine.name}}</a></p>
+  <p class="winery"><a href="#">{{wine.winery.name}}</a></p>
+  <p>
+    <span class="numbottles">1<i class="icon-bottle"></i></span>
+    <span class="retailprice">{{wine.retail_price}}</span>
+    <span class="alcoholcontent">{{wine.alchohol_content}}</span>
+  </p>
+</div>
+{{/bottles}}

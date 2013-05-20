@@ -10,9 +10,12 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/responsive.css" rel="stylesheet">
 		<link href="css/isotope.css" rel="stylesheet">
+        <script src="js/mustache.js"></script>
+        <script src="js/underscore.js"></script>
 		<script src="js/jquery.js"></script>
         <script src="js/jquery.cookie.js"></script>
         <script src="js/backend.js"></script>
+        <script src="js/frontend.js"></script>
 		<script src="js/prefixfree.js"></script>
 		<script src="js/prefixfree.jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -77,7 +80,7 @@
 				<div class="span2" id="filterselector">
 					<div class="row">
 					<div class="well span2" data-spy="affix" data-offset-top="275">
-						<ul class="nav nav-list">
+						<ul id="collection-nav-list" class="nav nav-list">
 							<li class="nav-header">Cellars</li>
 							<li><a href="#">Rack A</i></a></li>
 							<li><a href="#">Rack B</i></a></li>
@@ -189,132 +192,6 @@
 							</div>
 						</div>
 						<div class="span10 gridview" id="results">
-								<div class="result port cellar-a" data-timestamp="1">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Port Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">30<i class="icon-bottle"></i></span><span class="retailprice">$50</span><span class="alcoholcontent">14.7%</span></p>
-								</div>
-								<div class="result port cellar-b" data-timestamp="2">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Port Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">30<i class="icon-bottle"></i></span><span class="retailprice">$50</span><span class="alcoholcontent">14.8%</span></p>
-								</div>
-								<div class="result port cellar-c" data-timestamp="4">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Port Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 3</a></p>
-									<p><span class="numbottles">32<i class="icon-bottle"></i></span><span class="retailprice">$51</span><span class="alcoholcontent">12.7%</span></p>
-								</div>
-								<div class="result port cellar-a" data-timestamp="1">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Port Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">34<i class="icon-bottle"></i></span><span class="retailprice">$52</span><span class="alcoholcontent">5.7%</span></p>
-								</div>
-								<div class="result merlot cellar-b" data-timestamp="3">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Merlot Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 2</a></p>
-									<p><span class="numbottles">31<i class="icon-bottle"></i></span><span class="retailprice">$53</span><span class="alcoholcontent">2.7%</span></p>
-								</div>
-								<div class="result merlot cellar-c" data-timestamp="6">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Merlot Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">36<i class="icon-bottle"></i></span><span class="retailprice">$54</span><span class="alcoholcontent">14.4%</span></p>
-								</div>
-								<div class="result zinfandel cellar-a" data-timestamp="5">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Zinfandel Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 3</a></p>
-									<p><span class="numbottles">24<i class="icon-bottle"></i></span><span class="retailprice">$55</span><span class="alcoholcontent">17.9%</span></p>
-								</div>
-								<div class="result moscato cellar-b" data-timestamp="9">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Moscato Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">3<i class="icon-bottle"></i></span><span class="retailprice">$56</span><span class="alcoholcontent">14.7%</span></p>
-								</div>
-								<div class="result moscato cellar-c" data-timestamp="8">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Moscato Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 2</a></p>
-									<p><span class="numbottles">10<i class="icon-bottle"></i></span><span class="retailprice">$57</span><span class="alcoholcontent">10.7%</span></p>
-								</div>
-								<div class="result chardonnay cellar-a" data-timestamp="7">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Chardonnay Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">20<i class="icon-bottle"></i></span><span class="retailprice">$58</span><span class="alcoholcontent">13.4%</span></p>
-								</div>
-								<div class="result pinot-gris cellar-b" data-timestamp="4">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Pinot Gris Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 3</a></p>
-									<p><span class="numbottles">60<i class="icon-bottle"></i></span><span class="retailprice">$59</span><span class="alcoholcontent">2.9%</span></p>
-								</div>
-								<div class="result port cellar-c" data-timestamp="10">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Port Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">30<i class="icon-bottle"></i></span><span class="retailprice">$50</span><span class="alcoholcontent">10.6%</span></p>
-								</div>
-								<div class="result port cellar-a" data-timestamp="3">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Port Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 3</a></p>
-									<p><span class="numbottles">32<i class="icon-bottle"></i></span><span class="retailprice">$51</span><span class="alcoholcontent">1.53%</span></p>
-								</div>
-								<div class="result port cellar-b" data-timestamp="5">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Port Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">34<i class="icon-bottle"></i></span><span class="retailprice">$52</span><span class="alcoholcontent">16.5%</span></p>
-								</div>
-								<div class="result merlot cellar-c" data-timestamp="2">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Merlot Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 2</a></p>
-									<p><span class="numbottles">31<i class="icon-bottle"></i></span><span class="retailprice">$53</span><span class="alcoholcontent">11.3%</span></p>
-								</div>
-								<div class="result merlot cellar-a" data-timestamp="29">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Merlot Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">36<i class="icon-bottle"></i></span><span class="retailprice">$54</span><span class="alcoholcontent">10.9%</span></p>
-								</div>
-								<div class="result zinfandel cellar-b" data-timestamp="23">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Zinfandel Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 3</a></p>
-									<p><span class="numbottles">24<i class="icon-bottle"></i></span><span class="retailprice">$55</span><span class="alcoholcontent">11%</span></p>
-								</div>
-								<div class="result moscato cellar-c" data-timestamp="20">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Moscato Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">3<i class="icon-bottle"></i></span><span class="retailprice">$56</span><span class="alcoholcontent">15.3%</span></p>
-								</div>
-								<div class="result moscato cellar-a" data-timestamp="1">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Moscato Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 2</a></p>
-									<p><span class="numbottles">10<i class="icon-bottle"></i></span><span class="retailprice">$57</span><span class="alcoholcontent">17.4%</span></p>
-								</div>
-								<div class="result chardonnay cellar-b" data-timestamp="21">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Chardonnay Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 1</a></p>
-									<p><span class="numbottles">20<i class="icon-bottle"></i></span><span class="retailprice">$58</span><span class="alcoholcontent">12.4%</span></p>
-								</div>
-								<div class="result pinot-gris cellar-c" data-timestamp="19">
-									<div class="wineimg" style="background-image: url(img/WineBottle.jpg)"><img src="img/spacer.png" alt=""/><div></div></div>
-									<p class="name"><a href="#">Example Pinot Gris Wine</a></p>
-									<p class="winery"><a href="#">Example Winery 3</a></p>
-									<p><span class="numbottles">60<i class="icon-bottle"></i></span><span class="retailprice">$59</span><span class="alcoholcontent">12.3%</span></p>
-								</div>
 						</div>
 					</div>
 				</div>

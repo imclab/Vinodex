@@ -188,11 +188,20 @@ class WineDataJob(object):
         else:
             return Wine.objects.filter(name=wine.name,vintage=wine.vintage)
 
+    @staticmethod
+    def remove_winery_name_from_wine(wine, winery):
+        wine.name = wine.name.partition(winery.name)[2].strip()
+        return wine
 
     @staticmethod
     def parse_wine_data(wine_data):
         wine = WineDataJob.get_wine_info(wine_data)
         winery = WineDataJob.get_winery_info(wine_data.get("Vineyard"))
+        if winery:
+            # The Wine.com API leaves the winery name in the wine 
+            # name, so this gets rid of the winery name if it can be
+            # found in the wine name
+            wine = WineDataJob.remove_winery_name_from_wine(wine, winery)
         return wine, winery
 
     def download(self, num_entries, filename = "wine_dotcom_api_data"):
