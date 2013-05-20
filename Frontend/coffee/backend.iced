@@ -87,7 +87,7 @@ class Backend
       "email": email
       "password": password
 
-    await @post "#{@server_url}/api/v1/profile/", account, defer response
+    await @post "/api/v1/profile/", account, defer response
 
     if @isGood response
       @setUserCookie response.responseJSON.id

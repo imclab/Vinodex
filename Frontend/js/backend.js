@@ -223,7 +223,7 @@
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
           funcname: "Backend.createUserAccount"
         });
-        _this.post("" + _this.server_url + "/api/v1/profile/", account, __iced_deferrals.defer({
+        _this.post("/api/v1/profile/", account, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
               return response = arguments[0];
