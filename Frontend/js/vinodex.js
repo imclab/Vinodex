@@ -115,22 +115,34 @@ window.init = function() {
 	});
 	$("a[href='#uploadimage']").click(function(event) {
 		event.preventDefault();
-		$(this).next().click();
+		$("#imageselector").click();
 	});
+	$("#imageselector").change(function (){
+       alert($(this).val() + " selected.");
+    });
+    $("#add-wine-name-button").click(function(event) {
+	    event.preventDefault();	
+	    $("#addwinemanual").valreset();
+	    
+    });
 	$("#validatelogin").click(function(event) {
         /**
          * TODO: Handle login failure
          */
         event.preventDefault();	
-		$("#loginmodal").valreset();
+		$("#loginmodal").valreset(); // reset error conditions before checking again
 		$("#login").valreset();
 		var email = $("#loginemail").valemail();
 		var pass = $("#loginpassword").valpassword();
-        var emailVal = $("#loginemail").val();
-        var passwordVal = $("#loginpassword").val();
-        backend.login(emailVal, passwordVal, function(){
+		/**
+		 * validation functions return null on invalid input nowm
+		 * in addition to putting errors on the fields
+		 * return the actual values on valid input
+		 */
+        backend.login(email, pass, function(){
           window.location = "collection.html";
         }, function(){console.log("Login Failed");});
+        // change ^ so if any of the values are null, login doesn't take place?
 	});
 	$("#validatesignup").click(function(event) {
         /**
@@ -141,21 +153,14 @@ window.init = function() {
 		var name = $("#signupname").vallength();
 		var email = $("#signupemail").valemail();
 		var pass = $("#signuppassword").valpassword();
-		if(name || email || pass) {
-          return;
-		}
-        var nameVal = $("#signupname").val();
-        var emailVal = $("#signupemail").val();
-        var passwordVal = $("#signuppassword").val();
-        backend.createUserAccount(nameVal, emailVal, passwordVal, function(){
+        backend.createUserAccount(name, email, pass, function(){
           window.location = "collection.html";
         }, function(){console.log("Account Creation Failed");});
 	});
 	$("#forgotpassval").click(function(event) {
+		event.preventDefault();	
 		$("#login").valreset();
-		if($("#forgotemail").valemail()) {
-			event.preventDefault();	
-		}
+		var email = $("#forgotemail").valemail();
 	});
 };
 $(document).ready(window.init)
@@ -183,45 +188,45 @@ jQuery.fn.valreset = function() {
 jQuery.fn.vallength = function() {
     if($(this).val().trim().length === 0) {
 	    $(this).valerror();
-	    return true;
+	    return null;
     } else {
-	    return false;
+	    return $(this).val();
     }
 };
 
 jQuery.fn.valvintageyear = function() {
     if($(this).val().trim().length === 0 && !$("#nv").prop("checked")) {
 	    $(this).valerror();
-	    return true;
+	    return null;
     } else {
-	    return false;
+	    return $(this).val();
     }
 };
 
 jQuery.fn.valemail = function() {
     if($(this).val().indexOf("@") === -1) {
 	    $(this).valerror();
-	    return true;
+	    return null;
     } else {
-	   	return false;
+	   	return $(this).val();
     }
 };
 
 jQuery.fn.valpassword = function() {
     if($(this).val().trim().length < 6) {
 	    $(this).valerror();
-	    return true;
+	    return null;
     } else {
-	    return false;
+	    return $(this).val();
     }
 };
 
 jQuery.fn.valselect = function() {
     if($(this).val() === null) {
 	    $(this).valerror();
-	    return true;
+	    return null;
     } else {
-	   	return false;
+	   	return $(this).val();
     }
 };
 

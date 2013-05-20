@@ -10,18 +10,18 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/responsive.css" rel="stylesheet">
 		<link href="css/isotope.css" rel="stylesheet">
-        <script src="js/mustache.js"></script>
-        <script src="js/underscore.js"></script>
+		<script src="js/mustache.js"></script>
+		<script src="js/underscore.js"></script>
 		<script src="js/jquery.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/backend.js"></script>
-        <script src="js/frontend.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/backend.js"></script>
+		<script src="js/frontend.js"></script>
 		<script src="js/prefixfree.js"></script>
 		<script src="js/prefixfree.jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/isotope.min.js"></script>
 		<script src="js/vinodex.js"></script>
-        <script src="js/collection.js"></script>
+		<script src="js/collection.js"></script>
 	</head>
 	<body class="navbarpadding">
 		<div class="navbar navbar-fixed-top navbar-inverse">
@@ -105,16 +105,16 @@
 												<a href="#">Sort</a>
 												<ul class="dropdown-menu">
 													<li class="sortoption"><a href="#" data-sort-attr="name">Name</a></li>
-												    <li class="sortoption"><a href="#" data-sort-attr="date">Date Added</a></li>
-												    <li class="sortoption"><a href="#" data-sort-attr="bottles">Bottles</a></li>
-												    <li class="sortoption"><a href="#" data-sort-attr="retailprice">Retail Price</a></li>
+													<li class="sortoption"><a href="#" data-sort-attr="date">Date Added</a></li>
+													<li class="sortoption"><a href="#" data-sort-attr="bottles">Bottles</a></li>
+													<li class="sortoption"><a href="#" data-sort-attr="retailprice">Retail Price</a></li>
 												</ul>
 											</li>
 											<li class="dropdown-submenu sortoptions" id="sortmenu">
 												<a href="#">View</a>
 												<ul class="dropdown-menu">
 													<li class="sortoption"><a href="#" class="gridbtn">Grid</a></li>
-												    <li class="sortoption"><a href="#" class="tablebtn">Table</a></li>
+													<li class="sortoption"><a href="#" class="tablebtn">Table</a></li>
 												</ul>
 											</li>
 											<li class="dropdown-submenu">
@@ -190,12 +190,18 @@
 			<div class="modal-body text-center">
 				<p>Take a picture of your wine's label or enter its name and Autocomplete will take care of the rest. Barcodes work too!</p>
 				<a href="#uploadimage" class="btn btn-primary">Upload image</a>
-				<input type="file" style="display: none;"/>
+				<input type="file" style="display: none;" accept="image/*" id="imageselector"/>
 				<hr>
-				<div class="input-append">
-					<input id = "wine-name-input" class="span2" type="text" placeholder="Wine Name">
-					<a id = "add-wine-name-button" class="btn btn-primary">Go!</a>
-				</div>
+				<form id="addwinemanual">
+					<div class="control-group">
+						<div class="controls">
+							<div class="input-append">
+								<input id="wine-name-input" class="span2" type="text" placeholder="Wine Name" autocomplete="off" data-provide="typeahead">
+								<a id="add-wine-name-button" class="btn btn-primary">Add</a>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Close</a>
