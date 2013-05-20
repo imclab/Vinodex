@@ -18,26 +18,30 @@ $ ->
       cellarVal = $("#cellar").val()
       typeVal = $("#winetype").val()
       priceVal = $("#retailprice").val()
-      wineryVal = $("wineryname").val()
-      winery_id = null
-      if wineryVal
-        await backend.Winery.get {name: winery, limit: 1}, defer matchingWineries
-        if matchingWineries
-          winery_id = matchingWineries[0].id
-        else
-          await backend.Winery.create{name: winery}, defer winery
-          winery_id = winery.id
-
-      window.backend.Wine.create
+      wineryVal = $("#wineryname").val()
+      wine =
         name: nameVal
         vintage: yearVal
         alcohol: alcoholVal
         cellar: cellarVal
         type: typeVal
-        winery: winery_id
         bottles: 1
-        retail_price: priceVal
-      , -> window.location="/collection.html"
+        retail_price: parseFloat priceVal
+
+      if wineryVal
+        await backend.Winery.get {name: wineryVal, limit: 1}, defer matchingWineries
+        if matchingWineries.length
+          winery_id = matchingWineries[0].id
+          wine.winery_id = winery_id
+          await backend.Wine.create wine, defer nothing
+        else
+          await backend.Winery.create {name: wineryVal}, defer winery
+          wine.winery_id = winery.id
+          await backend.Wine.create wine, defer nothing
+        # window.location="/collection.html"
+      else
+        await backend.Wine.create wine, defer nothing
+        # window.location="/collection.html"
       
 
   $("#winename").val(window.location.hash.substr(1))

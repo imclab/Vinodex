@@ -11,7 +11,8 @@ class Resource
     backend.delete("#{@api_endpoint_url}/#{id}", callback)
 
   create: (object = {}, callback) ->
-    backend.post(@api_endpoint_url, object, callback)
+    await backend.post @api_endpoint_url, object, defer response
+    callback response.responseJSON
 
   update: (id, options, callback) ->
     backend.put("#{@api_endpoint_url}/#{id}", options, callback)
@@ -27,16 +28,6 @@ class Backend
     @Profile = new Resource("/api/v1/profile/")
     @userId = @getUserCookie()
 
-  handleApiResponseForOneElement: (response, callback) ->
-    objects = response.objects
-    if objects.length == 0
-      throw "No Object was returned"
-    else if objects.length > 2
-      console.warn "Only one object was queried for, but #{response.objects.length} objects\
-                    were returned"
-      console.warn "Only using the first object"
-    callback(objects[0])
-
   isGood: (response) ->
     # A response is good if it is a 304 (not modified)
     # or if it is a 2xx response
@@ -47,7 +38,7 @@ class Backend
 
   post: (uri, data, callback) ->
     $.ajax
-      url: uri
+      url: @server_url + uri
       contentType: "application/json"
       type: "POST"
       data: JSON.stringify(data)

@@ -68,7 +68,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 5
+          lineno: 7
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -81,8 +81,29 @@
     };
 
     Resource.prototype.create = function(object, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
       if (object == null) object = {};
-      return backend.post(this.api_endpoint_url, object, callback);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Resource.create"
+        });
+        backend.post(_this.api_endpoint_url, object, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 14
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response.responseJSON);
+      });
     };
 
     Resource.prototype.update = function(id, options, callback) {
@@ -107,18 +128,6 @@
       this.userId = this.getUserCookie();
     }
 
-    Backend.prototype.handleApiResponseForOneElement = function(response, callback) {
-      var objects;
-      objects = response.objects;
-      if (objects.length === 0) {
-        throw "No Object was returned";
-      } else if (objects.length > 2) {
-        console.warn("Only one object was queried for, but " + response.objects.length + " objects                    were returned");
-        console.warn("Only using the first object");
-      }
-      return callback(objects[0]);
-    };
-
     Backend.prototype.isGood = function(response) {
       return response.status === 304 || parseInt(response.status / 100) === 2;
     };
@@ -129,7 +138,7 @@
 
     Backend.prototype.post = function(uri, data, callback) {
       return $.ajax({
-        url: uri,
+        url: this.server_url + uri,
         contentType: "application/json",
         type: "POST",
         data: JSON.stringify(data),
@@ -181,7 +190,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 79
+          lineno: 72
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -220,7 +229,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 98
+          lineno: 91
         }));
         __iced_deferrals._fulfill();
       })(function() {

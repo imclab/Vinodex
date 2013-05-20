@@ -5,8 +5,11 @@ def hydrate_price(field, bundle):
     """ When the price is sent to the server, create the integer representation
         that the database will store """
     if field in bundle.data:
-        price = int(bundle.data[field] * 100.0)
-        bundle.data[field] = price
+        try:
+            price = int(bundle.data[field] * 100.0)
+            bundle.data[field] = price
+        except TypeError:
+            pass
     return bundle
 
 def dehydrate_price(field, bundle):

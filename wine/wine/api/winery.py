@@ -11,6 +11,9 @@ class WineryResource(ModelResource):
         queryset = Winery.objects.all()
         authorization = Authorization()
         excludes = ['location']
+        filtering = {
+            "name": ALL
+        }
 
     def dehydrate(self, bundle):
         if bundle.obj.location:
