@@ -162,6 +162,7 @@ window.init = function() {
 		$("#login").valreset();
 		var email = $("#forgotemail").valemail();
 	});
+	$(".pronounciation").tooltip();
 };
 $(document).ready(window.init)
 
