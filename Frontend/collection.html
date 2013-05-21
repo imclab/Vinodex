@@ -20,6 +20,8 @@
 		<script src="js/prefixfree.jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/isotope.min.js"></script>
+		<script src="js/filtersortcollection.js"></script>
+		<script src="js/vinodex.js"></script>
 		<script src="js/vinodex.js"></script>
 		<script src="js/collection.js"></script>
 	</head>
@@ -215,10 +217,22 @@
 			</div>
 			<div class="modal-body">
 				<p>Are you sure you want to remove <span class="plural">these</span><span class="singular">this</span> wine<span class="plural">s</span> from your collection?</p>
+				<hr>
+				<div class="text-center">
+					<form>
+						<div class="control-group">
+							<div class="controls">
+								<div class="input-append">
+									<input type="text" placeholder="Type DELETE to delete.">
+									<a class="btn btn-danger" data-dismiss="modal" href="#" id="deleteconfirm">Delete</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</a>
-				<a href="#" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Yes</a>
 			</div>
 		</div>
 		<div id="noneselected" class="modal hide fade" tabindex="-1" role="dialog">
