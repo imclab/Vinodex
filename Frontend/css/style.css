@@ -354,6 +354,7 @@ html, body {
 .json div {
 	font-family: monospace;
 	word-wrap: break-word;
+	user-select: none;
 }
 
 .json .expand {
@@ -371,6 +372,14 @@ html, body {
 
 .json ul {
 	display: none;
+}
+
+.json li:hover {
+	background-color: #c0c0c0;
+}
+
+.json li.expanded:hover {
+	background-color: inherit;
 }
 
 .json .expanded {
