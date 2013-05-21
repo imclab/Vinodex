@@ -6,6 +6,8 @@ from ..models import Cellar
 
 class CellarResource(ModelResource):
     owner = fields.ForeignKey(UserProfileResource, "owner", blank=False)
+    num_bottles = fields.IntegerField(attribute="num_bottles")
+    num_wines = fields.IntegerField(attribute="num_wines")
     class Meta:
         filtering = {
                 "owner": ALL_WITH_RELATIONS         

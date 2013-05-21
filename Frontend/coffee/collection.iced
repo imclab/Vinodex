@@ -31,10 +31,6 @@ window.isotopeResults = ->
       $(this).toggleClass("selected")
   )
 
-byId = (obj) -> obj.id
-
-flatMap = (list, fn) ->
-  return _.reject _.map(list, fn), (elem) -> not elem
 
 addListeners = ->
   $("#add-wine-name-button").click (event) ->
@@ -47,9 +43,9 @@ $ ->
   addListeners()
   await
     backend.Bottle.get {cellar__owner: backend.userId, limit: 1000}, defer bottles
-  wineTypes = _.uniq flatMap(bottles, (bottle) -> bottle.wine.wine_type)
-  wineries = _.uniq(flatMap(bottles, (bottle) -> bottle.wine.winery), false, byId)
-  cellars = _.uniq _.pluck(bottles, "cellar"), false, byId
+  wineTypes = _.uniq Util.flatMap(bottles, (bottle) -> bottle.wine.wine_type)
+  wineries = _.uniq(Util.flatMap(bottles, (bottle) -> bottle.wine.winery), false, Util.byId)
+  cellars = _.uniq _.pluck(bottles, "cellar"), false, Util.byId
   await
     window.frontend.renderTemplate "collection_wines", {bottles: bottles}, defer collection
     window.frontend.renderTemplate "collection_nav",

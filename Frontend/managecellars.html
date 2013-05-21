@@ -10,14 +10,19 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/responsive.css" rel="stylesheet">
 		<link href="css/isotope.css" rel="stylesheet">
+        <script src="js/mustache.js"></script>
+        <script src="js/underscore.js"></script>
 		<script src="js/jquery.js"></script>
         <script src="js/jquery.cookie.js"></script>
+        <script src="js/util.js"></script>
         <script src="js/backend.js"></script>
+        <script src="js/frontend.js"></script>
 		<script src="js/prefixfree.js"></script>
 		<script src="js/prefixfree.jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/formvalidation.js"></script>
 		<script src="js/vinodex.js"></script>
+        <script src="js/managecellars.js"></script>
 	</head>
 	<body class="navbarpadding">
 		<div class="navbar navbar-fixed-top navbar-inverse">
@@ -91,14 +96,7 @@
 								<th>&nbsp;</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Rack A</td>
-								<td>10-3-12</td>
-								<td>4</td>
-								<td>20</td>
-								<td class="editdelete"><a href="#editcellar" data-toggle="modal">Edit</a></td>
-							</tr>
+						<tbody id ="cellars-table-body">
 							<tr>
 								<td>Rack B</td>
 								<td>10-5-12</td>

@@ -1,5 +1,4 @@
 from django.db import models
-from cellar import Cellar
 from wine import Wine
 from django.core.exceptions import ValidationError
 
@@ -8,7 +7,7 @@ class Bottle(models.Model):
         app_label='wine'
 
     wine = models.ForeignKey(Wine)
-    cellar = models.ForeignKey(Cellar, db_index=True)
+    cellar = models.ForeignKey("wine.Cellar", db_index=True)
     photo = models.URLField(null=True, blank=True)
     rating = models.PositiveIntegerField(null=True, blank=True)
     price = models.PositiveIntegerField(null=True, blank=True)
