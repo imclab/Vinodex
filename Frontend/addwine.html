@@ -13,12 +13,12 @@
         <script src="js/jquery.cookie.js"></script>
         <script src="js/backend.js"></script>
         <script src="js/frontend.js"></script>
-        <script src="js/mustache.js"><script>
+        <script src="js/mustache.js"></script>
 		<script src="js/prefixfree.js"></script>
 		<script src="js/prefixfree.jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/vinodex.js"></script>
-		<script src="js/isotope.min.js"></script>
+		<script src="js/formvalidation.js"></script>
         <script src="js/addwine.js"></script>
 	</head>
 	<body class="navbarpadding">
@@ -131,7 +131,7 @@
 							<label class="control-label" for="winetype">Type*</label>
 							<div class="controls">
 								<select id="winetype">
-									<option disabled="disabled"></option>
+									<option disabled="disabled" selected="selected"></option>
                                     <option>Nero d'Avola</option>
                                     <option>Gamay</option>
                                     <option>Rhone White Blends</option>
@@ -211,6 +211,11 @@
 									<span class="add-on">$</span>
 									<input id="retailprice" type="text" placeholder="Price Per Bottle" class="span2">
 								</div>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<span class="help-block">*Required</span>
 							</div>
 						</div>
 						<div class="control-group">
