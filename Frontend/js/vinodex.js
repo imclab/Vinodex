@@ -37,6 +37,11 @@ window.init = function() {
 			window.location = "collection.html";
 		}, function(){console.log("Account Creation Failed");});
 	});
+	$("#validatepasschange").click(function(event) {
+		event.preventDefault();
+		$("#passchange").valreset();
+		var pass = $("#passchangepass").valpassword();
+	});
 	$("#forgotpassval").click(function(event) {
 		event.preventDefault();	
 		$("#login").valreset();
