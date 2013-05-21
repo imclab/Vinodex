@@ -114,6 +114,11 @@ html, body {
 	margin-bottom: 10px;
 }
 
+#togglefilters {
+	margin-bottom: 20px;
+	display: none;
+}
+
 #filterselector .well {
 	padding: 8px 0;
 }
