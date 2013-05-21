@@ -350,3 +350,33 @@ html, body {
 #cellars tr:hover .editdelete a {
 	visibility: visible;
 }
+
+.json div {
+	font-family: monospace;
+	word-wrap: break-word;
+}
+
+.json .expand {
+	cursor: pointer;
+	list-style-image: url('../img/closed.png');
+}
+
+.json .expand ul, .json .expanded ul {
+	list-style: none;
+}
+
+.json .expand ul {
+	cursor: default;
+}
+
+.json ul {
+	display: none;
+}
+
+.json .expanded {
+	list-style-image: url('../img/open.png');
+}
+
+.json .expanded > ul {
+	display: inherit;
+}
