@@ -126,6 +126,7 @@
       this.Sommeilier = new Resource("/api/v1/sommeilier/");
       this.Profile = new Resource("/api/v1/profile/");
       this.userId = this.getUserCookie();
+      this.profileUri = "/api/v1/profile/" + this.userId + "/";
     }
 
     Backend.prototype.isGood = function(response) {
@@ -190,7 +191,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 72
+          lineno: 73
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -229,7 +230,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 91
+          lineno: 92
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -247,7 +248,7 @@
     };
 
     Backend.prototype.getUserCookie = function() {
-      return $.cookie("userId");
+      return parseInt($.cookie("userId"));
     };
 
     Backend.prototype.removeUserCookie = function() {

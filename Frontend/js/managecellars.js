@@ -44,47 +44,81 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
-    var cellars, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
-      _this = this;
-    __iced_k = __iced_k_noop;
-    ___iced_passed_deferral = iced.findDeferral(arguments);
-    (function(__iced_k) {
-      __iced_deferrals = new iced.Deferrals(__iced_k, {
-        parent: ___iced_passed_deferral,
-        filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/managecellars.iced"
-      });
-      backend.Cellar.get({
-        owner__id: backend.userId
-      }, __iced_deferrals.defer({
-        assign_fn: (function() {
-          return function() {
-            return cellars = arguments[0];
-          };
-        })(),
-        lineno: 2
-      }));
-      __iced_deferrals._fulfill();
-    })(function() {
+    var refreshCellars;
+    refreshCellars = function() {
+      var cellars, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,
-          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/managecellars.iced"
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/managecellars.iced",
+          funcname: "refreshCellars"
         });
-        frontend.renderTemplate("manage_cellars_table", {
-          cellars: cellars
+        backend.Cellar.get({
+          owner_id: backend.userId
         }, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
-              return html = arguments[0];
+              return cellars = arguments[0];
             };
           })(),
           lineno: 3
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        return $("#cellars-table-body").html(html);
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/managecellars.iced",
+            funcname: "refreshCellars"
+          });
+          frontend.renderTemplate("manage_cellars_table", {
+            cellars: cellars
+          }, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return html = arguments[0];
+              };
+            })(),
+            lineno: 4
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          return $("#cellars-table-body").html(html);
+        });
+      });
+    };
+    $("#create-cellar-button").click(function(event) {
+      var name, nothing, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      event.preventDefault();
+      name = $("#create-cellar-name").val();
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/managecellars.iced"
+        });
+        backend.Cellar.create({
+          owner: backend.profileUri,
+          name: name
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return nothing = arguments[0];
+            };
+          })(),
+          lineno: 10
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return refreshCellars();
       });
     });
+    return refreshCellars();
   });
 
 }).call(this);

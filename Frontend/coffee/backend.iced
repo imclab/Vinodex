@@ -27,6 +27,7 @@ class Backend
     @Sommeilier = new Resource("/api/v1/sommeilier/")
     @Profile = new Resource("/api/v1/profile/")
     @userId = @getUserCookie()
+    @profileUri = "/api/v1/profile/#{@userId}/"
 
   isGood: (response) ->
     # A response is good if it is a 304 (not modified)
@@ -99,7 +100,7 @@ class Backend
     $.cookie("userId", userId)
 
   getUserCookie: ->
-    $.cookie "userId"
+    parseInt($.cookie "userId")
 
   removeUserCookie: ->
     $.removeCookie "userId"

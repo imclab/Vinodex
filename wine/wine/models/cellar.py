@@ -3,7 +3,7 @@ from user import UserProfile
 from bottle import Bottle
 class Cellar(models.Model):
     owner = models.ForeignKey(UserProfile, related_name="cellars")
-    location = models.TextField()
+    location = models.TextField(null=True, blank=True)
     name = models.TextField()
     photo = models.URLField(null=True, blank=True)
     
