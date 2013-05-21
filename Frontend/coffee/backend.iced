@@ -8,14 +8,14 @@ class Resource
     callback(response.objects)
 
   delete: (id, callback) ->
-    backend.delete("#{@api_endpoint_url}/#{id}", callback)
+    backend.delete("#{@api_endpoint_url}#{id}/", callback)
 
   create: (object = {}, callback) ->
     await backend.post @api_endpoint_url, object, defer response
     callback response.responseJSON
 
   update: (id, options, callback) ->
-    backend.put("#{@api_endpoint_url}/#{id}", options, callback)
+    backend.put("#{@api_endpoint_url}#{id}/", options, callback)
 
 class Backend
   constructor : (@server_url) ->
@@ -49,7 +49,7 @@ class Backend
 
   put: (uri, data, callback) ->
     $.ajax
-      url: uri
+      url: @server_url + uri
       contentType: "application/json"
       type: "PUT"
       data: JSON.stringify(data)
@@ -57,9 +57,9 @@ class Backend
       processData: false
       complete: callback
 
-  delete: (uri,callback) ->
+  delete: (uri, callback) ->
     $.ajax
-      url: uri
+      url: @server_url + uri
       type: "DELETE"
       complete: callback
       dataType: "json"

@@ -42,17 +42,6 @@ window.init = function() {
 		$("#login").valreset();
 		var email = $("#forgotemail").valemail();
 	});
-	$("#deleteconfirm").click(function(event) {
-	// same validation code for delete wine and delete cellar
-		event.preventDefault();
-		if($(this).prev().val().trim() === "DELETE") {
-			alert("delete wine or cellar");
-			$("#deletewine").modal("hide");
-			$("#deletecellar").modal("hide");
-		} else {
-			$(this).prev().valerror();
-		}
-	});
 };
 
 $(document).ready(window.init);

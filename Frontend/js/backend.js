@@ -77,7 +77,7 @@
     };
 
     Resource.prototype["delete"] = function(id, callback) {
-      return backend["delete"]("" + this.api_endpoint_url + "/" + id, callback);
+      return backend["delete"]("" + this.api_endpoint_url + id + "/", callback);
     };
 
     Resource.prototype.create = function(object, callback) {
@@ -107,7 +107,7 @@
     };
 
     Resource.prototype.update = function(id, options, callback) {
-      return backend.put("" + this.api_endpoint_url + "/" + id, options, callback);
+      return backend.put("" + this.api_endpoint_url + id + "/", options, callback);
     };
 
     return Resource;
@@ -151,7 +151,7 @@
 
     Backend.prototype.put = function(uri, data, callback) {
       return $.ajax({
-        url: uri,
+        url: this.server_url + uri,
         contentType: "application/json",
         type: "PUT",
         data: JSON.stringify(data),
@@ -163,7 +163,7 @@
 
     Backend.prototype["delete"] = function(uri, callback) {
       return $.ajax({
-        url: uri,
+        url: this.server_url + uri,
         type: "DELETE",
         complete: callback,
         dataType: "json"

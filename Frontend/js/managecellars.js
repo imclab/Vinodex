@@ -86,7 +86,10 @@
           }));
           __iced_deferrals._fulfill();
         })(function() {
-          return $("#cellars-table-body").html(html);
+          $("#cellars-table-body").html(html);
+          return $(".editcellar-button").click(function() {
+            return window.selectedCellar = parseInt($(this).data("cellar-id"));
+          });
         });
       });
     };
@@ -111,12 +114,41 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 10
+          lineno: 12
         }));
         __iced_deferrals._fulfill();
       })(function() {
         return refreshCellars();
       });
+    });
+    $("#deleteconfirm").click(function(event) {
+      var nothing, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      event.preventDefault();
+      if ($("#deletetext").val().trim() === "DELETE") {
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/managecellars.iced"
+          });
+          backend.Cellar["delete"](window.selectedCellar, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return nothing = arguments[0];
+              };
+            })(),
+            lineno: 18
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          refreshCellars();
+          return __iced_k($("#deletecellar").modal("hide"));
+        });
+      } else {
+        return __iced_k($("#deletetext").valerror());
+      }
     });
     return refreshCellars();
   });
