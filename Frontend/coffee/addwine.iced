@@ -9,40 +9,35 @@ $ ->
       cellar = $("#cellar").valselect()
       type = $("#winetype").valselect()
       bottles = $("#numbottles").vallength()
-      if name or year or alcohol or cellar or type or bottles
+      winery = $("#wineryname").val()
+      price = $("#retailprice").val()
+      if not name or not year or not alcohol or not cellar or not type or not bottles
         console.log("Error Condition")
         return
-      nameVal = $("#winename").val()
-      yearVal = $("#year").val()
-      alcoholVal = $("#alcoholcontent").val()
-      cellarVal = $("#cellar").val()
-      typeVal = $("#winetype").val()
-      priceVal = $("#retailprice").val()
-      wineryVal = $("#wineryname").val()
       wine =
-        name: nameVal
-        vintage: yearVal
-        alcohol: alcoholVal
-        cellar: cellarVal
-        type: typeVal
+        name: name
+        vintage: year
+        alcohol: alcohol
+        type: type
         bottles: 1
-        retail_price: parseFloat priceVal
+        retail_price: parseFloat price
 
-      if wineryVal
-        await backend.Winery.get {name: wineryVal, limit: 1}, defer matchingWineries
+      if winery
+        await backend.Winery.get {name: winery, limit: 1}, defer matchingWineries
         if matchingWineries.length
           winery_id = matchingWineries[0].id
           wine.winery_id = winery_id
-          await backend.Wine.create wine, defer nothing
         else
-          await backend.Winery.create {name: wineryVal}, defer winery
+          await backend.Winery.create {name: winery}, defer winery
           wine.winery_id = winery.id
-          await backend.Wine.create wine, defer nothing
-        # window.location="/collection.html"
       else
-        await backend.Wine.create wine, defer nothing
-        # window.location="/collection.html"
       
+      await backend.Wine.create wine, defer wine
+      bottle =
+        wine: "/api/v1/wine/#{wine.id}/"
+        cellar: "/api/v1/cellar/#{cellar}/"
+      await backend.Bottle.create bottle , defer nothing
+      window.location = "/collection.html"
 
   $("#winename").val(window.location.hash.substr(1))
 

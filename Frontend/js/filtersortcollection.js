@@ -115,11 +115,6 @@ window.init = function() {
 	$("#imageselector").change(function (){
 		alert($(this).val() + " selected.");
 	});
-	$("#add-wine-name-button").click(function(event) {
-		event.preventDefault();	
-		$("#addwinemanual").valreset();
-		
-	});
 	$(".pronounciation").tooltip();
 	$("#togglefilters").click(function(event) {
 		$("#filterselector").toggle();

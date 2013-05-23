@@ -8,6 +8,7 @@ from hydration import hydrate_price, dehydrate_price
 class WineResource(ModelResource):
     winery = fields.ForeignKey(WineryResource, "winery", null=True, blank=False, full=True)
     class Meta:
+        always_return_data = True
         queryset = Wine.objects.all()
         authorization = Authorization() # TODO: Proper auth
         filtering = {
