@@ -3,6 +3,10 @@ class Resource
 
   # TODO: Handle error conditions
 
+  getById: (id, callback) ->
+    await backend.get @api_endpoint_url+id, defer response
+    callback response
+
   get: (filters = {}, callback) ->
     await backend.get @api_endpoint_url, filters, defer response
     callback(response.objects)

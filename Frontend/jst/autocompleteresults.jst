@@ -1,0 +1,16 @@
+{{#wines}}
+<div class="span2">
+    <div>
+        <img src="{{label_photo}}" alt=""/>
+        <p class="name"><a href="#">{{name}}</a></p>
+        <p class="winery"><a href="#">{{winery.name}}</a></p>
+        <a href="addwine.html#{{id}}" class="btn">Select Wine</a>
+    </div>
+</div>
+{{/wines}}
+<div class="span2">
+    <div class="well">
+        <h4>Not here?</h4>
+        <a href="addwine.html" class="btn">Enter Manually</a>
+    </div>
+</div>

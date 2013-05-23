@@ -44,10 +44,18 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
-    var cellars, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+    var cellars, html, loadWineDataIntoUI, wine, wineId, ___iced_passed_deferral, __iced_deferrals, __iced_k,
       _this = this;
     __iced_k = __iced_k_noop;
     ___iced_passed_deferral = iced.findDeferral(arguments);
+    loadWineDataIntoUI = function(wine) {
+      $("#winename").val(wine.name);
+      $("#year").val(wine.vintage);
+      $("#alcoholcontent").val(wine.alcohol_content);
+      $("#winetype").val(wine.wine_type);
+      $("#wineryname").val(wine.winery.name);
+      return $("#retailprice").val(wine.retail_price);
+    };
     $("#valaddwine").click(function(event) {
       var alcohol, bottle, bottles, cellar, matchingWineries, name, nothing, price, type, wine, winery, winery_id, year, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
         _this = this;
@@ -91,7 +99,7 @@
                   return matchingWineries = arguments[0];
                 };
               })(),
-              lineno: 26
+              lineno: 34
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -113,7 +121,7 @@
                         return winery = arguments[0];
                       };
                     })(),
-                    lineno: 31
+                    lineno: 39
                   }));
                   __iced_deferrals._fulfill();
                 })(function() {
@@ -137,7 +145,7 @@
                 return wine = arguments[0];
               };
             })(),
-            lineno: 35
+            lineno: 43
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -156,7 +164,7 @@
                   return nothing = arguments[0];
                 };
               })(),
-              lineno: 39
+              lineno: 47
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -165,42 +173,66 @@
         });
       });
     });
-    $("#winename").val(window.location.hash.substr(1));
+    wineId = parseInt(window.location.hash.substr(1));
     (function(__iced_k) {
-      __iced_deferrals = new iced.Deferrals(__iced_k, {
-        parent: ___iced_passed_deferral,
-        filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
-      });
-      window.backend.Cellar.get({
-        owner: window.backend.userId
-      }, __iced_deferrals.defer({
-        assign_fn: (function() {
-          return function() {
-            return cellars = arguments[0];
-          };
-        })(),
-        lineno: 45
-      }));
-      __iced_deferrals._fulfill();
+      if (wineId) {
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
+          });
+          backend.Wine.getById(wineId, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return wine = arguments[0];
+              };
+            })(),
+            lineno: 52
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          return __iced_k(loadWineDataIntoUI(wine));
+        });
+      } else {
+        return __iced_k($("#winename").val(window.location.hash.substr(1)));
+      }
     })(function() {
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
         });
-        frontend.renderTemplate("addwine_cellars", {
-          cellars: cellars
+        window.backend.Cellar.get({
+          owner: window.backend.userId
         }, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
-              return html = arguments[0];
+              return cellars = arguments[0];
             };
           })(),
-          lineno: 46
+          lineno: 58
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        return $("#cellar").html(html);
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
+          });
+          frontend.renderTemplate("addwine_cellars", {
+            cellars: cellars
+          }, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return html = arguments[0];
+              };
+            })(),
+            lineno: 59
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          return $("#cellar").html(html);
+        });
       });
     });
   });

@@ -1,5 +1,13 @@
 $ ->
 
+  loadWineDataIntoUI = (wine)->
+    $("#winename").val wine.name
+    $("#year").val wine.vintage
+    $("#alcoholcontent").val wine.alcohol_content
+    $("#winetype").val wine.wine_type
+    $("#wineryname").val wine.winery.name
+    $("#retailprice").val wine.retail_price
+
   $("#valaddwine").click (event) ->
       $("#addwine").valreset()
       event.preventDefault()
@@ -39,7 +47,12 @@ $ ->
       await backend.Bottle.create bottle , defer nothing
       window.location = "/collection.html"
 
-  $("#winename").val(window.location.hash.substr(1))
+  wineId = parseInt window.location.hash.substr(1)
+  if wineId
+    await backend.Wine.getById wineId, defer wine
+    loadWineDataIntoUI wine
+  else
+    $("#winename").val(window.location.hash.substr(1))
 
   # Load the cellars into the form
   await window.backend.Cellar.get {owner: window.backend.userId}, defer cellars
