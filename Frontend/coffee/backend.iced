@@ -109,4 +109,8 @@ class Backend
     !!($.cookie "userId")
 
 window.Backend = Backend
-window.backend = new Backend("http://localhost:8000")
+
+if not $.cookie "dev"
+  window.backend = new Backend("http://www.vinodex.us:8000")
+else
+  window.backend = new Backend("http://localhost:8000")

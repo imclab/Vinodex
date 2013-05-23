@@ -265,6 +265,10 @@
 
   window.Backend = Backend;
 
-  window.backend = new Backend("http://localhost:8000");
+  if (!$.cookie("dev")) {
+    window.backend = new Backend("http://www.vinodex.us:8000");
+  } else {
+    window.backend = new Backend("http://localhost:8000");
+  }
 
 }).call(this);
