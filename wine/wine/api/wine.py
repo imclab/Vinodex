@@ -4,6 +4,8 @@ from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from tastypie.authorization import Authorization
 from ..models.wine import Wine
 from hydration import hydrate_price, dehydrate_price
+from tastypie.serializers import Serializer
+from django.http import HttpResponse
 
 class WineResource(ModelResource):
     winery = fields.ForeignKey(WineryResource, "winery", null=True, blank=False, full=True)

@@ -3,6 +3,7 @@ from wine.decorators import timed
 from django.core.cache import cache
 import subprocess
 from django.core.cache import cache
+from difflib import SequenceMatcher
 
 class Recognizable(object):
     """
@@ -72,7 +73,6 @@ class Recognizable(object):
     def _update_name_cache(self):
         all_names = list(set([obj[0].lower().encode('ascii','ignore') for obj in
             self.__class__.objects.values_list('name')]))
-        create_data_file(all_names, self._names_filename())
         cache.set(self._names_cache_key(), all_names, 7600)
         return all_names
 
