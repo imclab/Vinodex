@@ -23,8 +23,6 @@ v1_api.register(AnnotationResource())
 urlpatterns = patterns('',
     url(r'^$', 'wine.views.home', name='home'),
 
-    url(r"^accounts/register/$", NewUserRegistrationView.as_view(),name="Register"),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'api/v1/wine/ocr', 'wine.views.wine_ocr', name='wine_ocr'),
     url(r'api/v1/wine/barcode', 'wine.views.wine_barcode', name='wine_barcode'),
     url(r'^wine/image', 'wine.views.upload_image', name='wine_upload_image'),

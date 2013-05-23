@@ -18,16 +18,11 @@ from tools import (safe_get, download_file, get_filename,
                    get_barcode_from_image, render_result,
                    download_image_from_request, bad_request)
 
-@login_required
 def home(request):
-    return render(request,"inventory.html")
+    return render(request,"landing.html")
 
 def upload_image(request):
     return render(request,"upload.html")
-
-@login_required
-def pie(request):
-    return render(request, "pie.html")
 
 @csrf_exempt
 def wine_barcode(request):
