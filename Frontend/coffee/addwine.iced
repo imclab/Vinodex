@@ -47,14 +47,15 @@ $ ->
       await backend.Bottle.create bottle , defer nothing
       window.location = "/collection.html"
 
+
+  # Load the cellars into the form
+  await window.backend.Cellar.get {owner: window.backend.userId}, defer cellars
+  await frontend.renderTemplate "addwine_cellars", {cellars: cellars}, defer html
+  $("#cellar").html(html)
+
   wineId = parseInt window.location.hash.substr(1)
   if wineId
     await backend.Wine.getById wineId, defer wine
     loadWineDataIntoUI wine
   else
     $("#winename").val(window.location.hash.substr(1))
-
-  # Load the cellars into the form
-  await window.backend.Cellar.get {owner: window.backend.userId}, defer cellars
-  await frontend.renderTemplate "addwine_cellars", {cellars: cellars}, defer html
-  $("#cellar").html(html)

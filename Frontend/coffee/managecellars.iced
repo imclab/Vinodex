@@ -1,6 +1,6 @@
 $ ->
   refreshCellars = ->
-    await backend.Cellar.get {owner_id: backend.userId}, defer cellars
+    await backend.Cellar.get {owner: backend.userId}, defer cellars
     await frontend.renderTemplate "manage_cellars_table", {cellars: cellars}, defer html
     $("#cellars-table-body").html(html)
     $(".editcellar-button").click ->

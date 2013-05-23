@@ -173,66 +173,63 @@
         });
       });
     });
-    wineId = parseInt(window.location.hash.substr(1));
     (function(__iced_k) {
-      if (wineId) {
-        (function(__iced_k) {
-          __iced_deferrals = new iced.Deferrals(__iced_k, {
-            parent: ___iced_passed_deferral,
-            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
-          });
-          backend.Wine.getById(wineId, __iced_deferrals.defer({
-            assign_fn: (function() {
-              return function() {
-                return wine = arguments[0];
-              };
-            })(),
-            lineno: 52
-          }));
-          __iced_deferrals._fulfill();
-        })(function() {
-          return __iced_k(loadWineDataIntoUI(wine));
-        });
-      } else {
-        return __iced_k($("#winename").val(window.location.hash.substr(1)));
-      }
+      __iced_deferrals = new iced.Deferrals(__iced_k, {
+        parent: ___iced_passed_deferral,
+        filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
+      });
+      window.backend.Cellar.get({
+        owner: window.backend.userId
+      }, __iced_deferrals.defer({
+        assign_fn: (function() {
+          return function() {
+            return cellars = arguments[0];
+          };
+        })(),
+        lineno: 52
+      }));
+      __iced_deferrals._fulfill();
     })(function() {
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
         });
-        window.backend.Cellar.get({
-          owner: window.backend.userId
+        frontend.renderTemplate("addwine_cellars", {
+          cellars: cellars
         }, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
-              return cellars = arguments[0];
+              return html = arguments[0];
             };
           })(),
-          lineno: 58
+          lineno: 53
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        (function(__iced_k) {
-          __iced_deferrals = new iced.Deferrals(__iced_k, {
-            parent: ___iced_passed_deferral,
-            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
+        $("#cellar").html(html);
+        wineId = parseInt(window.location.hash.substr(1));
+        if (wineId) {
+          (function(__iced_k) {
+            __iced_deferrals = new iced.Deferrals(__iced_k, {
+              parent: ___iced_passed_deferral,
+              filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
+            });
+            backend.Wine.getById(wineId, __iced_deferrals.defer({
+              assign_fn: (function() {
+                return function() {
+                  return wine = arguments[0];
+                };
+              })(),
+              lineno: 58
+            }));
+            __iced_deferrals._fulfill();
+          })(function() {
+            return __iced_k(loadWineDataIntoUI(wine));
           });
-          frontend.renderTemplate("addwine_cellars", {
-            cellars: cellars
-          }, __iced_deferrals.defer({
-            assign_fn: (function() {
-              return function() {
-                return html = arguments[0];
-              };
-            })(),
-            lineno: 59
-          }));
-          __iced_deferrals._fulfill();
-        })(function() {
-          return $("#cellar").html(html);
-        });
+        } else {
+          return __iced_k($("#winename").val(window.location.hash.substr(1)));
+        }
       });
     });
   });

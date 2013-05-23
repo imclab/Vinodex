@@ -57,7 +57,7 @@
           funcname: "refreshCellars"
         });
         backend.Cellar.get({
-          owner_id: backend.userId
+          owner: backend.userId
         }, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
