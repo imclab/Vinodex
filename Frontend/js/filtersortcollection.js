@@ -121,6 +121,11 @@ window.init = function() {
 		
 	});
 	$(".pronounciation").tooltip();
+	$("#togglefilters").click(function(event) {
+		$("#filterselector").toggle();
+		$("#togglefilters span.hide").toggle();
+		$("#togglefilters span:not(.hide)").toggle();
+	});
 };
 
 $(document).ready(window.init);

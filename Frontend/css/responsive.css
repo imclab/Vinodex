@@ -17,12 +17,17 @@
 	#filterselector .well.affix {
 		top: 25px;
 	}
-	
 	#toolbar.affix {
 		top: 0px;
 	}
 }
- 
+
+@media (min-width: 768px) {
+	#filterselector {
+		display: inherit !important;
+	}
+}
+
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
 	#header {
@@ -51,6 +56,12 @@
 	}
 	#about .span12 {
 		margin-bottom: 0px !important;
+	}
+	#togglefilters {
+		display: inherit;
+	}
+	#filterselector {
+		display: none;
 	}
 }
  
