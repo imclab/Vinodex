@@ -108,13 +108,6 @@ window.init = function() {
 		}
 		event.preventDefault();
 	});
-	$("a[href='#uploadimage']").click(function(event) {
-		event.preventDefault();
-		$("#imageselector").click();
-	});
-	$("#imageselector").change(function (){
-		alert($(this).val() + " selected.");
-	});
 	$(".pronounciation").tooltip();
 	$("#togglefilters").click(function(event) {
 		$("#filterselector").toggle();

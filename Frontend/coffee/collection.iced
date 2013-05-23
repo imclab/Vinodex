@@ -39,11 +39,28 @@ addListeners = ->
     window.location = "/addwine.html##{wineName}"
 
   $("#deleteconfirm").click (event) ->
-    await
-      $(".selected").each ->
-        bottleId = $(@).data("id")
-        backend.Bottle.delete bottleId, defer nothing
+    $(".selected").each ->
+      bottleId = $(@).data("id")
+      backend.Bottle.delete bottleId, -> {}
     $(".selected").remove()
+
+  $("a[href='#uploadbarcode']").click (event) ->
+      event.preventDefault()
+      window.uploadMode = "barcode"
+      $("#imageselector").click()
+
+  $("a[href='#uploadlabel']").click (event) ->
+      event.preventDefault()
+      window.uploadMode = "label"
+      $("#imageselector").click()
+
+  $("#imageselector").change ->
+      if window.uploadMode == "barcode"
+        await backend.identifyBarcode new FormData($("#wine-vision-form")[0]), defer wines
+      else
+        await backend.identifyLabel new FormData($("#wine-vision-form")[0]), defer wines
+
+      console.log wines
 
 $ ->
 

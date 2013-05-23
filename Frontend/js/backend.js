@@ -116,8 +116,8 @@
 
   Backend = (function() {
 
-    function Backend(server_url) {
-      this.server_url = server_url;
+    function Backend(serverUrl) {
+      this.serverUrl = serverUrl;
       this.Bottle = new Resource("/api/v1/bottle/");
       this.Cellar = new Resource("/api/v1/cellar/");
       this.Winery = new Resource("/api/v1/winery/");
@@ -134,12 +134,12 @@
     };
 
     Backend.prototype.get = function(uri, options, callback) {
-      return $.get(this.server_url + uri, options, callback);
+      return $.get(this.serverUrl + uri, options, callback);
     };
 
     Backend.prototype.post = function(uri, data, callback) {
       return $.ajax({
-        url: this.server_url + uri,
+        url: this.serverUrl + uri,
         contentType: "application/json",
         type: "POST",
         data: JSON.stringify(data),
@@ -151,7 +151,7 @@
 
     Backend.prototype.put = function(uri, data, callback) {
       return $.ajax({
-        url: this.server_url + uri,
+        url: this.serverUrl + uri,
         contentType: "application/json",
         type: "PUT",
         data: JSON.stringify(data),
@@ -163,7 +163,7 @@
 
     Backend.prototype["delete"] = function(uri, callback) {
       return $.ajax({
-        url: this.server_url + uri,
+        url: this.serverUrl + uri,
         type: "DELETE",
         complete: callback,
         dataType: "json"
@@ -257,6 +257,68 @@
 
     Backend.prototype.userIsLoggedIn = function() {
       return !!($.cookie("userId"));
+    };
+
+    Backend.prototype.postFile = function(url, formData, callback) {
+      return $.ajax({
+        url: this.serverUrl + url,
+        type: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: callback
+      });
+    };
+
+    Backend.prototype.identifyLabel = function(formData, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.identifyLabel"
+        });
+        _this.postFile("/api/v1/wine/ocr/", formData, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 122
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response.responseJSON);
+      });
+    };
+
+    Backend.prototype.identifyBarcode = function(formData, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.identifyBarcode"
+        });
+        _this.postFile("/api/v1/wine/barcode/", formData, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 126
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response.responseJSON);
+      });
     };
 
     return Backend;

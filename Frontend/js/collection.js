@@ -98,32 +98,67 @@
       wineName = $("#wine-name-input").val();
       return window.location = "/addwine.html#" + wineName;
     });
-    return $("#deleteconfirm").click(function(event) {
-      var ___iced_passed_deferral, __iced_deferrals, __iced_k,
+    $("#deleteconfirm").click(function(event) {
+      $(".selected").each(function() {
+        var bottleId;
+        bottleId = $(this).data("id");
+        return backend.Bottle["delete"](bottleId, function() {
+          return {};
+        });
+      });
+      return $(".selected").remove();
+    });
+    $("a[href='#uploadbarcode']").click(function(event) {
+      event.preventDefault();
+      window.uploadMode = "barcode";
+      return $("#imageselector").click();
+    });
+    $("a[href='#uploadlabel']").click(function(event) {
+      event.preventDefault();
+      window.uploadMode = "label";
+      return $("#imageselector").click();
+    });
+    return $("#imageselector").change(function() {
+      var wines, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
       ___iced_passed_deferral = iced.findDeferral(arguments);
       (function(__iced_k) {
-        __iced_deferrals = new iced.Deferrals(__iced_k, {
-          parent: ___iced_passed_deferral,
-          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/collection.iced"
-        });
-        $(".selected").each(function() {
-          var bottleId, nothing,
-            _this = this;
-          bottleId = $(this).data("id");
-          return backend.Bottle["delete"](bottleId, __iced_deferrals.defer({
-            assign_fn: (function() {
-              return function() {
-                return nothing = arguments[0];
-              };
-            })(),
-            lineno: 45
-          }));
-        });
-        __iced_deferrals._fulfill();
+        if (window.uploadMode === "barcode") {
+          (function(__iced_k) {
+            __iced_deferrals = new iced.Deferrals(__iced_k, {
+              parent: ___iced_passed_deferral,
+              filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/collection.iced"
+            });
+            backend.identifyBarcode(new FormData($("#wine-vision-form")[0]), __iced_deferrals.defer({
+              assign_fn: (function() {
+                return function() {
+                  return wines = arguments[0];
+                };
+              })(),
+              lineno: 59
+            }));
+            __iced_deferrals._fulfill();
+          })(__iced_k);
+        } else {
+          (function(__iced_k) {
+            __iced_deferrals = new iced.Deferrals(__iced_k, {
+              parent: ___iced_passed_deferral,
+              filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/collection.iced"
+            });
+            backend.identifyLabel(new FormData($("#wine-vision-form")[0]), __iced_deferrals.defer({
+              assign_fn: (function() {
+                return function() {
+                  return wines = arguments[0];
+                };
+              })(),
+              lineno: 62
+            }));
+            __iced_deferrals._fulfill();
+          })(__iced_k);
+        }
       })(function() {
-        return $(".selected").remove();
+        return console.log(wines);
       });
     });
   };
@@ -148,7 +183,7 @@
             return bottles = arguments[0];
           };
         })(),
-        lineno: 52
+        lineno: 69
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -172,7 +207,7 @@
               return collection = arguments[0];
             };
           })(),
-          lineno: 57
+          lineno: 74
         }));
         window.frontend.renderTemplate("collection_nav", {
           wineTypes: wineTypes,
@@ -184,7 +219,7 @@
               return nav = arguments[0];
             };
           })(),
-          lineno: 61
+          lineno: 78
         }));
         __iced_deferrals._fulfill();
       })(function() {

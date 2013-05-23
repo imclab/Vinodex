@@ -18,7 +18,7 @@ class Resource
     backend.put("#{@api_endpoint_url}#{id}/", options, callback)
 
 class Backend
-  constructor : (@server_url) ->
+  constructor : (@serverUrl) ->
     @Bottle = new Resource("/api/v1/bottle/")
     @Cellar = new Resource("/api/v1/cellar/")
     @Winery = new Resource("/api/v1/winery/")
@@ -35,11 +35,11 @@ class Backend
     response.status == 304  or parseInt(response.status / 100) == 2
 
   get: (uri, options, callback) ->
-    $.get(@server_url + uri, options, callback)
+    $.get(@serverUrl + uri, options, callback)
 
   post: (uri, data, callback) ->
     $.ajax
-      url: @server_url + uri
+      url: @serverUrl + uri
       contentType: "application/json"
       type: "POST"
       data: JSON.stringify(data)
@@ -49,7 +49,7 @@ class Backend
 
   put: (uri, data, callback) ->
     $.ajax
-      url: @server_url + uri
+      url: @serverUrl + uri
       contentType: "application/json"
       type: "PUT"
       data: JSON.stringify(data)
@@ -59,7 +59,7 @@ class Backend
 
   delete: (uri, callback) ->
     $.ajax
-      url: @server_url + uri
+      url: @serverUrl + uri
       type: "DELETE"
       complete: callback
       dataType: "json"
@@ -107,6 +107,24 @@ class Backend
 
   userIsLoggedIn: ->
     !!($.cookie "userId")
+
+  postFile: (url, formData, callback) ->
+    $.ajax
+      url: @serverUrl + url
+      type: "POST"
+      data: formData
+      cache: false
+      contentType: false
+      processData: false
+      complete: callback
+
+  identifyLabel: (formData, callback) ->
+    await @postFile "/api/v1/wine/ocr/", formData, defer response
+    callback response.responseJSON
+
+  identifyBarcode: (formData, callback) ->
+    await @postFile "/api/v1/wine/barcode/", formData, defer response
+    callback response.responseJSON
 
 window.Backend = Backend
 
