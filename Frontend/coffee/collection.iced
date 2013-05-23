@@ -60,7 +60,8 @@ addListeners = ->
       else
         await backend.identifyLabel new FormData($("#wine-vision-form")[0]), defer wines
 
-      console.log wines
+      localStorage.setItem("visionResult", JSON.stringify wines)
+      window.location = "autocompleteresults.html"
 
 $ ->
 

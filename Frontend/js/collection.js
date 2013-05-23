@@ -158,7 +158,8 @@
           })(__iced_k);
         }
       })(function() {
-        return console.log(wines);
+        localStorage.setItem("visionResult", JSON.stringify(wines));
+        return window.location = "autocompleteresults.html";
       });
     });
   };
@@ -183,7 +184,7 @@
             return bottles = arguments[0];
           };
         })(),
-        lineno: 69
+        lineno: 70
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -207,7 +208,7 @@
               return collection = arguments[0];
             };
           })(),
-          lineno: 74
+          lineno: 75
         }));
         window.frontend.renderTemplate("collection_nav", {
           wineTypes: wineTypes,
@@ -219,7 +220,7 @@
               return nav = arguments[0];
             };
           })(),
-          lineno: 78
+          lineno: 79
         }));
         __iced_deferrals._fulfill();
       })(function() {
