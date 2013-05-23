@@ -1,7 +1,7 @@
 from fabric.api import run, env, sudo
 
 env.roledefs = {
-    'web': ['ubuntu@ec2-54-225-54-129.compute-1.amazonaws.com']
+    'web': ['ubuntu@184.72.242.204']
 }
 
 env.key_filename = 'ec2-keypair'
