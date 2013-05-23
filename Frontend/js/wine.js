@@ -44,11 +44,35 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
-    var bottle, bottleId, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+    var bottle, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
       _this = this;
     __iced_k = __iced_k_noop;
     ___iced_passed_deferral = iced.findDeferral(arguments);
-    bottleId = parseInt(window.location.hash.substr(1));
+    $("#deleteconfirm").click(function(event) {
+      var nothing, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral1 = iced.findDeferral(arguments);
+      event.preventDefault();
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral1,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
+        });
+        backend.Bottle["delete"](bottleId, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return nothing = arguments[0];
+            };
+          })(),
+          lineno: 5
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return window.location = "/collection.html";
+      });
+    });
+    window.bottleId = parseInt(window.location.hash.substr(1));
     if (!bottleId) window.location = "/collection.html";
     (function(__iced_k) {
       __iced_deferrals = new iced.Deferrals(__iced_k, {
@@ -61,7 +85,7 @@
             return bottle = arguments[0];
           };
         })(),
-        lineno: 5
+        lineno: 11
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -76,7 +100,7 @@
               return html = arguments[0];
             };
           })(),
-          lineno: 6
+          lineno: 12
         }));
         __iced_deferrals._fulfill();
       })(function() {
