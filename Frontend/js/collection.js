@@ -92,11 +92,39 @@
   };
 
   addListeners = function() {
-    return $("#add-wine-name-button").click(function(event) {
+    $("#add-wine-name-button").click(function(event) {
       var wineName;
       event.preventDefault();
       wineName = $("#wine-name-input").val();
       return window.location = "/addwine.html#" + wineName;
+    });
+    return $("#deleteconfirm").click(function(event) {
+      var ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/collection.iced"
+        });
+        $(".selected").each(function() {
+          var bottleId, nothing,
+            _this = this;
+          bottleId = $(this).data("id");
+          return backend.Bottle["delete"](bottleId, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return nothing = arguments[0];
+              };
+            })(),
+            lineno: 45
+          }));
+        });
+        __iced_deferrals._fulfill();
+      })(function() {
+        return $(".selected").remove();
+      });
     });
   };
 
@@ -120,7 +148,7 @@
             return bottles = arguments[0];
           };
         })(),
-        lineno: 45
+        lineno: 52
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -144,7 +172,7 @@
               return collection = arguments[0];
             };
           })(),
-          lineno: 50
+          lineno: 57
         }));
         window.frontend.renderTemplate("collection_nav", {
           wineTypes: wineTypes,
@@ -156,21 +184,13 @@
               return nav = arguments[0];
             };
           })(),
-          lineno: 54
+          lineno: 61
         }));
         __iced_deferrals._fulfill();
       })(function() {
         $("#results").html(collection);
         $("#collection-nav-list").html(nav);
-        window.isotopeResults();
-        console.log("Cellars:");
-        console.log(cellars);
-        console.log("Bottles:");
-        console.log(bottles);
-        console.log("Wine Types");
-        console.log(wineTypes);
-        console.log("Wineries");
-        return console.log(wineries);
+        return window.isotopeResults();
       });
     });
   });

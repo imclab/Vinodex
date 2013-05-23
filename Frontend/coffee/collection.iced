@@ -38,6 +38,13 @@ addListeners = ->
     wineName = $("#wine-name-input").val()
     window.location = "/addwine.html##{wineName}"
 
+  $("#deleteconfirm").click (event) ->
+    await
+      $(".selected").each ->
+        bottleId = $(@).data("id")
+        backend.Bottle.delete bottleId, defer nothing
+    $(".selected").remove()
+
 $ ->
 
   addListeners()
@@ -55,13 +62,3 @@ $ ->
   $("#results").html(collection)
   $("#collection-nav-list").html(nav)
   window.isotopeResults()
-
-  console.log("Cellars:")
-  console.log(cellars)
-  console.log("Bottles:")
-  console.log(bottles)
-  console.log("Wine Types")
-  console.log(wineTypes)
-  console.log("Wineries")
-  console.log(wineries)
-
