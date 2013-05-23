@@ -70,7 +70,7 @@
           parent: ___iced_passed_deferral,
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
         });
-        frontend.renderTemplate("bottle", bottle, __iced_deferrals.defer({
+        frontend.renderTemplate("wine", bottle, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
               return html = arguments[0];
