@@ -263,6 +263,8 @@
 
   })();
 
+  window.Backend = Backend;
+
   window.backend = new Backend("http://localhost:8000");
 
 }).call(this);

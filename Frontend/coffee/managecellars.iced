@@ -18,9 +18,13 @@ $ ->
       await backend.Cellar.delete window.selectedCellar, defer nothing
       refreshCellars()
       $("#deletecellar").modal "hide"
-      
     else
       $("#deletetext").valerror()
+
+  $("#save-cellar").click (event) ->
+    cellarName = $("#cellarname").val()
+    await backend.Cellar.update window.selectedCellar, {name: cellarName}, defer nothing
+    refreshCellars()
 
   refreshCellars()
 

@@ -108,4 +108,5 @@ class Backend
   userIsLoggedIn: ->
     !!($.cookie "userId")
 
+window.Backend = Backend
 window.backend = new Backend("http://localhost:8000")

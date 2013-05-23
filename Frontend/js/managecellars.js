@@ -150,6 +150,32 @@
         return __iced_k($("#deletetext").valerror());
       }
     });
+    $("#save-cellar").click(function(event) {
+      var cellarName, nothing, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      cellarName = $("#cellarname").val();
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/managecellars.iced"
+        });
+        backend.Cellar.update(window.selectedCellar, {
+          name: cellarName
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return nothing = arguments[0];
+            };
+          })(),
+          lineno: 26
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return refreshCellars();
+      });
+    });
     return refreshCellars();
   });
 
