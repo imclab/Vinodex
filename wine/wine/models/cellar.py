@@ -13,7 +13,8 @@ class Cellar(Timestamped):
         app_label = 'wine'
 
     def num_bottles(self):
-        return Bottle.objects.filter(cellar=self).count()
+        return sum([bottle.num_bottles for bottle in
+                    Bottle.objects.filter(cellar=self)])
     
     def num_wines(self):
         return len(set([bottle.wine for bottle in Bottle.objects.filter(cellar=self)]))

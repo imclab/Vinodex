@@ -45,6 +45,7 @@ $ ->
       bottle =
         wine: {id: wineObj.id}
         cellar: {id: parseInt cellar}
+        num_bottles: bottles
 
       # Create the bottle
       await backend.Bottle.create bottle, defer nothing
