@@ -4,7 +4,7 @@ class Resource
   # TODO: Handle error conditions
 
   getById: (id, callback) ->
-    await backend.get @api_endpoint_url+id, defer response
+    await backend.get "#{@api_endpoint_url}#{id}/", defer response
     callback response
 
   get: (filters = {}, callback) ->
@@ -12,7 +12,7 @@ class Resource
     callback(response.objects)
 
   delete: (id, callback) ->
-    backend.delete("#{@api_endpoint_url}#{id}/", callback)
+    backend.delete "#{@api_endpoint_url}#{id}/", callback
 
   create: (object = {}, callback) ->
     await backend.post @api_endpoint_url, object, defer response
@@ -20,6 +20,14 @@ class Resource
 
   update: (id, options, callback) ->
     backend.put("#{@api_endpoint_url}#{id}/", options, callback)
+
+  getOrCreate: (options, callback) ->
+    await @get options, defer response
+    if response.length
+      callback response[0]
+    else
+      await @create options, defer response
+      callback response
 
 class Backend
   constructor : (@serverUrl) ->
@@ -135,4 +143,4 @@ window.Backend = Backend
 if not $.cookie "dev"
   window.backend = new Backend("http://www.vinodex.us:8000")
 else
-  window.backend = new Backend("http://localhost:8000")
+  window.backend = new Backend("http://zgrannan.dyndns.org:8000")

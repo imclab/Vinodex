@@ -7,6 +7,7 @@ from tastypie.utils import trailing_slash
 from ..models.user import UserProfile
 from tastypie import fields
 from tastypie.http import HttpUnauthorized
+from django.db import IntegrityError
 
 class UserResource(ModelResource):
     class Meta:

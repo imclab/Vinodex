@@ -61,7 +61,7 @@
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
           funcname: "Resource.getById"
         });
-        backend.get(_this.api_endpoint_url + id, __iced_deferrals.defer({
+        backend.get("" + _this.api_endpoint_url + id + "/", __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
               return response = arguments[0];
@@ -133,6 +133,52 @@
 
     Resource.prototype.update = function(id, options, callback) {
       return backend.put("" + this.api_endpoint_url + id + "/", options, callback);
+    };
+
+    Resource.prototype.getOrCreate = function(options, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Resource.getOrCreate"
+        });
+        _this.get(options, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 25
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        if (response.length) {
+          return __iced_k(callback(response[0]));
+        } else {
+          (function(__iced_k) {
+            __iced_deferrals = new iced.Deferrals(__iced_k, {
+              parent: ___iced_passed_deferral,
+              filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+              funcname: "Resource.getOrCreate"
+            });
+            _this.create(options, __iced_deferrals.defer({
+              assign_fn: (function() {
+                return function() {
+                  return response = arguments[0];
+                };
+              })(),
+              lineno: 29
+            }));
+            __iced_deferrals._fulfill();
+          })(function() {
+            return __iced_k(callback(response));
+          });
+        }
+      });
     };
 
     return Resource;
@@ -216,7 +262,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 77
+          lineno: 85
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -255,7 +301,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 96
+          lineno: 104
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -313,7 +359,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 126
+          lineno: 134
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -338,7 +384,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 130
+          lineno: 138
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -355,7 +401,7 @@
   if (!$.cookie("dev")) {
     window.backend = new Backend("http://www.vinodex.us:8000");
   } else {
-    window.backend = new Backend("http://localhost:8000");
+    window.backend = new Backend("http://zgrannan.dyndns.org:8000");
   }
 
 }).call(this);

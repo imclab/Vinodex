@@ -32,39 +32,22 @@ $ ->
         vintage: year
         alcohol_content: alcohol
         type: type
-        retail_price: parseFloat price
+        retail_price: parseFloat price or 0
 
-      # If the user wants to associate a winery with the wine,
-      # look for a winery with the same name, and use that instead
+      # Create/Get the winery, if necessary
       if winery
-
-        # Check if the winery exists
-        await backend.Winery.get {name: winery, limit: 1}, defer matchingWineries
-
-        if matchingWineries.length
-          # Winery already exists with this name, return it
-          winery_id = matchingWineries[0].id
-          wine.winery = "/api/v1/winery/#{winery_id}/"
-        else
-          # No such winery exists, create it
-          await backend.Winery.create {name: winery}, defer winery
-          wine.winery = "/api/v1/winery/#{winery.id}/"
-
-      wine = undefined
+        await backend.Winery.getOrCreate {name: winery}, defer wineryObj
+        wine.winery = wineryObj
       
-      # Check if the wine exists
-      await backend.Wine.get wine, defer wines
-      if wines.length
-        wine = wines[0]
-      else
-        await backend.Wine.create wine, defer wine
+      # Create/Get the wine
+      await backend.Wine.getOrCreate wine, defer wineObj
 
       bottle =
-        wine: "/api/v1/wine/#{wine.id}/"
-        cellar: "/api/v1/cellar/#{cellar}/"
+        wine: {id: wineObj.id}
+        cellar: {id: parseInt cellar}
 
       # Create the bottle
-      await backend.Bottle.create bottle , defer nothing
+      await backend.Bottle.create bottle, defer nothing
 
       # Go home
       window.location = "/collection.html"

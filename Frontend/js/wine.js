@@ -44,19 +44,18 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
-    var bottle, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
-      _this = this;
-    __iced_k = __iced_k_noop;
-    ___iced_passed_deferral = iced.findDeferral(arguments);
+    var renderPage;
+    window.bottleId = parseInt(window.location.hash.substr(1));
+    if (!bottleId) window.location = "/collection.html";
     $("#deleteconfirm").click(function(event) {
-      var nothing, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
+      var nothing, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
-      ___iced_passed_deferral1 = iced.findDeferral(arguments);
+      ___iced_passed_deferral = iced.findDeferral(arguments);
       event.preventDefault();
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
-          parent: ___iced_passed_deferral1,
+          parent: ___iced_passed_deferral,
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
         });
         backend.Bottle["delete"](bottleId, __iced_deferrals.defer({
@@ -65,48 +64,151 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 5
+          lineno: 9
         }));
         __iced_deferrals._fulfill();
       })(function() {
         return window.location = "/collection.html";
       });
     });
-    window.bottleId = parseInt(window.location.hash.substr(1));
-    if (!bottleId) window.location = "/collection.html";
-    (function(__iced_k) {
-      __iced_deferrals = new iced.Deferrals(__iced_k, {
-        parent: ___iced_passed_deferral,
-        filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
-      });
-      backend.Bottle.getById(bottleId, __iced_deferrals.defer({
-        assign_fn: (function() {
-          return function() {
-            return bottle = arguments[0];
-          };
-        })(),
-        lineno: 11
-      }));
-      __iced_deferrals._fulfill();
-    })(function() {
+    renderPage = function() {
+      var bottle, cellars, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      $(".mustached").remove();
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,
-          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced",
+          funcname: "renderPage"
         });
-        frontend.renderTemplate("wine", bottle, __iced_deferrals.defer({
+        backend.Bottle.getById(bottleId, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
-              return html = arguments[0];
+              return bottle = arguments[0];
             };
           })(),
-          lineno: 12
+          lineno: 15
+        }));
+        backend.Cellar.get({
+          owner: backend.userId
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return cellars = arguments[0];
+            };
+          })(),
+          lineno: 16
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        return $("#deletewine").before(html);
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced",
+            funcname: "renderPage"
+          });
+          frontend.renderTemplate("wine", {
+            bottle: bottle,
+            cellars: cellars
+          }, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return html = arguments[0];
+              };
+            })(),
+            lineno: 17
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          $("#deletewine").before(html);
+          return $("#valaddwine").click(function(event) {
+            var alcohol, bottles, cellar, name, nothing, price, type, wine, winery, wineryName, year, ___iced_passed_deferral1, __iced_deferrals, __iced_k, _bottle, _wine,
+              _this = this;
+            __iced_k = __iced_k_noop;
+            ___iced_passed_deferral1 = iced.findDeferral(arguments);
+            event.preventDefault();
+            name = $("#winename").vallength();
+            year = $("#year").valvintageyear();
+            alcohol = $("#alcoholcontent").vallength();
+            cellar = $("#cellar").valselect();
+            type = $("#winetype").valselect();
+            bottles = $("#numbottles").vallength();
+            wineryName = $("#wineryname").val();
+            price = $("#retailprice").val();
+            if (!name || !year || !alcohol || !cellar || !type || !bottles) {
+              console.log("Error Condition");
+              return;
+            }
+            (function(__iced_k) {
+              __iced_deferrals = new iced.Deferrals(__iced_k, {
+                parent: ___iced_passed_deferral1,
+                filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
+              });
+              backend.Winery.getOrCreate({
+                name: wineryName
+              }, __iced_deferrals.defer({
+                assign_fn: (function() {
+                  return function() {
+                    return winery = arguments[0];
+                  };
+                })(),
+                lineno: 33
+              }));
+              __iced_deferrals._fulfill();
+            })(function() {
+              _wine = {
+                name: name,
+                vintage: year,
+                alcohol_content: alcohol,
+                wine_type: type,
+                winery: winery
+              };
+              (function(__iced_k) {
+                __iced_deferrals = new iced.Deferrals(__iced_k, {
+                  parent: ___iced_passed_deferral1,
+                  filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
+                });
+                backend.Wine.getOrCreate(_wine, __iced_deferrals.defer({
+                  assign_fn: (function() {
+                    return function() {
+                      return wine = arguments[0];
+                    };
+                  })(),
+                  lineno: 42
+                }));
+                __iced_deferrals._fulfill();
+              })(function() {
+                _bottle = {
+                  wine: "/api/v1/wine/" + wine.id + "/",
+                  cellar: "/api/v1/cellar/" + bottle.cellar.id + "/"
+                };
+                (function(__iced_k) {
+                  __iced_deferrals = new iced.Deferrals(__iced_k, {
+                    parent: ___iced_passed_deferral1,
+                    filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
+                  });
+                  backend.Bottle.update(bottle.id, _bottle, __iced_deferrals.defer({
+                    assign_fn: (function() {
+                      return function() {
+                        return nothing = arguments[0];
+                      };
+                    })(),
+                    lineno: 47
+                  }));
+                  __iced_deferrals._fulfill();
+                })(function() {
+                  $("#editwine").modal("hide");
+                  return renderPage();
+                });
+              });
+            });
+          });
+        });
       });
-    });
+    };
+    return renderPage();
   });
 
 }).call(this);

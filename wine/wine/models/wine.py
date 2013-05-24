@@ -21,7 +21,19 @@ class Wine(models.Model, Recognizable):
 
     class Meta:
         app_label='wine'
-        unique_together = ["name", "winery", "vintage"]
+        unique_together = \
+            ["name",
+             "photo",
+             "winery",
+             "vintage",
+             "alcohol_content",
+             "wine_type",
+             "min_price",
+             "max_price",
+             "retail_price",
+             "url",
+             "label_photo",
+             "color"]
 
     def save(self, *args, **kwargs):
         for price in [self.min_price, self.retail_price, self.max_price]:

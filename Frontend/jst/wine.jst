@@ -1,15 +1,15 @@
-<div id="miniheader" style="background-image: url(img/libraryheader.jpg)">
+<div class="mustached" id="miniheader" style="background-image: url(img/libraryheader.jpg)">
     <div class="container">
         <div class="row">
             <div class="span_12">
                 <div class="page_header">
-                    <h1 id ="winename">{{wine.name}}<small>{{wine.winery.name}}</small></h1>
+                    <h1 class ="winename">{{bottle.wine.name}}<small>{{bottle.wine.winery.name}}</small></h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container main">
+<div class="container main mustached">
     <div class="row">
         <div class="span3">
             <img src="img/WineBottle.jpg" alt="wine"/>
@@ -17,27 +17,27 @@
                 <tbody>
                     <tr>
                         <th>Wine Name</th>
-                        <td>{{wine.name}}</td>
+                        <td>{{bottle.wine.name}}</td>
                     </tr>
                     <tr>
                         <th>Winery</th>
-                        <td>{{wine.winery.name}}</td>
+                        <td>{{bottle.wine.winery.name}}</td>
                     </tr>
                     <tr>
                         <th>Vintage</th>
-                        <td>{{wine.vintage}}</td>
+                        <td>{{bottle.wine.vintage}}</td>
                     </tr>
                     <tr>
                         <th>Type</th>
-                        <td>{{wine.wine_type}}</td>
+                        <td>{{bottle.wine.wine_type}}</td>
                     </tr>
                     <tr>
                         <th>Cellar</th>
-                        <td>{{cellar.name}}</td>
+                        <td>{{bottle.cellar.name}}</td>
                     </tr>
                     <tr>
                         <th>Alcohol Content</th>
-                        <td>{{wine.alcohol_content}}</td>
+                        <td>{{bottle.wine.alcohol_content}}</td>
                     </tr>
                     <tr>
                         <th>Bottles</th>
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <th>Retail Price</th>
-                        <td>${{wine.retail_price}}</td>
+                        <td>${{bottle.wine.retail_price}}</td>
                     </tr>
                     <tr>
                         <th>Date Added</th>
@@ -77,12 +77,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {{#annotations}}
+                            {{bottle.#annotations}}
                                 <tr>
-                                    <td>{{created_date}}</td>
-                                    <td>{{note}}</td>
+                                    <td>{{bottle.created_date}}</td>
+                                    <td>{{bottle.note}}</td>
                                 </tr>
-                            {{/annotations}}
+                            {{bottle./annotations}}
                             </tbody>
                         </table>
                     </div>
@@ -97,21 +97,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {{#wine.ratings}}
+                            {{bottle.#wine.ratings}}
                                 <tr>
                                     <td><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i></td>
                                     <td>TODO</td>
                                     <td>TODO</td>
                                     <td>TODO</td>
                                 </tr>
-                            {{/wine.ratings}}
+                            {{bottle./wine.ratings}}
                             </tbody>
                         </table>
                     </div>
                     <div class="tab-pane" id="vineyard">
-                        <p>Winery Name: {{wine.winery.name}}</p>
-                        <p>Winery Address: {{wine.winery.address}}</p>
-                        <p>Winery Url: <a href="{{wine.winery.url}}">{{wine.winery.url}}</a></p>
+                        <p>Winery Name: {{bottle.wine.winery.name}}</p>
+                        <p>Winery Address: {{bottle.wine.winery.address}}</p>
+                        <p>Winery Url: <a href="{{bottle.wine.winery.url}}">{{bottle.wine.winery.url}}</a></p>
                     </div>
                     <div class="tab-pane" id="details">
                         <p>???</p>
@@ -121,7 +121,7 @@
         </div>
     </div>
 </div>
-<div id="editwine" class="modal hide fade" tabindex="-1" role="dialog">
+<div id="editwine" class="modal hide fade mustached" tabindex="-1" role="dialog">
     <div class="modal-header">
         <a class="close" data-dismiss="modal" href="#">×</a>
         <h3>Edit Wine</h3>
@@ -139,20 +139,20 @@
             <div class="control-group">
                 <label class="control-label" for="winename">Wine*</label>
                 <div class="controls">
-                    <input type="text" id="winename" placeholder="Name">
+                    <input value = "{{bottle.wine.name}}" type="text" id="winename" placeholder="Name">
                     <span class="help-block hide">Invalid Wine Name</span>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="wineryname">Winery</label>
                 <div class="controls">
-                    <input type="text" id="wineryname" placeholder="Name">
+                  <input value="{{bottle.wine.winery.name}}" type="text" id="wineryname" placeholder="Name">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="year">Vintage*</label>
                 <div class="controls">
-                    <input type="text" id="year" placeholder="Year" class="span1"> 
+                  <input value="{{bottle.wine.vintage}}" type="text" id="year" placeholder="Year" class="span1"> 
                     <label class="checkbox inline">
                         <input type="checkbox" id="nv"> Nonvintage
                     </label>
@@ -163,7 +163,7 @@
                 <label class="control-label" for="alcoholcontent">Alcohol Content*</label>
                 <div class="controls">
                     <div class="input-append">
-                        <input id="alcoholcontent" type="text" class="span1" placeholder="Percent">
+                      <input value="{{bottle.wine.alcohol_content}}" id="alcoholcontent" type="text" class="span1" placeholder="Percent">
                         <span class="add-on">%</span>
                     </div>
                     <span class="help-block hide">Invalid Alcohol Content</span>
@@ -173,7 +173,9 @@
                 <label class="control-label" for="cellar">Cellar*</label>
                 <div class="controls">
                     <select id="cellar">
-                        <option disabled="disabled" selected="selected"></option>
+                        {{#cellars}}
+                          <option value={{id}}>{{name}}</option>
+                        {{/cellars}}
                     </select>
                     <span class="help-block hide">Invalid Cellar</span>
                 </div>
@@ -181,66 +183,66 @@
             <div class="control-group">
                 <label class="control-label" for="winetype">Type*</label>
                 <div class="controls">
-                    <select id="winetype">
-                        <option disabled="disabled" selected="selected"></option>
-                        <option>Nero d'Avola</option>
-                        <option>Gamay</option>
-                        <option>Rhone White Blends</option>
-                        <option>Cabernet Franc</option>
-                        <option>Petite Sirah</option>
-                        <option>Tempranillo</option>
-                        <option>Pinot Blanc</option>
-                        <option>Vermouth</option>
-                        <option>Liqueur</option>
-                        <option>Zinfandel</option>
-                        <option>Primitivo</option>
-                        <option>Bordeaux White Blends</option>
-                        <option>Bordeaux Red Blends</option>
-                        <option>Grenache</option>
-                        <option>Chenin Blanc</option>
-                        <option>Tequila</option>
-                        <option>Pinot Gris/Grigio</option>
-                        <option>Madeira</option>
-                        <option>Other Red Wine</option>
-                        <option>Sauvignon Blanc</option>
-                        <option>Other Dessert</option>
-                        <option>Barbera</option>
-                        <option>Gruner Veltliner</option>
-                        <option>Pinotage</option>
-                        <option>Chardonnay</option>
-                        <option>Vintage</option>
-                        <option>Sherry</option>
-                        <option>Dolcetto</option>
-                        <option>Marsala</option>
-                        <option>Cabernet Sauvignon</option>
-                        <option>Straight Vodka</option>
-                        <option>Torrontes</option>
-                        <option>Carmenere</option>
-                        <option>Junmai-Daiginjo</option>
-                        <option>Rosé</option>
-                        <option>Junmai-Ginjo</option>
-                        <option>Semillon</option>
-                        <option>Merlot</option>
-                        <option>Other White Wine</option>
-                        <option>Rose</option>
-                        <option>Gewurztraminer</option>
-                        <option>Single-malt Scotch Whisky</option>
-                        <option>Albarino</option>
-                        <option>Sangiovese</option>
-                        <option>Mourvedre</option>
-                        <option>Viognier</option>
-                        <option>Chianti</option>
-                        <option>Junmai</option>
-                        <option>Syrah/Shiraz</option>
-                        <option>Nebbiolo</option>
-                        <option>Riesling</option>
-                        <option>Rhone Red Blends</option>
-                        <option>Muscat</option>
-                        <option>Malbec</option>
-                        <option>Fruit Wine</option>
-                        <option>Pinot Noir</option>
-                        <option>Non-Vintage</option>
-                        <option>Port</option>
+                  <select id="winetype">
+                      <option>{{bottle.wine.wine_type}}</option>
+                      <option>Nero d'Avola</option>
+                      <option>Gamay</option>
+                      <option>Rhone White Blends</option>
+                      <option>Cabernet Franc</option>
+                      <option>Petite Sirah</option>
+                      <option>Tempranillo</option>
+                      <option>Pinot Blanc</option>
+                      <option>Vermouth</option>
+                      <option>Liqueur</option>
+                      <option>Zinfandel</option>
+                      <option>Primitivo</option>
+                      <option>Bordeaux White Blends</option>
+                      <option>Bordeaux Red Blends</option>
+                      <option>Grenache</option>
+                      <option>Chenin Blanc</option>
+                      <option>Tequila</option>
+                      <option>Pinot Gris/Grigio</option>
+                      <option>Madeira</option>
+                      <option>Other Red Wine</option>
+                      <option>Sauvignon Blanc</option>
+                      <option>Other Dessert</option>
+                      <option>Barbera</option>
+                      <option>Gruner Veltliner</option>
+                      <option>Pinotage</option>
+                      <option>Chardonnay</option>
+                      <option>Vintage</option>
+                      <option>Sherry</option>
+                      <option>Dolcetto</option>
+                      <option>Marsala</option>
+                      <option>Cabernet Sauvignon</option>
+                      <option>Straight Vodka</option>
+                      <option>Torrontes</option>
+                      <option>Carmenere</option>
+                      <option>Junmai-Daiginjo</option>
+                      <option>Rosé</option>
+                      <option>Junmai-Ginjo</option>
+                      <option>Semillon</option>
+                      <option>Merlot</option>
+                      <option>Other White Wine</option>
+                      <option>Rose</option>
+                      <option>Gewurztraminer</option>
+                      <option>Single-malt Scotch Whisky</option>
+                      <option>Albarino</option>
+                      <option>Sangiovese</option>
+                      <option>Mourvedre</option>
+                      <option>Viognier</option>
+                      <option>Chianti</option>
+                      <option>Junmai</option>
+                      <option>Syrah/Shiraz</option>
+                      <option>Nebbiolo</option>
+                      <option>Riesling</option>
+                      <option>Rhone Red Blends</option>
+                      <option>Muscat</option>
+                      <option>Malbec</option>
+                      <option>Fruit Wine</option>
+                      <option>Pinot Noir</option>
+                      <option>Non-Vintage</option>
+                      <option>Port</option>
                     </select>
                     <span class="help-block hide">Invalid Wine Type</span>
                 </div>
@@ -260,7 +262,7 @@
                 <div class="controls">
                     <div class="input-prepend">
                         <span class="add-on">$</span>
-                        <input id="retailprice" type="text" placeholder="Price Per Bottle" class="span2">
+                        <input value="{{bottle.wine.retail_price}}" id="retailprice" type="text" placeholder="Price Per Bottle" class="span2">
                     </div>
                 </div>
             </div>
