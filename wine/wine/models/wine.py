@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.gis.db import models
 from winery import Winery
-from abstract import Recognizable
+from abstract import Recognizable, Timestamped
 from django.core.exceptions import ValidationError
 
-class Wine(models.Model, Recognizable):
+class Wine(Recognizable, Timestamped):
     name = models.TextField(db_index=True)
     photo = models.URLField(null=True, blank=True)
     winery = models.ForeignKey(Winery, related_name="wines", null=True,

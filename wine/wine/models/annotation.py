@@ -1,6 +1,7 @@
 from django.db import models
+from abstract import Timestamped
 
-class Annotation(models.Model):
+class Annotation(Timestamped):
     bottle = models.ForeignKey("wine.Bottle", db_index=True)
     key = models.TextField()
     value = models.TextField()

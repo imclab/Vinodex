@@ -1,8 +1,9 @@
 from django.db import models
 from wine import Wine
 from django.core.exceptions import ValidationError
+from abstract import Timestamped
 
-class Bottle(models.Model):
+class Bottle(Timestamped):
     class Meta:
         app_label='wine'
 

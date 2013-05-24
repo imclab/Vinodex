@@ -1,5 +1,6 @@
 from django.db import models
-class Sommelier(models.Model):
+from abstract import Timestamped
+class Sommelier(Timestamped):
     wine_type = models.TextField()
     pairing = models.TextField()
     comment = models.TextField(null=True, blank=True)

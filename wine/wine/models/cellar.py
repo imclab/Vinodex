@@ -1,7 +1,8 @@
 from django.db import models
 from user import UserProfile
 from bottle import Bottle
-class Cellar(models.Model):
+from abstract import Timestamped
+class Cellar(Timestamped):
     owner = models.ForeignKey(UserProfile, related_name="cellars")
     location = models.TextField(null=True, blank=True)
     name = models.TextField()
