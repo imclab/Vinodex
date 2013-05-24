@@ -12,6 +12,7 @@ class Bottle(Timestamped):
     photo = models.URLField(null=True, blank=True)
     rating = models.PositiveIntegerField(null=True, blank=True)
     price = models.PositiveIntegerField(null=True, blank=True)
+    num_bottles = models.PositiveIntegerField(default=1)
 
     def save(self, *args, **kwargs):
         if self.price is not None and self.price < 0:

@@ -182,7 +182,8 @@
               })(function() {
                 _bottle = {
                   wine: "/api/v1/wine/" + wine.id + "/",
-                  cellar: "/api/v1/cellar/" + bottle.cellar.id + "/"
+                  cellar: "/api/v1/cellar/" + bottle.cellar.id + "/",
+                  num_bottles: bottles
                 };
                 (function(__iced_k) {
                   __iced_deferrals = new iced.Deferrals(__iced_k, {
@@ -195,7 +196,7 @@
                         return nothing = arguments[0];
                       };
                     })(),
-                    lineno: 47
+                    lineno: 48
                   }));
                   __iced_deferrals._fulfill();
                 })(function() {
