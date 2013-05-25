@@ -7,6 +7,8 @@ $ ->
     $("#winetype").val wine.wine_type
     $("#wineryname").val wine.winery.name
     $("#retailprice").val wine.retail_price
+    $("#winenamelabel").append wine.name
+    JSONParser(JSON.parse wine.raw_data)
 
   $("#valaddwine").click (event) ->
       $("#addwine").valreset()

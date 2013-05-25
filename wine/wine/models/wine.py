@@ -3,6 +3,7 @@ from django.contrib.gis.db import models
 from winery import Winery
 from abstract import Recognizable, Timestamped
 from django.core.exceptions import ValidationError
+from jsonfield import JSONField
 
 class Wine(Recognizable, Timestamped):
     name = models.TextField(db_index=True)
@@ -18,6 +19,7 @@ class Wine(Recognizable, Timestamped):
     url = models.URLField(null=True, blank=True)
     label_photo = models.URLField(null=True, blank=True)
     color = models.TextField(null=True, blank=True)
+    raw_data = JSONField(null=True, blank=True)
 
     class Meta:
         app_label='wine'

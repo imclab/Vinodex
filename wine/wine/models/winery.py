@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.gis.db import models
 from abstract import Recognizable, Timestamped
+from jsonfield import JSONField
 
 class Winery(Timestamped, Recognizable):
     name = models.TextField(db_index=True)
     address = models.TextField(null=True, blank=True)
     location = models.PointField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
+    raw_data = JSONField(null=True, blank=True)
 
     class Meta:
         app_label='wine'

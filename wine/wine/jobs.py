@@ -219,6 +219,9 @@ class WineDataJob(object):
         print "Importing wines into the database"
         for wine_data in wines:
             wine, winery = self.parse_wine_data(wine_data)
+            wine.raw_data = wine_data
+            if winery is not None:
+                winery.raw_data = wine_data.get("Vineyard")
             if not self.wine_already_exists(wine):
                 wine.winery = winery
                 wine.save()

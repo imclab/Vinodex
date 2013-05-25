@@ -1,10 +1,12 @@
 from wine.jobs import WineDataJob
 import requests
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 from wine.models import Wine, Winery
 
-class Command(NoArgsCommand):
-    def handle_noargs(self, *args, **options):
+class Command(BaseCommand):
+    args = '<filename>'
+    help = 'Seeds the wine database from the given wine data file'
+    def handle(self, *args, **options):
         print "About to seed the database..."
         print("Do you want me to remove all wines and wineries from the database "
         "first? (y/n)")
@@ -16,16 +18,23 @@ class Command(NoArgsCommand):
         else:
             print "Okay, I'll leave the database intact"
 
-        print "This is going to take a while, go grab some coffee"
+        filename = None
+        if not args:
+            filename = 'wine_dotcom_api_data'
+        else:
+            filename = args[0]
+
         try:
-            open('wine_dotcom_api_data')
+            open(filename)
         except IOError:
-            print "Downloading the wine file"
+            filename = 'wine_dotcom_api_data'
+            print "Could not open wine data file"
+            print "Downloading the wine file, this will take a while"
             response = requests.get("http://zackg.me/wine_dotcom_api_data")
             response.raise_for_status()
-            with open('wine_dotcom_api_data','w') as write_handle:
+            with open(filename,'w') as write_handle:
                 write_handle.write(response.content)
 
         print "Starting wine data job"
-        WineDataJob().process('wine_dotcom_api_data')
+        WineDataJob().process(filename)
         print "Seed complete"

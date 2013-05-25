@@ -186,6 +186,16 @@
         })(),
         lineno: 70
       }));
+      backend.Cellar.get({
+        owner: backend.userId
+      }, __iced_deferrals.defer({
+        assign_fn: (function() {
+          return function() {
+            return cellars = arguments[0];
+          };
+        })(),
+        lineno: 71
+      }));
       __iced_deferrals._fulfill();
     })(function() {
       wineTypes = _.uniq(Util.flatMap(bottles, function(bottle) {
@@ -194,7 +204,6 @@
       wineries = _.uniq(Util.flatMap(bottles, function(bottle) {
         return bottle.wine.winery;
       }), false, Util.byId);
-      cellars = _.uniq(_.pluck(bottles, "cellar"), false, Util.byId);
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,

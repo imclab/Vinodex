@@ -43,7 +43,6 @@ window.init = function() {
 		var pass = $("#passchangepass").valpassword();
 	});
 	$("#forgotpassval").click(function(event) {
-		event.preventDefault();	
 		$("#login").valreset();
 		var email = $("#forgotemail").valemail();
 	});

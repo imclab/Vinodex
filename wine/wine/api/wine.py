@@ -3,7 +3,7 @@ from tastypie import fields
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from tastypie.authorization import Authorization
 from ..models.wine import Wine
-from hydration import hydrate_price, dehydrate_price
+from hydration import hydrate_price, dehydrate_price, dehydrate_raw_data
 from tastypie.serializers import Serializer
 from django.http import HttpResponse
 
@@ -21,6 +21,7 @@ class WineResource(ModelResource):
             the server-side representation """
         for field in ["min_price", "max_price", "retail_price"]:
             bundle = hydrate_price(field, bundle)
+
         return bundle
 
     def dehydrate(self, bundle):
@@ -28,6 +29,8 @@ class WineResource(ModelResource):
             the client-side floating-point representation """
         for field in ["min_price", "max_price", "retail_price"]:
             bundle = dehydrate_price(field, bundle)
+
+        bundle = dehydrate_raw_data(bundle)
         return bundle
 
     def render_wines(self, wines, request):

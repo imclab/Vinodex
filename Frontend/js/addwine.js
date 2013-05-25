@@ -54,7 +54,9 @@
       $("#alcoholcontent").val(wine.alcohol_content);
       $("#winetype").val(wine.wine_type);
       $("#wineryname").val(wine.winery.name);
-      return $("#retailprice").val(wine.retail_price);
+      $("#retailprice").val(wine.retail_price);
+      $("#winenamelabel").append(wine.name);
+      return JSONParser(JSON.parse(wine.raw_data));
     };
     $("#valaddwine").click(function(event) {
       var alcohol, bottle, bottles, cellar, name, nothing, price, type, wine, wineObj, winery, wineryObj, year, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
@@ -97,7 +99,7 @@
                   return wineryObj = arguments[0];
                 };
               })(),
-              lineno: 39
+              lineno: 41
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -118,7 +120,7 @@
                 return wineObj = arguments[0];
               };
             })(),
-            lineno: 44
+            lineno: 46
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -142,7 +144,7 @@
                   return nothing = arguments[0];
                 };
               })(),
-              lineno: 53
+              lineno: 55
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -164,7 +166,7 @@
             return cellars = arguments[0];
           };
         })(),
-        lineno: 58
+        lineno: 60
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -181,7 +183,7 @@
               return html = arguments[0];
             };
           })(),
-          lineno: 59
+          lineno: 61
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -199,7 +201,7 @@
                   return wine = arguments[0];
                 };
               })(),
-              lineno: 64
+              lineno: 66
             }));
             __iced_deferrals._fulfill();
           })(function() {
