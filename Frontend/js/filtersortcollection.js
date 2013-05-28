@@ -119,17 +119,17 @@ window.init = function() {
 	});
 	$('#wine-name-input').typeahead({
         source: function (query, process) {
-            $.getJSON("http://vinodex.us:8000/api/v1/wine/?name__startswith=" + query.trim() + "&limit=5&format=json", function (data) {
-                wines = [];
+        	backend.Wine.get({name__istartswith:query.trim(), limit: 5}, function(data) {
+	        	wines = [];
                 map = {};
-                $.each(data["objects"], function (i, wine) {
+                $.each(data, function (i, wine) {
                     wines.push(wine.name);
                     map[wine.name] = wine;
                 });
                 console.log(wines);
                 console.log(map);
                 process(wines);
-            });
+        	});
         },
         updater: function (item) {
             selectedWine = map[item].id;
