@@ -2,6 +2,9 @@ window.init = function() {
 	"use strict";
 	var resultswidth = $("#results").width();
 	var relayout480 = false;
+	var map;
+	var wines;
+	var selectedWine;
 	$(".winery").each(function() {
 		$(this).parent().addClass($(this).text().toLowerCase().trim().replace(/ /g, "-"));
 	});
@@ -114,6 +117,25 @@ window.init = function() {
 		$("#togglefilters span.hide").toggle();
 		$("#togglefilters span:not(.hide)").toggle();
 	});
+	$('#wine-name-input').typeahead({
+        source: function (query, process) {
+            $.getJSON("http://vinodex.us:8000/api/v1/wine/?name__startswith=" + query.trim() + "&limit=5&format=json", function (data) {
+                wines = [];
+                map = {};
+                $.each(data["objects"], function (i, wine) {
+                    wines.push(wine.name);
+                    map[wine.name] = wine;
+                });
+                console.log(wines);
+                console.log(map);
+                process(wines);
+            });
+        },
+        updater: function (item) {
+            selectedWine = map[item].id;
+            return item;
+        }
+    });
 };
 
 $(document).ready(window.init);
@@ -132,3 +154,4 @@ function updateResults() {
 	$('#results').isotope({ filter: filters });
 	console.log(filters);
 }
+
