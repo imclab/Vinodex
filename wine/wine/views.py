@@ -4,9 +4,8 @@ import tempfile
 from django.http import (HttpResponse, HttpResponseBadRequest,
                         HttpResponseNotFound)
 from django.contrib.auth.decorators import login_required
-from django.utils import simplejson as json
 from django.core.cache import cache
-from wine.models import Wine, Winery, UserProfile
+from wine.models import Wine, Winery, UserProfile, User
 from wine.api import WineResource
 from django.views.decorators.csrf import csrf_exempt
 from tastypie.serializers import Serializer
@@ -14,9 +13,12 @@ import zxing
 from django.shortcuts import render, redirect
 from registration.backends.simple.views import RegistrationView
 from wine.forms import NewUserRegistrationForm
+from django.utils import simplejson as json
 from tools import (safe_get, download_file, get_filename,
                    get_barcode_from_image, render_result,
-                   download_image_from_request, bad_request)
+                   download_image_from_request, bad_request, not_found)
+
+from forgot_password import send_password_forgot_message, decrypt_userid
 
 def home(request):
     return render(request,"landing.html")
@@ -75,28 +77,26 @@ def wine_ocr(request):
     wineries = Winery().identify_from_label(filename)
     return render_result(wines, wineries, request)
 
-class NewUserRegistrationView(RegistrationView):
-    form_class = NewUserRegistrationForm
+@csrf_exempt
+def forgot_password(request):
+    email = request.POST.get("email")
+    if not email:
+        return not_found("An e-mail is required")
 
-    def create_profile(self, request, user, **cleaned_data):
-        first_name, last_name, avatar = (cleaned_data["first_name"],
-        cleaned_data["last_name"], cleaned_data.get("avatar"))
-        profile = UserProfile(user = user, first_name=first_name, last_name = last_name,
-                avatar = avatar)
-        profile.save()
-        return profile
+    users = User.objects.filter(email=email)
+    if not users:
+        return not_found("User with email %s does not exist." % email)
+    else:
+        send_password_forgot_message(users[0])
+        return HttpResponse(json.dumps({"message": "success"}))
 
-    def form_valid(self, request, form):
-        new_user = self.register(request, **form.cleaned_data)
-        new_user.profile = self.create_profile(request, new_user, **form.cleaned_data)
-        new_user.save()
-        success_url = self.get_success_url(request, new_user)
-        
-        # success_url may be a simple string, or a tuple providing the
-        # full argument set for redirect(). Attempting to unpack it
-        # tells us which one it is.
-        try:
-            to, args, kwargs = success_url
-            return redirect(to, *args, **kwargs)
-        except ValueError:
-            return redirect(success_url)
+@csrf_exempt
+def reset_password(request):
+    cipher = request.POST.get("cipher")
+    password = request.POST.get("password")
+    if not password or not cipher:
+        return bad_request("A cipher and password are required to reset password")
+    user_id = decrypt_userid(cipher)
+    user = User.objects.filter(id=user_id)
+    user.update(password=password)
+    return HttpResponse(json.dumps({"message": "success"}))

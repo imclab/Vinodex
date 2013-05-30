@@ -11,9 +11,6 @@ from django.core.cache import cache
 from wine.api import WineResource
 from wine.decorators import timed
 
-
-
-
 def safe_get(url):
     """ Makes a GET request to the given url. If the request does not succeed,
         then an exception is thrown """
@@ -77,8 +74,13 @@ def download_image_from_request(request):
         return download_uploaded_image(image_file)
 
 def bad_request(message):
-    response = {"message": "A `url` or an `image` is required"}
+    response = {"message": message}
     return HttpResponseBadRequest(json.dumps(response),
+            mimetype="application/json")
+
+def not_found(message):
+    response = {"message": message}
+    return HttpResponseNotFound(json.dumps(response),
             mimetype="application/json")
 
 def render_result(wines, wineries, request):
@@ -94,9 +96,7 @@ def render_result(wines, wineries, request):
     """
 
     if not wines:
-        response = {"message": "Wine could not be identified, sorry"}
-        return HttpResponseNotFound(json.dumps(response),
-                mimetype="application/json")
+        return not_found("Wine could not be identified, sorry")
 
     wines_with_wineries = [wine for wine in wines if wine.winery and wine.winery in wineries]
     wines_without_wineries = [wine for wine in wines if wine not in

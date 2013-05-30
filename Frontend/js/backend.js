@@ -392,6 +392,61 @@
       });
     };
 
+    Backend.prototype.sendForgotPasswordEmail = function(email, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.sendForgotPasswordEmail"
+        });
+        $.post("" + _this.serverUrl + "/api/v1/forgotpassword/", {
+          email: email
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 142
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(JSON.parse(response));
+      });
+    };
+
+    Backend.prototype.resetPassword = function(cipher, password, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.resetPassword"
+        });
+        $.post("" + _this.serverUrl + "/api/v1/passwordreset/", {
+          cipher: cipher,
+          password: password
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 148
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(JSON.parse(response));
+      });
+    };
+
     return Backend;
 
   })();
@@ -401,7 +456,7 @@
   if (!$.cookie("dev")) {
     window.backend = new Backend("http://www.vinodex.us:8000");
   } else {
-    window.backend = new Backend("http://zgrannan.dyndns.org:8000");
+    window.backend = new Backend("http://localhost:8000");
   }
 
 }).call(this);

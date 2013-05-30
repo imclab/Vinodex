@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.conf.urls import url
 from tastypie.utils import trailing_slash
 from ..models.user import UserProfile
+from ..models.cellar import Cellar
 from tastypie import fields
 from tastypie.http import HttpUnauthorized
 from django.db import IntegrityError
@@ -66,11 +67,18 @@ class UserProfileResource(ModelResource):
         if not bundle.data.get("email") and not bundle.data.get("password"):
             return super(UserProfileResource, self).obj_create(bundle, **kwargs)
         else:
+            # Create the user
             email = bundle.data.get("email")
             password = bundle.data.get("password")
-            user = User.objects.create(email=email,username=email,password=password)
-            bundle.obj = UserProfile.objects.create(name=bundle.data.get("name"),
+            user = User.objects.create(email=email, username=email, password=password)
+
+            # Associate a userprofile with the user
+            profile = UserProfile.objects.create(name=bundle.data.get("name"),
                                                     user=user)
-            bundle.obj.user = user
-            bundle.obj.save()
+
+            # Start the user off with a cellar
+            cellar = Cellar.objects.create(name="Default", profile=profile)
+
+            # Return the created profile
+            bundle.obj = profile
             return bundle

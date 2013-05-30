@@ -138,9 +138,19 @@ class Backend
     await @postFile "/api/v1/wine/barcode/", formData, defer response
     callback response.responseJSON
 
+  sendForgotPasswordEmail: (email, callback) ->
+    await $.post "#{@serverUrl}/api/v1/forgotpassword/", {email: email}, defer response
+    callback JSON.parse response
+
+  resetPassword: (cipher, password, callback) ->
+    await $.post "#{@serverUrl}/api/v1/passwordreset/",
+                 {cipher: cipher, password: password},
+                 defer response
+    callback JSON.parse response
+
 window.Backend = Backend
 
 if not $.cookie "dev"
   window.backend = new Backend("http://www.vinodex.us:8000")
 else
-  window.backend = new Backend("http://zgrannan.dyndns.org:8000")
+  window.backend = new Backend("http://localhost:8000")
