@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Vinodex - API/Image Attribution</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/print.css" rel="stylesheet">
+		<link href="css/responsive.css" rel="stylesheet">
+		<script src="js/jquery.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/backend.js"></script>
+		<script src="js/prefixfree.js"></script>
+		<script src="js/prefixfree.jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body class="navbarpadding">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12 text-center">
+					<h1>{{Name}}'s Collection</h1>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th><div>Image</div></th>
+								<th><div>Name</div></th>
+								<th><div>Winery</div></th>
+								<th><div>Cellar</div></th>
+								<th><div>Bottles</div></th>
+								<th><div>Price</div></th>
+								<th><div>Alcohol Content</div></th>
+								<th><div>Date Added</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+							<tr>
+								<td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+								<td>Example Name</td>
+								<td>Example Winery</td>
+								<td>Example Cellar</td>
+								<td>15 <i class="icon-bottle"></i></td>
+								<td>$15</td>
+								<td>5%</td>
+								<td>10-23-12</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12 text-center">
+					<h3>Cataloged on <img src="img/logo.png" class="logo"/></h3>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
