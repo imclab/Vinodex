@@ -135,7 +135,7 @@ window.init = function() {
         	});
         },
         updater: function (item) {
-            selectedWine = map[item].id;
+            selectedWine = map[item];
             return item;
         }
     });

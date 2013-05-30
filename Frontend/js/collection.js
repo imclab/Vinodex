@@ -95,8 +95,12 @@
     $("#add-wine-name-button").click(function(event) {
       var wineName;
       event.preventDefault();
-      wineName = $("#wine-name-input").val();
-      return window.location = "/addwine.html#" + wineName;
+      if (selectedWine) {
+        return window.location = "/addwine.html#" + selectedWine.id;
+      } else {
+        wineName = $("#wine-name-input").val();
+        return window.location = "/addwine.html#" + wineName;
+      }
     });
     $("#deleteconfirm").click(function(event) {
       $(".selected").each(function() {
@@ -136,7 +140,7 @@
                   return wines = arguments[0];
                 };
               })(),
-              lineno: 59
+              lineno: 62
             }));
             __iced_deferrals._fulfill();
           })(__iced_k);
@@ -152,7 +156,7 @@
                   return wines = arguments[0];
                 };
               })(),
-              lineno: 62
+              lineno: 65
             }));
             __iced_deferrals._fulfill();
           })(__iced_k);
@@ -184,7 +188,7 @@
             return bottles = arguments[0];
           };
         })(),
-        lineno: 70
+        lineno: 73
       }));
       backend.Cellar.get({
         owner: backend.userId
@@ -194,7 +198,7 @@
             return cellars = arguments[0];
           };
         })(),
-        lineno: 71
+        lineno: 74
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -217,7 +221,7 @@
               return collection = arguments[0];
             };
           })(),
-          lineno: 75
+          lineno: 78
         }));
         window.frontend.renderTemplate("collection_nav", {
           wineTypes: wineTypes,
@@ -229,7 +233,7 @@
               return nav = arguments[0];
             };
           })(),
-          lineno: 79
+          lineno: 82
         }));
         __iced_deferrals._fulfill();
       })(function() {

@@ -35,8 +35,11 @@ window.isotopeResults = ->
 addListeners = ->
   $("#add-wine-name-button").click (event) ->
     event.preventDefault()
-    wineName = $("#wine-name-input").val()
-    window.location = "/addwine.html##{wineName}"
+    if selectedWine
+      window.location = "/addwine.html##{selectedWine.id}"
+    else
+      wineName = $("#wine-name-input").val()
+      window.location = "/addwine.html##{wineName}"
 
   $("#deleteconfirm").click (event) ->
     $(".selected").each ->
