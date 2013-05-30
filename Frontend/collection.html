@@ -201,12 +201,15 @@
 				<a href="#uploadbarcode" class="btn btn-primary">Upload barcode image</a>
                 <form id = "wine-vision-form" enctype="multipart/form-data">
                   <input name="image" type="file" style="display: none;" accept="image/*" id="imageselector"/>
+                  <div class="progress progress-striped active" style="display: none; margin-top: 20px; margin-bottom: 0">
+					  <div class="bar" style="width: 0%; transition-duration: 30s;"></div>
+				</div>
                 </form>
 				<hr>
-				<form id="addwinemanual">
+				<form id="addwinemanual" style="margin: 0">
 					<div class="control-group">
 						<div class="controls">
-							<div class="input-append">
+							<div class="input-append" style="margin: 0">
 								<input id="wine-name-input" class="span3" type="text" placeholder="Wine Name" autocomplete="off" data-provide="typeahead">
 								<a id="add-wine-name-button" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</a>
 							</div>
