@@ -77,7 +77,7 @@ class UserProfileResource(ModelResource):
                                                     user=user)
 
             # Start the user off with a cellar
-            cellar = Cellar.objects.create(name="Default", profile=profile)
+            cellar = Cellar.objects.create(name="Default", owner=profile)
 
             # Return the created profile
             bundle.obj = profile
