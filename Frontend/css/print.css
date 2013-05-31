@@ -1,0 +1,17 @@
+tr td.wineimage {
+	text-align: center;
+}
+
+.wineimage img {
+	height: 50px;
+}
+
+.icon-bottle {
+	background-image: url("../img/bottle.png");
+	background-position: 0px 0px;
+}
+
+.logo {
+	height: 40px;
+	vertical-align: top;
+}

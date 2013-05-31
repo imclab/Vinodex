@@ -33,9 +33,17 @@ window.init = function() {
 		var name = $("#signupname").vallength();
 		var email = $("#signupemail").valemail();
 		var pass = $("#signuppassword").valpassword();
+		if(name !== null && email !== null && pass !== null) {
+			$(this).addClass("disabled").html("Signing Up...");
+			$(this).next().show().children(".bar").width("100%");
+		}
 		backend.createUserAccount(name, email, pass, function(){
 			window.location = "collection.html";
-		}, function(){console.log("Account Creation Failed");});
+		}, function(){
+			console.log("Account Creation Failed");
+			$("#validatesignup").removeClass("disabled").html("Sign Up");
+			$("#validatesignup").next().hide().children(".bar").width("0%");
+		});
 	});
 	$("#validatepasschange").click(function(event) {
 		event.preventDefault();
