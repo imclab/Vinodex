@@ -67,7 +67,7 @@ window.init = function() {
 		$("#settings").valreset();
 		var name = $("#name").vallength();
 		var email = $("#email").valemail();
-		var pass = $("#newpass").valpassword();
+		var pass = $("#newpass").valnewpassword();
 	});
 	$("#removereason a").click(function () {
 		console.log("clicked");

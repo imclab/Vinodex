@@ -56,6 +56,16 @@ jQuery.fn.valpassword = function() {
 	}
 };
 
+jQuery.fn.valnewpassword = function() {
+	"use strict";
+	if($(this).val().trim().length < 6 && $(this).val().trim().length > 0) {
+		$(this).valerror();
+		return null;
+	} else {
+		return $(this).val();
+	}
+};
+
 jQuery.fn.valselect = function() {
 	"use strict";
 	if($(this).val() === null) {
