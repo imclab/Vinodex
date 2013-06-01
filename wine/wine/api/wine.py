@@ -30,7 +30,13 @@ class WineResource(ModelResource):
         for field in ["min_price", "max_price", "retail_price"]:
             bundle = dehydrate_price(field, bundle)
 
-        bundle = dehydrate_raw_data(bundle)
+        if self.get_resource_uri(bundle) == bundle.request.path:
+            # Detail call, format the raw data
+            bundle = dehydrate_raw_data(bundle)
+        else:
+            # List call, delete the raw data
+            del bundle.data['raw_data']
+
         return bundle
 
     def render_wines(self, wines, request):
