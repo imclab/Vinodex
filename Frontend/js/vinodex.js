@@ -54,12 +54,20 @@ window.init = function() {
 		$("#addannotation").valreset();
 	});
 	$("#validateannotation").click(function(event) {
+		event.preventDefault();
 		$("#addannotation").valreset();
 		var tab = $("#addannotation .nav-tabs .active a").attr("href");
 		var tastenotes = $("#tastenotes").vallength();
 		var winerating = $("#winerating").valrating();
 		var removereason = $("#removereason").html();
 		var removequantity = $("#removequantity").valnumber();
+	});
+	$("#validatesettings").click(function(event) {
+		event.preventDefault();
+		$("#settings").valreset();
+		var name = $("#name").vallength();
+		var email = $("#email").valemail();
+		var pass = $("#newpass").valpassword();
 	});
 	$("#removereason a").click(function () {
 		console.log("clicked");
