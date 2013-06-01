@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Vinodex - Sommelier</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/responsive.css" rel="stylesheet">
+		<link href="css/isotope.css" rel="stylesheet">
+		<script src="js/jquery.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/backend.js"></script>
+        <script src="js/frontend.js"></script>
+        <script src="js/mustache.js"></script>
+		<script src="js/prefixfree.js"></script>
+		<script src="js/prefixfree.jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/vinodex.js"></script>
+		<script src="js/formvalidation.js"></script>
+	</head>
+	<body class="navbarpadding">
+		<div class="navbar navbar-fixed-top navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="index.html"><img src="img/logonavbar.png" alt="vinodex"</img></a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Collection<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Manage Cellars</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Statistics</a></li>
+							<li class="active"><a href="#">Sommelier</a></li>
+						</ul>
+						
+						<ul class="nav pull-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-cog"></i>
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Settings</a></li>
+									<li><a href="#" id="logout">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+						<form class="navbar-search pull-right">
+							<input type="text" class="search-query" placeholder="Search Library">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="miniheader" style="background-image: url(img/libraryheader.jpg)">
+			<div class="container">
+				<div class="row">
+					<div class="span_12">
+						<div class="page_header">
+							<h1>Sommelier <small>Recommendations</small></h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container main">
+			<div class="row">
+				<div class="span3">
+					<h3>Select a Meal</h3>
+					<form>
+						<select class="span3">
+							<option selected="selected" disabled="disabled"></option>
+							<option>seafood</option>
+							<option>poultry</option>
+							<option>red meat</option>
+						</select>
+					</form>
+				</div>
+				<div class="span9">
+					<h3>Your Wine Recommendations</h3>
+					<div class="well">
+						<div class="media">
+						    <span class="pull-left">
+						    	<img class="media-object" src="img/WineBottle.jpg">
+						    </span>
+						    <div class="media-body">
+						    	<h4 class="media-heading">Wine</h4>
+						    	<p><i>Winery</i></p>
+						    	<p>Description</p>
+						    </div>
+						</div>
+						<div class="media">
+						    <span class="pull-left">
+						    	<img class="media-object" src="img/WineBottle.jpg">
+						    </span>
+						    <div class="media-body">
+						    	<h4 class="media-heading">Wine</h4>
+						    	<p><i>Winery</i></p>
+						    	<p>Description</p>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -407,3 +407,8 @@ html, body {
 .json .expanded > ul {
 	display: inherit;
 }
+
+.media-object {
+	max-height: 128px;
+	max-width: 128px;
+}
