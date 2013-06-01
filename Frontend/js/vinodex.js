@@ -50,9 +50,41 @@ window.init = function() {
 		$("#passchange").valreset();
 		var pass = $("#passchangepass").valpassword();
 	});
+	$("#addannotation .nav-tabs").click(function() {
+		$("#addannotation").valreset();
+	});
+	$("#validateannotation").click(function(event) {
+		$("#addannotation").valreset();
+		var tab = $("#addannotation .nav-tabs .active a").attr("href");
+		var tastenotes = $("#tastenotes").vallength();
+		var winerating = $("#winerating").valrating();
+		var removereason = $("#removereason").html();
+		var removequantity = $("#removequantity").valnumber();
+	});
+	$("#removereason a").click(function () {
+		console.log("clicked");
+		$("#removeaction").html($(this).html());
+	});
 	$("#forgotpassval").click(function(event) {
 		$("#login").valreset();
 		var email = $("#forgotemail").valemail();
+	});
+	$('#tabs a').click(function (event) {
+		event.preventDefault();
+		$(this).tab('show');
+	});
+	var rated = false;
+	$("#rate .icon-star-empty").hover(function() {
+		if(!rated) {
+			$(this).toggleClass("icon-star").toggleClass("icon-star-empty");
+			$(this).prevAll().toggleClass("icon-star").toggleClass("icon-star-empty");
+		}
+	});
+	$("#rate").on("click", ".icon-star, .icon-star-empty", function(event) {
+		rated = true;
+		$(this).siblings().removeClass("icon-star").addClass("icon-star-empty");
+		$(this).addClass("icon-star").removeClass("icon-star-empty");
+		$(this).prevAll().addClass("icon-star").removeClass("icon-star-empty");
 	});
 };
 

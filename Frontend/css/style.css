@@ -360,6 +360,15 @@ html, body {
 	visibility: visible;
 }
 
+.input-prepend.input-append.removebottle {
+	margin-bottom: 20px;
+	display: block;
+}
+
+#rate .icon-star, #rate .icon-star-empty {
+	cursor: pointer;
+}
+
 .json div {
 	font-family: monospace;
 	word-wrap: break-word;

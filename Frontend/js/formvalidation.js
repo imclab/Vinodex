@@ -14,6 +14,18 @@ jQuery.fn.vallength = function() {
 	}
 };
 
+jQuery.fn.valnumber = function() {
+	"use strict";
+	if($(this).val().trim().length === 0 || 
+	isNaN($(this).val()) ||
+	parseFloat($(this).val()) <= 0) {
+		$(this).valerror();
+		return null;
+	} else {
+		return $(this).val();
+	}
+};
+
 jQuery.fn.valvintageyear = function() {
 	"use strict";
 	if($(this).val().trim().length === 0 && !$("#nv").prop("checked")) {
@@ -51,6 +63,16 @@ jQuery.fn.valselect = function() {
 		return null;
 	} else {
 			return $(this).val();
+	}
+};
+
+jQuery.fn.valrating = function() {
+	"use strict";
+	if($(this).find(".icon-star").length === 0) {
+		$(this).valerror();
+		return null;
+	} else {
+			return $(this).find(".icon-star").length;
 	}
 };
 
