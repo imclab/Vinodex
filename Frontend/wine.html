@@ -89,5 +89,78 @@
 				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</a>
 			</div>
 		</div>
+		<div id="addannotation" class="modal hide fade" tabindex="-1" role="dialog">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" href="#">×</a>
+                <h3>Add Annotation</h3>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="tabs">
+                    <li class="active"><a href="#notes">Notes</a></li>
+                    <li><a href="#rate">Rating</a></li>
+                    <li><a href="#remove">Remove Bottles</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="notes">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="tastenotes">Taste Notes</label>
+                                <div class="controls">
+                                    <textarea rows="5" id="tastenotes"></textarea>
+                                    <span class="help-block hide">Invalid notes</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="rate">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="rating">Rating</label>
+                                <div class="controls">
+                                    <div id="winerating">
+                                        <i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>
+                                    </div>
+                                    <span class="help-block hide">Invalid rating</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="remove">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="rating">Reason</label>
+                                <div class="controls">
+                                    <div class="input-prepend input-append removebottle">
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <span id="removeaction">Drank</span>
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" id="removereason">
+                                            <li><a href="#">Drank</a></li>
+                                            <li><a href="#">Broke</a></li>
+                                            <li><a href="#">Gifted</a></li>
+                                        </ul>
+                                    </div>
+                                        <input class="span2" id="removequantity" type="text" pattern="[0-9]*">
+                                        <span class="add-on"><i class="icon-bottle"></i></span>
+                                    </div>
+                                    <span class="help-block hide">Invalid quantity</span>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</a>
+                <a href="#" class="btn btn-primary pull-right" data-dismiss="modal" aria-hidden="true" id="validateannotation">Add</a>
+            </div>
+        </div>
 	</body>
 </html>
