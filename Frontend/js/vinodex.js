@@ -28,6 +28,9 @@ window.init = function() {
 		/**
 		* TODO: Handle account creation failure
 		*/
+		if($(this).hasClass("disabled")) {
+			return;
+		}
 		event.preventDefault();
 		$("#signup").valreset();
 		var name = $("#signupname").vallength();
@@ -35,14 +38,14 @@ window.init = function() {
 		var pass = $("#signuppassword").valpassword();
 		if(name !== null && email !== null && pass !== null) {
 			$(this).addClass("disabled").html("Signing Up...");
-			$(this).next().show().children(".bar").width("100%");
+			$(this).next().toggle();
 		}
 		backend.createUserAccount(name, email, pass, function(){
 			window.location = "collection.html";
 		}, function(){
 			console.log("Account Creation Failed");
 			$("#validatesignup").removeClass("disabled").html("Sign Up");
-			$("#validatesignup").next().hide().children(".bar").width("0%");
+			$("#validatesignup").next().toggle();
 		});
 	});
 	$("#validatepasschange").click(function(event) {

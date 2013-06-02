@@ -82,7 +82,7 @@
 						<div class="span5 offset1 text-right">
 						    <img src="img/labelscan.jpg" alt="scanning labels"/>
 						</div>
-						<div class="span5" style="margin-top: 161px;">
+						<div class="span5" id="autocomplete">
 						    <div class="page_header">
 						        <h1>Autocomplete <small>1, 2, 3, Cheese!</small></h1>
 						    </div>
@@ -92,14 +92,14 @@
 				</div>
 				<div class="span12">
 					<div class="row">
-						<div class="span5 offset1 text-right" style="margin-top: 72px">
+						<div class="span5 pull-right">
+						    <img src="img/winerack.jpg" alt="cellars"/>
+						</div>
+						<div class="span5 offset1 text-right" id="cellars">
 						    <div class="page_header">
 						        <h1>Cellars <small>Put a Location on It</small></h1>
 						    </div>
 						    <p>Want to impress your hot date but having trouble locating a particular wine in your collection? Simply log in to Vinodex and search for that wine you know will impress. Vinodex lets you organized your wines into cellars, so you'll know where exactly you stored it and spend more time impressing your significant other.</p>
-						</div>
-						<div class="span5">
-						    <img src="img/winerack.jpg" alt="cellars"/>
 						</div>
 					</div>
 				</div>
@@ -108,7 +108,7 @@
 						<div class="span5 text-right offset1">
 						    <img src="img/sommelier.jpg" alt="cellars"/>
 						</div>
-						<div class="span5" style="margin-top: 55px">
+						<div class="span5" id="sommelier">
 						    <div class="page_header">
 						        <h1>Sommelier <small>At Your Service </small></h1>
 						    </div>
@@ -156,8 +156,14 @@
 						    	</div>
 					    	</div>
 					    	<a href="#" class="btn btn-primary btn-block" id="validatesignup">Sign Up</a>
-					    	<div class="progress progress-striped active" style="display: none; margin-top: 10px; margin-bottom: 0">
-					    		<div class="bar" style="width: 0%; transition-duration: 10s;"></div>
+					    	<div class="loading text-center hide">
+					    		<div>
+						    		<img class="dot" src="img/dot.png" alt="vinodex"/>
+						    		<img class="dot" src="img/dot.png" alt="vinodex"/>
+						    		<img class="dot" src="img/dot.png" alt="vinodex"/>
+						    		<img class="dot" src="img/dot.png" alt="vinodex"/>
+						    		<img class="x" src="img/x.png" alt="vinodex"/>
+					    		</div>
 							</div>
 					    </form>
 					</div>

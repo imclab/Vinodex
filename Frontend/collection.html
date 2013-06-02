@@ -200,10 +200,16 @@
 				<a href="#uploadlabel" class="btn btn-primary">Upload label image</a>
 				<a href="#uploadbarcode" class="btn btn-primary">Upload barcode image</a>
                 <form id = "wine-vision-form" enctype="multipart/form-data">
-                  <input name="image" type="file" style="display: none;" accept="image/*" id="imageselector"/>
-                  <div class="progress progress-striped active" style="display: none; margin-top: 20px; margin-bottom: 0">
-					  <div class="bar" style="width: 0%; transition-duration: 30s;"></div>
-				</div>
+                	<input name="image" type="file" style="display: none;" accept="image/*" id="imageselector"/>
+					<div class="loading text-center hide">
+					    <div>
+					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
+					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
+					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
+					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
+					    	<img class="x" src="img/x.png" alt="vinodex"/>
+					    </div>
+					</div>
                 </form>
 				<hr>
 				<form id="addwinemanual" style="margin: 0">

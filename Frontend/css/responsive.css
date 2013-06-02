@@ -1,10 +1,40 @@
-/* Large desktop */
+/* Larger desktop */
 @media (min-width: 1200px) {
-	
+	#about #autocomplete {
+		margin-top: 161px;
+	}
+	#about #cellars {
+		margin-top: 72px;
+	}
+	#about #sommelier {
+		margin-top: 55px;
+	}
 }
- 
+
+/* Large desktop */
+@media (max-width: 1200px) {
+	#about #autocomplete {
+		margin-top: 86px;
+	}
+	#about #cellars {
+		margin-top: 44px;
+	}
+	#about #sommelier {
+		margin-top: 20px;
+	}
+}
+
 /* Portrait tablet to landscape and desktop */
 @media (max-width: 979px) {
+	#about #autocomplete {
+		margin-top: 30px;
+	}
+	#about #cellars {
+		margin-top: 0px;
+	}
+	#about #sommelier {
+		margin-top: 0px;
+	}
 	.navbarpadding {
 		padding-top: 0;
 	}
@@ -63,12 +93,21 @@
 	#filterselector {
 		display: none;
 	}
+	#about {
+		text-align: center;
+	}
+	#about .text-right {
+		text-align: center;
+	}
 }
  
 /* Landscape phones and down */
 @media (max-width: 575px) {
 	#header .inner img {
 		width: 95%;
+	}
+	#about small {
+		display: block;
 	}
 }
 
