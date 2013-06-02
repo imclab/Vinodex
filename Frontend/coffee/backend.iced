@@ -108,6 +108,16 @@ class Backend
     else
       failure()
 
+  updateUserAccount: (name, email, password, callback) ->
+    account =
+      name: name
+      email: email
+      password: password
+
+    await @put "/api/v1/profile/#{@userId}/", account, defer response
+    callback response
+
+
   setUserCookie: (userId) ->
     $.cookie("userId", userId)
 

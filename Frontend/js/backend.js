@@ -314,6 +314,36 @@
       });
     };
 
+    Backend.prototype.updateUserAccount = function(name, email, password, callback) {
+      var account, response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      account = {
+        name: name,
+        email: email,
+        password: password
+      };
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.updateUserAccount"
+        });
+        _this.put("/api/v1/profile/" + _this.userId + "/", account, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 117
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response);
+      });
+    };
+
     Backend.prototype.setUserCookie = function(userId) {
       return $.cookie("userId", userId);
     };
@@ -359,7 +389,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 134
+          lineno: 144
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -384,7 +414,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 138
+          lineno: 148
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -411,7 +441,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 142
+          lineno: 152
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -439,7 +469,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 148
+          lineno: 158
         }));
         __iced_deferrals._fulfill();
       })(function() {

@@ -65,13 +65,6 @@ window.init = function() {
 		var removereason = $("#removereason").html();
 		var removequantity = $("#removequantity").valnumber();
 	});
-	$("#validatesettings").click(function(event) {
-		event.preventDefault();
-		$("#settings").valreset();
-		var name = $("#name").vallength();
-		var email = $("#email").valemail();
-		var pass = $("#newpass").valnewpassword();
-	});
 	$("#removereason a").click(function () {
 		console.log("clicked");
 		$("#removeaction").html($(this).html());

@@ -1,2 +1,2 @@
 curl -H "Content-Type: application/json"\
-     localhost:8000/api/v1/auth/user/1/
+     localhost:8000/api/v1/profile/15/

@@ -58,6 +58,27 @@ class UserProfileResource(ModelResource):
         queryset = UserProfile.objects.all()
         authorization = Authorization()
 
+
+    def obj_update(self, bundle, request=None, **kwargs):
+        profile = UserProfile.objects.get(id=kwargs['pk'])
+        bundle.obj = profile
+        user = profile.user
+        if bundle.data.get("name"):
+            profile.name = bundle.data["name"]
+            profile.save()
+
+        if bundle.data.get("email"):
+            user.email = bundle.data["email"]
+            user.username = bundle.data["email"]
+            user.save()
+
+        if bundle.data.get("password"):
+            user.password = bundle.data["password"]
+            user.save()
+
+        return bundle
+            
+
     def obj_create(self, bundle, **kwargs):
         """
             This method is overriden, so that the caller of this method can create
