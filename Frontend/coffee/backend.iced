@@ -117,6 +117,11 @@ class Backend
     await @put "/api/v1/profile/#{@userId}/", account, defer response
     callback response
 
+  deleteUserAccount: (callback) ->
+    await @delete "/api/v1/profile/#{@userId}/", defer response
+    @logout()
+    callback response
+
 
   setUserCookie: (userId) ->
     $.cookie("userId", userId)

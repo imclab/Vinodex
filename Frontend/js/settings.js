@@ -44,7 +44,7 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
-    return $("#validatesettings").click(function(event) {
+    $("#validatesettings").click(function(event) {
       var email, name, pass, response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
@@ -71,6 +71,34 @@
       })(function() {
         return window.location = "collection.html";
       });
+    });
+    return $("#deleteacctconfirm").click(function(event) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      event.preventDefault();
+      if ($("#deleteconfirmtext").val() === "DELETE") {
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/settings.iced"
+          });
+          backend.deleteUserAccount(__iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return response = arguments[0];
+              };
+            })(),
+            lineno: 15
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          return __iced_k(window.location = "index.html");
+        });
+      } else {
+        return __iced_k();
+      }
     });
   });
 

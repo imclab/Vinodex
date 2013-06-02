@@ -344,6 +344,32 @@
       });
     };
 
+    Backend.prototype.deleteUserAccount = function(callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.deleteUserAccount"
+        });
+        _this["delete"]("/api/v1/profile/" + _this.userId + "/", __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 121
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        _this.logout();
+        return callback(response);
+      });
+    };
+
     Backend.prototype.setUserCookie = function(userId) {
       return $.cookie("userId", userId);
     };
@@ -389,7 +415,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 144
+          lineno: 149
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -414,7 +440,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 148
+          lineno: 153
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -441,7 +467,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 152
+          lineno: 157
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -469,7 +495,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 158
+          lineno: 163
         }));
         __iced_deferrals._fulfill();
       })(function() {
