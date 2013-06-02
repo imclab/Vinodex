@@ -103,8 +103,39 @@
 								<a class="btn btn-primary" href="#" id="validatesettings">Save Changes</a>
 							</div>
 						</div>
+						<div class="control-group">
+							<div class="controls">
+								<a href="#deleteaccount" data-toggle="modal">Delete Account</a>
+							</div>
+						</div>
 					</form>
 				</div>
+			</div>
+		</div>
+		<div id="deleteaccount" class="modal hide fade" tabindex="-1" role="dialog">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Delete Account</h3>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure you want to delete your account? This cannot be undone.</p>
+				<hr>
+				<div class="text-center">
+					<form>
+						<div class="control-group">
+							<div class="controls">
+								<div class="input-append">
+									<input type="text" placeholder="Type DELETE to delete.">
+									<a class="btn btn-danger" href="#" id="deleteacctconfirm">Delete</a>
+								</div>
+								<span class="help-block hide">Type "DELETE" (case sensitive)</span>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</a>
 			</div>
 		</div>
 		<div class="container" id="footer">
