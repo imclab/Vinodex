@@ -6,9 +6,6 @@ window.init = function() {
 	var relayout480 = false;
 	var map;
 	var wines;
-	$(".winery").each(function() {
-		$(this).parent().addClass($(this).text().toLowerCase().trim().replace(/ /g, "-"));
-	});
 	$("#filterselector").on("click", "a", function(event) {
 		event.preventDefault();
 		$(this).toggleClass("checked");
@@ -147,7 +144,7 @@ function updateResults() {
 	"use strict";
 	var filters = [];
 	$("#filterselector a.checked").each(function() { 
-		filters.push($(this).text().toLowerCase().trim().replace(/ /g, "-"));
+		filters.push($(this).text().trim().replace(/ /g, "-"));
 	});
 	if(filters.length === 0) {
 		filters = "";
