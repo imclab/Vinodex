@@ -48,43 +48,73 @@
       _this = this;
     __iced_k = __iced_k_noop;
     ___iced_passed_deferral = iced.findDeferral(arguments);
-    bottle_ids = JSON.parse($.cookie('toprint'));
-    bottles = [];
     (function(__iced_k) {
-      __iced_deferrals = new iced.Deferrals(__iced_k, {
-        parent: ___iced_passed_deferral,
-        filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/print.iced"
-      });
-      if (!bottle_ids.length) {
-        backend.Bottle.get({
-          cellar__owner: backend.userId
-        }, __iced_deferrals.defer({
-          assign_fn: (function() {
-            return function() {
-              return bottles = arguments[0];
-            };
-          })(),
-          lineno: 6
-        }));
+      if (frontend.getHash()) {
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/print.iced"
+          });
+          backend.Bottle.get({
+            cellar__owner: parseInt(frontend.getHash())
+          }, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return bottles = arguments[0];
+              };
+            })(),
+            lineno: 4
+          }));
+          backend.Profile.getById(frontend.getHash(), __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return user = arguments[0];
+              };
+            })(),
+            lineno: 5
+          }));
+          __iced_deferrals._fulfill();
+        })(__iced_k);
       } else {
-        backend.Bottle.getByIds(bottle_ids.join(";"), __iced_deferrals.defer({
-          assign_fn: (function() {
-            return function() {
-              return bottles = arguments[0];
-            };
-          })(),
-          lineno: 9
-        }));
+        bottle_ids = JSON.parse($.cookie('toprint'));
+        bottles = [];
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/print.iced"
+          });
+          if (!bottle_ids.length) {
+            backend.Bottle.get({
+              cellar__owner: backend.userId
+            }, __iced_deferrals.defer({
+              assign_fn: (function() {
+                return function() {
+                  return bottles = arguments[0];
+                };
+              })(),
+              lineno: 11
+            }));
+          } else {
+            backend.Bottle.getByIds(bottle_ids.join(";"), __iced_deferrals.defer({
+              assign_fn: (function() {
+                return function() {
+                  return bottles = arguments[0];
+                };
+              })(),
+              lineno: 14
+            }));
+          }
+          backend.Profile.getById(backend.userId, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return user = arguments[0];
+              };
+            })(),
+            lineno: 16
+          }));
+          __iced_deferrals._fulfill();
+        })(__iced_k);
       }
-      backend.Profile.getById(backend.userId, __iced_deferrals.defer({
-        assign_fn: (function() {
-          return function() {
-            return user = arguments[0];
-          };
-        })(),
-        lineno: 11
-      }));
-      __iced_deferrals._fulfill();
     })(function() {
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
@@ -100,7 +130,7 @@
               return html = arguments[0];
             };
           })(),
-          lineno: 12
+          lineno: 17
         }));
         __iced_deferrals._fulfill();
       })(function() {
