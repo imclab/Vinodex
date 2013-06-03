@@ -427,6 +427,16 @@ h3 .btn {
 	height: 60px;
 }
 
+#suggestions {
+	font-size: 20px;
+	font-family: serif;
+	margin-bottom: 0;
+}
+
+.tooltip {
+	font-style: italic;
+}
+
 .loading {
 	height: 70px;
 }

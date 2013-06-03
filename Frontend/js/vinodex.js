@@ -130,6 +130,7 @@ window.init = function() {
 	$(".gobackerror").click(function() {
 		history.back();
 	});
+	$("#suggestions li span").tooltip();
 };
 
 $(document).ready(window.init);
