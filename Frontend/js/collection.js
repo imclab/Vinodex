@@ -110,7 +110,7 @@
           return {};
         });
       });
-      return $(".selected").remove();
+      return $("#results").isotope("remove",$(".selected"));
     });
     $("a[href='#uploadbarcode']").click(function(event) {
       event.preventDefault();
