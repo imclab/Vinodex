@@ -1,7 +1,7 @@
 /* Larger desktop */
 @media (min-width: 1200px) {
 	#about #autocomplete {
-		margin-top: 161px;
+		margin-top: 38px;
 	}
 	#about #cellars {
 		margin-top: 72px;
@@ -14,7 +14,7 @@
 /* Large desktop */
 @media (max-width: 1200px) {
 	#about #autocomplete {
-		margin-top: 86px;
+		margin-top: 0;
 	}
 	#about #cellars {
 		margin-top: 44px;
@@ -27,7 +27,7 @@
 /* Portrait tablet to landscape and desktop */
 @media (max-width: 979px) {
 	#about #autocomplete {
-		margin-top: 30px;
+		margin-top: 0;
 	}
 	#about #cellars {
 		margin-top: 0px;
