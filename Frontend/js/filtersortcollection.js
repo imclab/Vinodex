@@ -154,19 +154,3 @@ function updateResults() {
 	$('#results').isotope({ filter: filters });
 	console.log(filters);
 }
-
-function cellsPerRow() {
-	"use strict";
-	var width = $("#results").width();
-	console.log(width);
-	switch(true) {
-		case (width>960):
-			return 5;
-		case (width>768):
-			return 4;
-		case (width>480):
-			return 3;
-		case (width<=480):
-			return 2;
-	}
-}
