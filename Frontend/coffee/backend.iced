@@ -7,6 +7,10 @@ class Resource
     await backend.get "#{@api_endpoint_url}#{id}/", defer response
     callback response
 
+  getByIds: (ids, callback) ->
+    await backend.get "#{@api_endpoint_url}set/#{ids}/", defer response
+    callback response.objects
+
   get: (filters = {}, callback) ->
     await backend.get @api_endpoint_url, filters, defer response
     callback(response.objects)

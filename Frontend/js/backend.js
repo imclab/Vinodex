@@ -75,6 +75,31 @@
       });
     };
 
+    Resource.prototype.getByIds = function(ids, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Resource.getByIds"
+        });
+        backend.get("" + _this.api_endpoint_url + "set/" + ids + "/", __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 11
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response.objects);
+      });
+    };
+
     Resource.prototype.get = function(filters, callback) {
       var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
@@ -93,7 +118,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 11
+          lineno: 15
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -123,7 +148,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 18
+          lineno: 22
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -152,7 +177,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 25
+          lineno: 29
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -171,7 +196,7 @@
                   return response = arguments[0];
                 };
               })(),
-              lineno: 29
+              lineno: 33
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -268,7 +293,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 95
+          lineno: 99
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -307,7 +332,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 114
+          lineno: 118
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -342,7 +367,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 127
+          lineno: 131
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -367,7 +392,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 131
+          lineno: 135
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -421,7 +446,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 159
+          lineno: 163
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -446,7 +471,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 163
+          lineno: 167
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -473,7 +498,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 167
+          lineno: 171
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -501,7 +526,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 173
+          lineno: 177
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -532,7 +557,7 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 181
+          lineno: 185
         }));
         _this.Bottle.getById(bottleId, __iced_deferrals.defer({
           assign_fn: (function() {
@@ -540,7 +565,7 @@
               return bottle = arguments[0];
             };
           })(),
-          lineno: 183
+          lineno: 187
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -558,7 +583,7 @@
                 return nothing = arguments[0];
               };
             })(),
-            lineno: 186
+            lineno: 190
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -586,7 +611,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 190
+          lineno: 194
         }));
         __iced_deferrals._fulfill();
       })(function() {

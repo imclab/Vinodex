@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 text-center">
+            <h1>{{name}}'s Collection</h1>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><div>Image</div></th>
+                        <th><div>Name</div></th>
+                        <th><div>Winery</div></th>
+                        <th><div>Cellar</div></th>
+                        <th><div>Bottles</div></th>
+                        <th><div>Price</div></th>
+                        <th><div>Alcohol Content</div></th>
+                        <th><div>Date Added</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {{#bottles}}
+                    <tr>
+                        <td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+                        <td>{{wine.name}}</td>
+                        <td>{{wine.winery.name}}</td>
+                        <td>{{cellar.name}}</td>
+                        <td>{{num_bottles}} <i class="icon-bottle"></i></td>
+                        <td>${{wine.retail_price}}</td>
+                        <td>{{wine.alcohol_content}}%</td>
+                        <td>{{created_at}}</td>
+                    </tr>
+                  {{/bottles}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12 text-center">
+            <h3>Cataloged on <img src="img/logo.png" class="logo"/></h3>
+        </div>
+    </div>
+</div>

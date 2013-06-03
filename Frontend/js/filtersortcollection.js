@@ -104,10 +104,21 @@ window.init = function() {
 		event.preventDefault();
 	});
 	$("a[href='#printselected']").click(function(event) {
+		event.preventDefault();
 		if($(".selected").length === 0) {
 			$("#noneselected").modal();
+            return;
 		}
+        var selected = $(".selected").map(function(){
+                        return $(this).data('id');
+                       });
+        $.cookie('toprint', JSON.stringify(selected.toArray()));
+        window.location="print.html";
+	});
+	$("a[href='#print']").click(function(event) {
 		event.preventDefault();
+        $.cookie('toprint', '[]');
+        window.location="print.html";
 	});
 	$(".pronounciation").tooltip();
 	$("#togglefilters").click(function(event) {
