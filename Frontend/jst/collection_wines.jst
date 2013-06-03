@@ -1,6 +1,7 @@
 {{#bottles}}
-<div class="result {{wine.wine_type}} {{cellar.name}}" data-timestamp="21"
- data-id="{{id}}">
+<div class="result {{hyphenate wine.wine_type}} {{hyphenate cellar.name}}" 
+     data-timestamp="{{toSeconds created_at}}"
+     data-id="{{id}}">
 {{#wine.photo}}
   <div class="wineimg" style="background-image: url({{wine.photo}})">
 {{/wine.photo}}
