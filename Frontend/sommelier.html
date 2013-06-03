@@ -20,6 +20,8 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/vinodex.js"></script>
 		<script src="js/formvalidation.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/sommelier.js"></script>
 	</head>
 	<body class="navbarpadding">
 		<div class="navbar navbar-fixed-top navbar-inverse">
@@ -77,28 +79,12 @@
 			<div class="row">
 				<div class="span3">
 					<h3>Select a Meal</h3>
-					<form>
-						<select class="span3">
-							<option selected="selected" disabled="disabled"></option>
-							<option>seafood</option>
-							<option>poultry</option>
-							<option>red meat</option>
-						</select>
+					<form id="meal-select-form">
 					</form>
 				</div>
 				<div class="span9">
 					<h3>Your Wine Recommendations</h3>
 					<div class="well">
-						<div class="media">
-						    <span class="pull-left">
-						    	<img class="media-object" src="img/WineBottle.jpg">
-						    </span>
-						    <div class="media-body">
-						    	<h4 class="media-heading">Wine</h4>
-						    	<p><i>Winery</i></p>
-						    	<p>Description</p>
-						    </div>
-						</div>
 						<div class="media">
 						    <span class="pull-left">
 						    	<img class="media-object" src="img/WineBottle.jpg">

@@ -13,8 +13,21 @@ class WineResource(ModelResource):
         always_return_data = True
         queryset = Wine.objects.all()
         authorization = Authorization() # TODO: Proper auth
-        filtering = { field:ALL_WITH_RELATIONS for field in
-                Wine._meta.get_all_field_names() }
+        filtering = { 
+                "name": ALL_WITH_RELATIONS, 
+                "photo": ALL_WITH_RELATIONS, 
+                "winery" : ALL_WITH_RELATIONS,
+                "vintage" : ALL_WITH_RELATIONS,
+                "alcohol_content" : ALL_WITH_RELATIONS,
+                "wine_type" : ALL_WITH_RELATIONS,
+                "min_price" : ALL_WITH_RELATIONS,
+                "max_price" : ALL_WITH_RELATIONS,
+                "retail_price" : ALL_WITH_RELATIONS,
+                "url" : ALL_WITH_RELATIONS,
+                "label_photo" : ALL_WITH_RELATIONS,
+                "color" : ALL_WITH_RELATIONS,
+                "raw_data" : ALL_WITH_RELATIONS
+        }
 
 
     def build_filters(self, filters=None):

@@ -194,7 +194,7 @@
       this.Winery = new Resource("/api/v1/winery/");
       this.Wine = new Resource("/api/v1/wine/");
       this.Annotation = new Resource("/api/v1/annotation/");
-      this.Sommeilier = new Resource("/api/v1/sommeilier/");
+      this.Sommelier = new Resource("/api/v1/sommelier/");
       this.Profile = new Resource("/api/v1/profile/");
       this.userId = this.getUserCookie();
       this.profileUri = "/api/v1/profile/" + this.userId + "/";
@@ -564,6 +564,33 @@
         })(function() {
           return callback();
         });
+      });
+    };
+
+    Backend.prototype.getSommelierData = function(wineTypes, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.getSommelierData"
+        });
+        $.get("" + _this.serverUrl + "/api/v1/wine/sommelier/", {
+          wine_types: wineTypes
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 190
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response);
       });
     };
 

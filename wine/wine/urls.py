@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'api/v1/wine/ocr', 'wine.views.wine_ocr', name='wine_ocr'),
     url(r'api/v1/wine/barcode', 'wine.views.wine_barcode', name='wine_barcode'),
     url(r'^wine/image', 'wine.views.upload_image', name='wine_upload_image'),
+    url(r'^api/v1/wine/sommelier', 'wine.views.sommelier', name='wine_sommelier'),
     url(r'^api/v1/forgotpassword', 'wine.views.forgot_password', name =
         'forgot_password'),
     url(r'^api/v1/passwordreset', 'wine.views.reset_password', name =

@@ -1,0 +1,17 @@
+{{#wines}}
+<div class="media">
+    <span class="pull-left">
+        {{#wine.photo}}
+            <img class="media-object" src="{{wine.photo}}">
+        {{/wine.photo}}
+        {{^wine.photo}}
+          <img class="media-object" src="img/WineBottle.jpg">
+        {{/wine.photo}}
+    </span>
+    <div class="media-body">
+      <h4 class="media-heading">{{name}}</h4>
+      <p><i>{{winery.name}}</i></p>
+      <p>{{description}}</p>
+    </div>
+</div>
+{{/wines}}

@@ -36,7 +36,7 @@ class Backend
     @Winery = new Resource("/api/v1/winery/")
     @Wine = new Resource("/api/v1/wine/")
     @Annotation = new Resource("/api/v1/annotation/")
-    @Sommeilier = new Resource("/api/v1/sommeilier/")
+    @Sommelier = new Resource("/api/v1/sommelier/")
     @Profile = new Resource("/api/v1/profile/")
     @userId = @getUserCookie()
     @profileUri = "/api/v1/profile/#{@userId}/"
@@ -185,6 +185,10 @@ class Backend
       num_bottles: bottle.num_bottles - quantity, defer nothing
 
     callback()
+
+  getSommelierData: (wineTypes, callback) ->
+    await $.get "#{@serverUrl}/api/v1/wine/sommelier/", wine_types: wineTypes, defer response
+    callback response
 
 
 window.Backend = Backend

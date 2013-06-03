@@ -18,13 +18,21 @@ class SommelierDataJob(object):
 
     @staticmethod 
     def parse_wine(line):
-        comment_start, comment_end = line.find("("), line.rfind(")")
-        if comment_start != -1 and comment_end != -1:
-            wine = line[1:comment_start].strip()
+        wine = line[1:].strip() 
+        comment = None
+        pronounce = None
+        pronounce_start, pronounce_end = line.find("("), line.find(")")
+        comment_start, comment_end = line.rfind("("), line.rfind(")")
+
+        if pronounce_start != -1 and pronounce_end != -1:
+            wine = line[1:pronounce_start].strip()
+            pronounce = line[pronounce_start+1:pronounce_end].strip()
+
+        if (comment_start != -1 and comment_end != -1 and comment_start != pronounce_start):
             comment = line[comment_start+1:comment_end].strip()
-            return wine, comment
-        else:
-            return line[1:].strip(), None
+
+        return wine, pronounce, comment
+
 
     def process(self):
         food = None
@@ -35,10 +43,11 @@ class SommelierDataJob(object):
             elif (self.is_food(line)):
                 food = self.parse_food(line)
             else:
-                wine, comment = self.parse_wine(line)
-                Sommelier.objects.create(wine_type = wine,
+                wine, pronounce, comment = self.parse_wine(line)
+                Sommelier.objects.get_or_create(wine_type = wine,
                                          pairing = food,
-                                         comment = comment)
+                                         comment = comment,
+                                         pronounce = pronounce)
 
 class WineDataJob(object):
     """

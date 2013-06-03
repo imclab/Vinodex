@@ -100,3 +100,12 @@ def reset_password(request):
     user = User.objects.filter(id=user_id)
     user.update(password=password)
     return HttpResponse(json.dumps({"message": "success"}))
+
+@csrf_exempt
+def sommelier(request):
+    wine_types = request.GET.get("wine_types[]")
+    if not wine_types:
+        return not_found("No wine types were provided")
+    
+    wines = Wine.objects.filter(wine_type__in=wine_types).order_by('?')[:10]
+    return WineResource().render_wines(wines, request)
