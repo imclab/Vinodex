@@ -49,7 +49,7 @@ $ ->
 
         _bottle =
           wine: "/api/v1/wine/#{wine.id}/"
-          cellar: "/api/v1/cellar/#{bottle.cellar.id}/"
+          cellar: {id: parseInt cellar}
           num_bottles: bottles
 
         await backend.Bottle.update bottle.id, _bottle, defer nothing
