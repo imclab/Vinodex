@@ -148,6 +148,10 @@ h3 .btn {
 	margin: 25px 0 0 0;
 }
 
+#options {
+	margin-left: 5px;
+}
+
 #filterselector .checked {
 	background-color: #d9edf7;
 	border-color: #bce8f1;
@@ -262,8 +266,8 @@ h3 .btn {
 
 .gridview .numbottles, .gridview .retailprice, .gridview .alcoholcontent {
 	width: 33%;
-	display: inline-block;
 	text-align: center;
+	float: left;
 }
 
 .gridview .numbottles {
