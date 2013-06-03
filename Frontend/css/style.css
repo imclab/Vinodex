@@ -148,6 +148,10 @@ h3 .btn {
 	margin: 25px 0 0 0;
 }
 
+#options {
+	margin-left: 5px;
+}
+
 #filterselector .checked {
 	background-color: #d9edf7;
 	border-color: #bce8f1;
