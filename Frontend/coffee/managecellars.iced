@@ -9,6 +9,7 @@ $ ->
   $("#create-cellar-button").click (event) ->
     event.preventDefault()
     name = $("#create-cellar-name").val()
+    $("#create-cellar-name").val("")
     await backend.Cellar.create {owner: backend.profileUri, name: name}, defer nothing
     refreshCellars()
 
