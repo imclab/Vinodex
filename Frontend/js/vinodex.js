@@ -83,17 +83,22 @@ window.init = function() {
           renderPage()
         } 
 
+        var bottleId = parseInt(frontend.getHash());
+
         if (tab == "#notes" && tastenotes){
           backend.Annotation.create({
-            bottle: {id: parseInt(frontend.getHash())},
-            key: "taste_notes",
+            bottle: {id: bottleId},
+            key: "Taste Notes",
             value: tastenotes
           }, closeModal) 
         }
 
         if (tab == "#remove" && removereason && removequantity){
-          backend.removeBottles(parseInt(frontend.getHash()), 
-                                removereason, removequantity, closeModal);
+          backend.removeBottles(bottleId, removereason, removequantity, closeModal);
+        }
+
+        if (tab == "#rate" && winerating){
+          backend.Bottle.update(bottleId, {rating: winerating}, closeModal)
         }
 
 	});
