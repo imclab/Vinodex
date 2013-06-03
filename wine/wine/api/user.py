@@ -7,7 +7,7 @@ from tastypie.utils import trailing_slash
 from ..models.user import UserProfile
 from ..models.cellar import Cellar
 from tastypie import fields
-from tastypie.http import HttpUnauthorized
+from tastypie.http import HttpUnauthorized, HttpNotFound
 from django.db import IntegrityError
 
 class UserResource(ModelResource):
@@ -42,10 +42,16 @@ class UserResource(ModelResource):
                 "userId": users[0].get_profile().id
             })
         else:
-            return self.create_response(request, {
-                'success': False,
-                'reason': 'incorrect',
-                }, HttpUnauthorized )
+            if not User.objects.filter(username=username).exists():
+                return self.create_response(request,{
+                    'success': False,
+                    'reason': 'user does not exist'
+                }, HttpNotFound)
+            else:
+                return self.create_response(request, {
+                    'success': False,
+                    'reason': 'incorrect',
+                    }, HttpUnauthorized )
 
 class UserProfileResource(ModelResource):
     user = fields.ToOneField(UserResource, "user", blank=False, full=True)

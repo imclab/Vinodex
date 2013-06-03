@@ -11,5 +11,8 @@ __MACOSX
 venv
 python-zxing
 admin
+wine_dotcom_api_data
+small_dataset
+wine/temp
 
 .DS_Store
