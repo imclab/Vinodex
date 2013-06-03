@@ -8,7 +8,10 @@ $ ->
     $("#wineryname").val wine.winery.name
     $("#retailprice").val wine.retail_price
     $("#winenamelabel").append wine.name
-    JSONParser(JSON.parse wine.raw_data)
+    if JSON.parse(wine.raw_data)
+      JSONParser(JSON.parse wine.raw_data)
+    else
+      $(".json").remove()
 
   $("#valaddwine").click (event) ->
       $("#addwine").valreset()
@@ -70,3 +73,4 @@ $ ->
     loadWineDataIntoUI wine
   else
     $("#winename").val(window.location.hash.substr(1))
+    $(".json").remove()
