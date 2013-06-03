@@ -79,9 +79,10 @@ $ ->
   await
     window.frontend.renderTemplate "collection_wines", {bottles: bottles}, defer collection
     window.frontend.renderTemplate "collection_nav",
-      wineTypes: wineTypes
+      wineTypes: _.map(wineTypes, (type) -> type: type, pronounce: pronounce[type])
       cellars: cellars
       wineries: wineries, defer nav
   $("#results").html(collection)
   $("#collection-nav-list").html(nav)
   window.isotopeResults()
+  $(".pronounciation").tooltip()

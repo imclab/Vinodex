@@ -225,7 +225,12 @@
           lineno: 80
         }));
         window.frontend.renderTemplate("collection_nav", {
-          wineTypes: wineTypes,
+          wineTypes: _.map(wineTypes, function(type) {
+            return {
+              type: type,
+              pronounce: pronounce[type]
+            };
+          }),
           cellars: cellars,
           wineries: wineries
         }, __iced_deferrals.defer({
@@ -240,7 +245,8 @@
       })(function() {
         $("#results").html(collection);
         $("#collection-nav-list").html(nav);
-        return window.isotopeResults();
+        window.isotopeResults();
+        return $(".pronounciation").tooltip();
       });
     });
   });
