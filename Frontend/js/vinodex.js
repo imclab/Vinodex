@@ -14,6 +14,9 @@ window.init = function() {
 		$("#login").valreset();
 		var email = $("#loginemail").valemail();
 		var pass = $("#loginpassword").valpassword();
+        if (!email || !pass){
+          return;
+        }
 		/**
 		* validation functions return null on invalid input nowm
 		* in addition to putting errors on the fields
@@ -21,8 +24,16 @@ window.init = function() {
 		*/
 		backend.login(email, pass, function(){
 			window.location = "collection.html";
-		}, function(){console.log("Login Failed");});
-		// change ^ so if any of the values are null, login doesn't take place?
+		}, function(response){
+
+          if (response.status == C.UNAUTHORIZED) {
+            $("#loginpassword").valerror("wrongpassword");
+          }
+
+          if (response.status == C.NOT_FOUND) {
+            $("#loginemail").valerror("userdoesnotexist");
+          }
+        });
 	});
 	$("#validatesignup").click(function(event) {
 		/**
@@ -43,7 +54,6 @@ window.init = function() {
 		backend.createUserAccount(name, email, pass, function(){
 			window.location = "collection.html";
 		}, function(){
-			console.log("Account Creation Failed");
 			$("#validatesignup").removeClass("disabled").html("Sign Up");
 			$("#validatesignup").next().toggle();
 		});

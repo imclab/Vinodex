@@ -10,7 +10,7 @@ $ ->
     window.location = "/collection.html"
 
   renderPage = ->
-    $(".mustached").remove()
+    $(".templateConent").remove()
     await
       backend.Bottle.getById bottleId, defer bottle
       backend.Cellar.get {owner: backend.userId}, defer cellars

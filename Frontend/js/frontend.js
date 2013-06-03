@@ -72,7 +72,7 @@
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        html = Mustache.render(template, data);
+        html = Handlebars.render(template, data);
         return callback(html);
       });
     };

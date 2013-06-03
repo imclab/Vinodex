@@ -41,6 +41,15 @@ class Backend
     @userId = @getUserCookie()
     @profileUri = "/api/v1/profile/#{@userId}/"
 
+
+  withLogin: (func) ->
+    # Redirects the user index if they are not logged in
+    # If the user is logged in, the following code is executed
+    
+    if not @userIsLoggedIn()
+      window.location = '/'
+    func()
+
   isGood: (response) ->
     # A response is good if it is a 304 (not modified)
     # or if it is a 2xx response
@@ -58,6 +67,7 @@ class Backend
       dataType: "json"
       processData: false
       complete: callback
+      error: callback
 
   put: (uri, data, callback) ->
     $.ajax
@@ -87,7 +97,7 @@ class Backend
       @setUserCookie response.responseJSON.userId
       success response.responseJSON
     else
-      failure()
+      failure response
 
   logout: ->
     @removeUserCookie()

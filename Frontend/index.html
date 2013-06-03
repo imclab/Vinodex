@@ -9,6 +9,7 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/responsive.css" rel="stylesheet">
+		<script src="js/constants.js"></script>
 		<script src="js/jquery.js"></script>
         <script src="js/jquery.cookie.js"></script>
 		<script src="js/prefixfree.js"></script>
@@ -43,14 +44,16 @@
 						<label class="control-label" for="loginemail">Email</label>
 						<div class="controls">
 							<input type="email" id="loginemail" placeholder="Address">
-							<span class="help-block hide">Invalid Email Address</span>
+							<span class="help-block hide invalidemail">Invalid Email Address</span>
+							<span class="help-block hide userdoesnotexist">No user with that e-mail address exists</span>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="loginpassword">Password</label>
 						<div class="controls">
 							<input type="password" id="loginpassword" placeholder="Password">
-							<span class="help-block hide">Invalid Password</span>
+							<span class="help-block hide invalidpassword">Invalid Password</span>
+							<span class="help-block hide wrongpassword">Incorrect Password</span>
 						</div>
 					</div>
 					<div class="control-group">

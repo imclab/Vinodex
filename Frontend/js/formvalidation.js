@@ -39,7 +39,7 @@ jQuery.fn.valvintageyear = function() {
 jQuery.fn.valemail = function() {
 	"use strict";
 	if($(this).val().indexOf("@") === -1) {
-		$(this).valerror();
+		$(this).valerror("invalidemail");
 		return null;
 	} else {
 			return $(this).val();
@@ -49,7 +49,7 @@ jQuery.fn.valemail = function() {
 jQuery.fn.valpassword = function() {
 	"use strict";
 	if($(this).val().trim().length < 6) {
-		$(this).valerror();
+		$(this).valerror("invalidpassword");
 		return null;
 	} else {
 		return $(this).val();
@@ -86,11 +86,37 @@ jQuery.fn.valrating = function() {
 	}
 };
 
-jQuery.fn.valerror = function() {
+jQuery.fn.valerror = function(errorType) {
 	"use strict";
+
+    var errorMessageClass = ".help-block"
+
+    // Remove previous errors
 	if($(this).parent().hasClass("input-append")) {
-		$(this).parent().siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+		$(this).parent()
+               .siblings(".help-block")
+               .addClass("hide")
+               .parent().parent().addClass("error");
 	} else {
-		$(this).siblings(".help-block").removeClass("hide").parent().parent().addClass("error");
+		$(this).siblings(".help-block")
+               .addClass("hide")
+               .parent().parent().addClass("error");
+	}
+
+    // Optionally add specific error type
+    if (errorType){
+      errorMessageClass += "." + errorType
+    }
+
+    // Show error
+	if($(this).parent().hasClass("input-append")) {
+		$(this).parent()
+               .siblings(errorMessageClass)
+               .removeClass("hide")
+               .parent().parent().addClass("error");
+	} else {
+		$(this).siblings(errorMessageClass)
+               .removeClass("hide")
+               .parent().parent().addClass("error");
 	}
 };
