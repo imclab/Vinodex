@@ -18,6 +18,10 @@ $ ->
       wine.description = byWines[wine.wine_type][0].description
       wine
 
+    await
+      frontend.renderTemplate "sommelier_wines", wines: wines, defer wineHtml
+      frontend.renderTemplate "sommelier_winetypes", pairs: pairs, defer wineTypeHtml
+    $("#wines").html wineHtml
+    $("#suggestions").html wineTypeHtml
+    $(".winetype").tooltip()
 
-    await frontend.renderTemplate "sommelier_wines", wines: wines, defer html
-    $(".well").html html

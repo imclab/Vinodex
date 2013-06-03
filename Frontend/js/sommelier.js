@@ -87,7 +87,7 @@
       })(function() {
         $("#meal-select-form").append(html);
         return $("select.span3").change(function() {
-          var html, pairs, wineTypes, wines, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
+          var pairs, wineHtml, wineTypeHtml, wineTypes, wines, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
             _this = this;
           __iced_k = __iced_k_noop;
           ___iced_passed_deferral1 = iced.findDeferral(arguments);
@@ -126,14 +126,26 @@
               }, __iced_deferrals.defer({
                 assign_fn: (function() {
                   return function() {
-                    return html = arguments[0];
+                    return wineHtml = arguments[0];
                   };
                 })(),
                 lineno: 22
               }));
+              frontend.renderTemplate("sommelier_winetypes", {
+                pairs: pairs
+              }, __iced_deferrals.defer({
+                assign_fn: (function() {
+                  return function() {
+                    return wineTypeHtml = arguments[0];
+                  };
+                })(),
+                lineno: 23
+              }));
               __iced_deferrals._fulfill();
             })(function() {
-              return $(".well").html(html);
+              $("#wines").html(wineHtml);
+              $("#suggestions").html(wineTypeHtml);
+              return $(".winetype").tooltip();
             });
           });
         });
