@@ -10,7 +10,7 @@ html, body {
 	margin-top: -11px;
 }
 
-#header {
+#header, #header500, #header404 {
 	height: 95%;
 	min-height: 600px;
 	position: relative;
@@ -21,7 +21,17 @@ html, body {
 	overflow: hidden;
 }
 
-#header .inner {
+#header500 {
+	background-image: url("../img/500.jpg");
+	height: 100%;
+}
+
+#header404 {
+	background-image: url("../img/500.jpg");
+	height: 100%;
+}
+
+#header .inner, #header500 .inner, #header404 .inner {
 	position: absolute;
 	top: 50%;
 	margin-top: -80px;
@@ -48,7 +58,7 @@ html, body {
 	text-align: right;
 }
 
-#header h3 .btn {
+h3 .btn {
 	font-weight: bold;
 	top: -2px;
 	position: relative;
