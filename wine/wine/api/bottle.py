@@ -12,6 +12,7 @@ class BottleResource(ModelResource):
     
     class Meta:
         queryset = Bottle.objects.all()
+        always_return_data = True
         authorization = Authorization()
         filtering = {
             "cellar": ALL_WITH_RELATIONS,

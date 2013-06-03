@@ -73,6 +73,14 @@ def download_image_from_request(request):
         image_file = request.FILES["image"]
         return download_uploaded_image(image_file)
 
+def download_bottle_image_from_request(request):
+    filename = "/srv/app/Frontend/images/bottle" + request.GET["bottle_id"] + ".jpg"
+    output_file = open(filename, 'w')
+    image_file = request.FILES["image"]
+    output_file.write(image_file.read())
+    return "bottle" + request.GET["bottle_id"] + ".jpg"
+
+
 def bad_request(message):
     response = {"message": message}
     return HttpResponseBadRequest(json.dumps(response),
@@ -81,6 +89,10 @@ def bad_request(message):
 def not_found(message):
     response = {"message": message}
     return HttpResponseNotFound(json.dumps(response),
+            mimetype="application/json")
+
+def success(content):
+    return HttpResponse(json.dumps(content),
             mimetype="application/json")
 
 def render_result(wines, wineries, request):

@@ -59,7 +59,7 @@
       return JSONParser(JSON.parse(wine.raw_data));
     };
     $("#valaddwine").click(function(event) {
-      var alcohol, bottle, bottles, cellar, name, nothing, price, type, wine, wineObj, winery, wineryObj, year, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
+      var alcohol, bottle, bottles, cellar, name, newbottle, nothing, price, type, wine, wineObj, winery, wineryObj, year, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
       ___iced_passed_deferral1 = iced.findDeferral(arguments);
@@ -143,14 +143,36 @@
             backend.Bottle.create(bottle, __iced_deferrals.defer({
               assign_fn: (function() {
                 return function() {
-                  return nothing = arguments[0];
+                  return newbottle = arguments[0];
                 };
               })(),
-              lineno: 55
+              lineno: 54
             }));
             __iced_deferrals._fulfill();
           })(function() {
-            return window.location = "/collection.html";
+            (function(__iced_k) {
+              if ($("#imagefile").val()) {
+                (function(__iced_k) {
+                  __iced_deferrals = new iced.Deferrals(__iced_k, {
+                    parent: ___iced_passed_deferral1,
+                    filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/addwine.iced"
+                  });
+                  backend.uploadImage(new FormData($("#upload-photo-form")[0]), newbottle.id, __iced_deferrals.defer({
+                    assign_fn: (function() {
+                      return function() {
+                        return nothing = arguments[0];
+                      };
+                    })(),
+                    lineno: 58
+                  }));
+                  __iced_deferrals._fulfill();
+                })(__iced_k);
+              } else {
+                return __iced_k();
+              }
+            })(function() {
+              return window.location = "/collection.html";
+            });
           });
         });
       });
@@ -168,7 +190,7 @@
             return cellars = arguments[0];
           };
         })(),
-        lineno: 60
+        lineno: 63
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -185,7 +207,7 @@
               return html = arguments[0];
             };
           })(),
-          lineno: 61
+          lineno: 64
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -203,7 +225,7 @@
                   return wine = arguments[0];
                 };
               })(),
-              lineno: 66
+              lineno: 69
             }));
             __iced_deferrals._fulfill();
           })(function() {

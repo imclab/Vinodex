@@ -479,6 +479,31 @@
       });
     };
 
+    Backend.prototype.uploadImage = function(formData, bottleId, callback) {
+      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.uploadImage"
+        });
+        _this.postFile("/api/v1/wine/image/?bottle_id=" + bottleId, formData, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return response = arguments[0];
+            };
+          })(),
+          lineno: 171
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        return callback(response.responseJSON);
+      });
+    };
+
     Backend.prototype.sendForgotPasswordEmail = function(email, callback) {
       var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
@@ -498,7 +523,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 171
+          lineno: 175
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -526,7 +551,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 177
+          lineno: 181
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -557,7 +582,7 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 185
+          lineno: 189
         }));
         _this.Bottle.getById(bottleId, __iced_deferrals.defer({
           assign_fn: (function() {
@@ -565,7 +590,7 @@
               return bottle = arguments[0];
             };
           })(),
-          lineno: 187
+          lineno: 191
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -583,7 +608,7 @@
                 return nothing = arguments[0];
               };
             })(),
-            lineno: 190
+            lineno: 194
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -611,7 +636,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 194
+          lineno: 198
         }));
         __iced_deferrals._fulfill();
       })(function() {

@@ -50,7 +50,10 @@ $ ->
         num_bottles: bottles
 
       # Create the bottle
-      await backend.Bottle.create bottle, defer nothing
+      await backend.Bottle.create bottle, defer newbottle
+
+      if $("#imagefile").val()
+        await backend.uploadImage new FormData($("#upload-photo-form")[0]), newbottle.id, defer nothing
 
       # Go home
       window.location = "/collection.html"

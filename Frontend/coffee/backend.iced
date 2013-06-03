@@ -167,6 +167,10 @@ class Backend
     await @postFile "/api/v1/wine/barcode/", formData, defer response
     callback response.responseJSON
 
+  uploadImage: (formData, bottleId, callback) ->
+    await @postFile "/api/v1/wine/image/?bottle_id=#{bottleId}", formData, defer response
+    callback response.responseJSON
+
   sendForgotPasswordEmail: (email, callback) ->
     await $.post "#{@serverUrl}/api/v1/forgotpassword/", {email: email}, defer response
     callback JSON.parse response

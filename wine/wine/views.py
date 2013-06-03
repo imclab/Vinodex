@@ -5,7 +5,7 @@ from django.http import (HttpResponse, HttpResponseBadRequest,
                         HttpResponseNotFound)
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
-from wine.models import Wine, Winery, UserProfile, User
+from wine.models import Wine, Winery, UserProfile, User, Bottle
 from wine.api import WineResource
 from django.views.decorators.csrf import csrf_exempt
 from tastypie.serializers import Serializer
@@ -16,7 +16,8 @@ from wine.forms import NewUserRegistrationForm
 from django.utils import simplejson as json
 from tools import (safe_get, download_file, get_filename,
                    get_barcode_from_image, render_result,
-                   download_image_from_request, bad_request, not_found)
+                   download_image_from_request, bad_request, not_found,
+                   success, download_bottle_image_from_request)
 
 from forgot_password import send_password_forgot_message, decrypt_userid
 
@@ -52,6 +53,15 @@ def wine_barcode(request):
     wines = Wine().identify_from_barcode(barcode)
     wineries = Winery().identify_from_barcode(barcode)
     return render_result(wines, wineries, request)
+
+@csrf_exempt
+def wine_label_upload(request):
+    filename = download_bottle_image_from_request(request)
+    bottle = Bottle.objects.get(id=request.GET["bottle_id"])
+    bottle.wine.label_photo =  "http://vinodex.us/images/" + filename
+    print bottle.wine.label_photo
+    bottle.wine.save()
+    return success({filename: filename})
     
      
 @csrf_exempt
