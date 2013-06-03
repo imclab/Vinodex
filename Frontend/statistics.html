@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Vinodex - Collection</title>
+		<title>Vinodex - Statistics</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
@@ -38,15 +38,15 @@
 					<div class="nav-collapse collapse">
 						<ul class="nav">
 							<li class="dropdown active">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Collection<b class="caret"></b></a>
+								<a href="collection.html" class="dropdown-toggle" data-toggle="dropdown">Collection<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-                                  <li><a href="managecellars.html">Manage Cellars</a></li>
+									<li><a href="collection.html">View Collection</a></li>
+									<li><a href="managecellars.html">Manage Cellars</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Statistics</a></li>
-							<li><a href="#">Sommelier</a></li>
+							<li><a href="statistics.html">Statistics</a></li>
+							<li><a href="sommelier.html">Sommelier</a></li>
 						</ul>
-						
 						<ul class="nav pull-right">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -66,196 +66,29 @@
 				</div>
 			</div>
 		</div>
-		<div id="miniheader" style="background-image: url(img/libraryheader.jpg)">
+		<div id="miniheader" style="background-image: url(img/statisticsheader.jpg)">
 			<div class="container">
 				<div class="row">
 					<div class="span_12">
 						<div class="page_header">
-							<h1>Collection <small>All Wines</small></h1>
+							<h1>Statistics <small></small></h1>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="container main">
-			<div class="row" id="togglefilters">
-				<div class="span12">
-					<a href="#" class="btn btn-block"><span>Show</span><span class="hide">Hide</span> Filters</a>
-				</div>
-			</div>
 			<div class="row">
-				<div class="span2" id="filterselector">
-					<div class="row">
-					<div class="well span2" data-spy="affix" data-offset-top="275">
-						<ul id="collection-nav-list" class="nav nav-list">
-							<li><a href="#" class="pronounciation" data-toggle="tooltip" title="Port pronounciation goes here" data-placement="right">Port</a></li>
-						</ul>
-					</div>
-					</div>
+				<div class="span3">
+					<ul class="nav nav-tabs nav-stacked">
+						<li class="active"><a href="#">Graph #1</a></li>
+						<li><a href="#">Graph #2</a></li>
+						<li><a href="#">Graph #3</a></li>
+						<li><a href="#">Graph #4</a></li>
+					</ul>
 				</div>
-				<div class="span10">
-					<div class="row">
-						<div class="span10" id="toolbarspacer"></div>
-						<div class="span10" id="toolbar" data-spy="affix" data-offset-top="275">
-							<div class="navbar">
-								<div class="navbar-inner">
-									<a href="#addwine" class="btn" data-toggle="modal"><i class="icon-plus"></i> Add Wine</a>
-									<div class="btn-group" id="options">
-										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-											<i class="icon-check"></i> Options
-											<span class="caret"></span>
-										</a>
-										<ul class="dropdown-menu">
-											<li><a href="#" id="selectall">Select All</a></li>
-											<li><a href="#" id="selectnone">Select None</a></li>
-											<li><a href="#deletewine">Delete</a></li>
-											<li class="dropdown-submenu sortoptions" id="sortmenu">
-												<a href="#">Sort</a>
-												<ul class="dropdown-menu">
-													<li class="sortoption"><a href="#" data-sort-attr="name">Name</a></li>
-													<li class="sortoption"><a href="#" data-sort-attr="date">Date Added</a></li>
-													<li class="sortoption"><a href="#" data-sort-attr="bottles">Bottles</a></li>
-													<li class="sortoption"><a href="#" data-sort-attr="retailprice">Retail Price</a></li>
-												</ul>
-											</li>
-											<li class="dropdown-submenu sortoptions" id="sortmenu">
-												<a href="#">View</a>
-												<ul class="dropdown-menu">
-													<li class="sortoption"><a href="#" class="gridbtn">Grid</a></li>
-													<li class="sortoption"><a href="#" class="tablebtn">Table</a></li>
-												</ul>
-											</li>
-											<li class="dropdown-submenu">
-												<a href="#">Print</a>
-												<ul class="dropdown-menu">
-													<li><a href="#printselected">Selected</a></li>
-													<li><a href="#">All</a></li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-									<div class="btn-group sortoptions" id="sortbtn">
-										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-											<i class="icon-random"></i> Sort
-											<span class="caret"></span>
-										</a>
-										<ul class="dropdown-menu">
-											<li class="dropdown-submenu sortoption">
-												<a href="#" data-sort-attr="name">Name</a>
-												<ul class="dropdown-menu">
-													<li><a href="#" data-sort-order="asc">Alphabetical</a></li>
-													<li><a href="#" data-sort-order="desc">Reverse Alphabetical</a></li>
-												</ul>
-											</li>
-											<li class="dropdown-submenu sortoption">
-												<a href="#" data-sort-attr="date">Date Added</a>
-												<ul class="dropdown-menu">
-													<li><a href="#" data-sort-order="desc">Recent First</a></li>
-													<li><a href="#" data-sort-order="asc">Earlier First</a></li>
-												</ul>
-											</li>
-											<li class="dropdown-submenu sortoption">
-												<a href="#" data-sort-attr="bottles">Bottles</a>
-												<ul class="dropdown-menu">
-													<li><a href="#" data-sort-order="asc">Ascending</a></li>
-													<li><a href="#" data-sort-order="desc">Descending</a></li>
-												</ul>
-											</li>
-											<li class="dropdown-submenu sortoption">
-												<a href="#" data-sort-attr="retailprice">Retail Price</a>
-												<ul class="dropdown-menu">
-													<li><a href="#" data-sort-order="asc">Ascending</a></li>
-													<li><a href="#" data-sort-order="desc">Descending</a></li>
-												</ul>
-											</li>
-											<li class="dropdown-submenu sortoption">
-												<a href="#" data-sort-attr="alcoholcontent">Alcohol Content</a>
-												<ul class="dropdown-menu">
-													<li><a href="#" data-sort-order="asc">Ascending</a></li>
-													<li><a href="#" data-sort-order="desc">Descending</a></li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-									<div class="btn-group pull-right" data-toggle="buttons-radio" id="viewbtn">
-										<a href="#" class="btn active gridbtn"><i class="icon-th"></i></a>
-										<a href="#" class="btn tablebtn"><i class="icon-list"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="span10 gridview" id="results">
-						</div>
-					</div>
+				<div class="span9">
 				</div>
-			</div>
-		</div>
-		<div id="addwine" class="modal hide fade" tabindex="-1" role="dialog">
-			<div class="modal-header">
-				<a class="close" data-dismiss="modal" href="#">×</a>
-				<h3>Add Wine</h3>
-			</div>
-			<div class="modal-body text-center">
-				<p>Take a picture of your wine's label or enter its name and Autocomplete will take care of the rest. Barcodes work too!</p>
-				<a href="#uploadlabel" class="btn btn-primary">Upload label image</a>
-				<a href="#uploadbarcode" class="btn btn-primary">Upload barcode image</a>
-                <form id = "wine-vision-form" enctype="multipart/form-data">
-                  <input name="image" type="file" style="display: none;" accept="image/*" id="imageselector"/>
-                  <div class="progress progress-striped active" style="display: none; margin-top: 20px; margin-bottom: 0">
-					  <div class="bar" style="width: 0%; transition-duration: 30s;"></div>
-				</div>
-                </form>
-				<hr>
-				<form id="addwinemanual" style="margin: 0">
-					<div class="control-group">
-						<div class="controls">
-							<div class="input-append" style="margin: 0">
-								<input id="wine-name-input" class="span3" type="text" placeholder="Wine Name" autocomplete="off" data-provide="typeahead">
-								<a id="add-wine-name-button" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</a>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Close</a>
-			</div>
-		</div>
-		<div id="deletewine" class="modal hide fade" tabindex="-1" role="dialog">
-			<div class="modal-header">
-				<a class="close" data-dismiss="modal" href="#">×</a>
-				<h3>Delete Wine<span class="plural">s</span></h3>
-			</div>
-			<div class="modal-body">
-				<p>Are you sure you want to remove <span class="plural">these</span><span class="singular">this</span> wine<span class="plural">s</span> from your collection?</p>
-				<hr>
-				<div class="text-center">
-					<form>
-						<div class="control-group">
-							<div class="controls">
-								<div class="input-append">
-									<input type="text" placeholder="Type DELETE to delete.">
-									<a class="btn btn-danger" data-dismiss="modal" href="#" id="deleteconfirm">Delete</a>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</a>
-			</div>
-		</div>
-		<div id="noneselected" class="modal hide fade" tabindex="-1" role="dialog">
-			<div class="modal-header">
-				<a class="close" data-dismiss="modal" href="#">×</a>
-				<h3>No Wines Selected</h3>
-			</div>
-			<div class="modal-body">
-				<p>Select wines by clicking on them and then try your action again.</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Okay</a>
 			</div>
 		</div>
 		<div class="container" id="footer">

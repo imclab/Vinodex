@@ -90,6 +90,9 @@ window.init = function() {
 		$(this).addClass("icon-star").removeClass("icon-star-empty");
 		$(this).prevAll().addClass("icon-star").removeClass("icon-star-empty");
 	});
+	$(".gobackerror").click(function() {
+		history.back();
+	});
 };
 
 $(document).ready(window.init);
