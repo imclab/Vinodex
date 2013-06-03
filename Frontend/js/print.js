@@ -105,7 +105,9 @@
         __iced_deferrals._fulfill();
       })(function() {
         $("body").html(html);
-        return window.print();
+        return $(window).bind("load", function() {
+	       window.print(); 
+        });
       });
     });
   });

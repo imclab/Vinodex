@@ -11,4 +11,6 @@ $ ->
 
   await frontend.renderTemplate "print", bottles: bottles, name: user.name, defer html
   $("body").html(html)
-  window.print()
+  $(window).bind("load", function() {
+  	window.print(); 
+  });
