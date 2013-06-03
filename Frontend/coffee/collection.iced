@@ -1,8 +1,8 @@
 window.cellsPerRow = ->
   width = $("#results").width()
   if width > 960 then 5
-  if width > 768 then 4
-  if width > 480 then 3
+  else if width > 768 then 4
+  else if width > 480 then 3
   else 2
 
 window.isotopeResults = ->
@@ -45,7 +45,7 @@ addListeners = ->
     $(".selected").each ->
       bottleId = $(@).data("id")
       backend.Bottle.delete bottleId, -> {}
-    $(".selected").remove()
+    $("#results").isotope("remove",$(".selected"));
 
   $("a[href='#uploadbarcode']").click (event) ->
       event.preventDefault()
