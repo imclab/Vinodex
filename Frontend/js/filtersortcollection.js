@@ -144,7 +144,7 @@ function updateResults() {
 	"use strict";
 	var filters = [];
 	$("#filterselector a.checked").each(function() { 
-		filters.push($(this).text().trim().replace(/ /g, "-"));
+		filters.push(hyphenate($(this).text().trim()));
 	});
 	if(filters.length === 0) {
 		filters = "";

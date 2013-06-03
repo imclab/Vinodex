@@ -1,5 +1,5 @@
-hyphenate = (str) ->
-  str.split(" ").join "-"
+window.hyphenate = (str) ->
+  str.replace(/[\ \.]/g,'-')
 
 toSeconds = (date) ->
   (new Date(date)).valueOf()
