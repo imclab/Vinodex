@@ -10,7 +10,7 @@ $ ->
     window.location = "/collection.html"
 
   renderPage = ->
-    $(".templateConent").remove()
+    $(".templateContent").remove()
     await
       backend.Bottle.getById bottleId, defer bottle
       backend.Cellar.get {owner: backend.userId}, defer cellars
@@ -36,7 +36,7 @@ $ ->
           vintage: year
           alcohol_content: alcohol
           wine_type: type
-          # retail_price: parseFloat price
+          retail_price: parseFloat price
           winery: winery
         await backend.Wine.getOrCreate _wine, defer wine
 

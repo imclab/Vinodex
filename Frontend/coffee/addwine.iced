@@ -33,7 +33,7 @@ $ ->
         name: name
         vintage: year
         alcohol_content: alcohol
-        type: type
+        wine_type: type
         retail_price: (parseFloat price) or 0
 
       # Create/Get the winery, if necessary

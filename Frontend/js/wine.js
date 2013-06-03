@@ -76,7 +76,7 @@
         _this = this;
       __iced_k = __iced_k_noop;
       ___iced_passed_deferral = iced.findDeferral(arguments);
-      $(".templateConent").remove();
+      $(".templateContent").remove();
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,
@@ -163,6 +163,7 @@
                 vintage: year,
                 alcohol_content: alcohol,
                 wine_type: type,
+                retail_price: parseFloat(price),
                 winery: winery
               };
               (function(__iced_k) {

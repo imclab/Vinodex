@@ -81,7 +81,7 @@
         name: name,
         vintage: year,
         alcohol_content: alcohol,
-        type: type,
+        wine_type: type,
         retail_price: (parseFloat(price)) || 0
       };
       (function(__iced_k) {
