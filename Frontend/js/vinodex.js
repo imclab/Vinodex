@@ -50,10 +50,13 @@ window.init = function() {
 		if(name !== null && email !== null && pass !== null) {
 			$(this).addClass("disabled").html("Signing Up...");
 			$(this).next().toggle();
-		}
+		} else {
+          return;
+        }
 		backend.createUserAccount(name, email, pass, function(){
 			window.location = "collection.html";
 		}, function(){
+            $("#signupemail").valerror("useralreadyexists");
 			$("#validatesignup").removeClass("disabled").html("Sign Up");
 			$("#validatesignup").next().toggle();
 		});

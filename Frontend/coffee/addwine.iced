@@ -34,12 +34,12 @@ $ ->
         vintage: year
         alcohol_content: alcohol
         type: type
-        retail_price: parseFloat price or 0
+        retail_price: (parseFloat price) or 0
 
       # Create/Get the winery, if necessary
       if winery
         await backend.Winery.getOrCreate {name: winery}, defer wineryObj
-        wine.winery = wineryObj
+        wine.winery = {id: wineryObj.id}
       
       # Create/Get the wine
       await backend.Wine.getOrCreate wine, defer wineObj

@@ -8,6 +8,7 @@ from ..models.user import UserProfile
 from ..models.cellar import Cellar
 from tastypie import fields
 from tastypie.http import HttpUnauthorized, HttpNotFound
+from tastypie.exceptions import BadRequest
 from django.db import IntegrityError
 
 class UserResource(ModelResource):
@@ -85,19 +86,25 @@ class UserProfileResource(ModelResource):
         return bundle
             
 
-    def obj_create(self, bundle, **kwargs):
+    def obj_create(self, bundle, request=None, **kwargs):
         """
             This method is overriden, so that the caller of this method can create
             a UserProfile and User model at the same time. See the documentation 
             on each of the models to see the differences between them.
         """
         if not bundle.data.get("email") and not bundle.data.get("password"):
+            # Handle this error condition using the default case
             return super(UserProfileResource, self).obj_create(bundle, **kwargs)
         else:
             # Create the user
             email = bundle.data.get("email")
             password = bundle.data.get("password")
+
+            if User.objects.filter(email=email).exists():
+                raise BadRequest("A user with this e-mail already exists")
+
             user = User.objects.create(email=email, username=email, password=password)
+
 
             # Associate a userprofile with the user
             profile = UserProfile.objects.create(name=bundle.data.get("name"),

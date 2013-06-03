@@ -16,6 +16,20 @@ class WineResource(ModelResource):
         filtering = { field:ALL_WITH_RELATIONS for field in
                 Wine._meta.get_all_field_names() }
 
+
+    def build_filters(self, filters=None):
+        if filters is None:
+           filters = {}
+
+
+        for filter in ["min_price", "max_price", "retail_price"]:
+            if filter in filters:
+                filters[filter] = str(int(float(filters[filter]) * 100.0))
+
+        orm_filters = super(WineResource, self).build_filters(filters)
+
+        return orm_filters
+        
     def hydrate(self, bundle):
         """ Convert client-side floating-point price representation into
             the server-side representation """

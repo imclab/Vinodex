@@ -82,7 +82,7 @@
         vintage: year,
         alcohol_content: alcohol,
         type: type,
-        retail_price: parseFloat(price || 0)
+        retail_price: (parseFloat(price)) || 0
       };
       (function(__iced_k) {
         if (winery) {
@@ -103,7 +103,9 @@
             }));
             __iced_deferrals._fulfill();
           })(function() {
-            return __iced_k(wine.winery = wineryObj);
+            return __iced_k(wine.winery = {
+              id: wineryObj.id
+            });
           });
         } else {
           return __iced_k();

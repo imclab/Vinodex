@@ -72,7 +72,7 @@
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        html = Handlebars.render(template, data);
+        html = Handlebars.compile(template)(data);
         return callback(html);
       });
     };
