@@ -456,6 +456,7 @@ h3 .btn {
 .loading div img {
 	position: absolute;
 	top: 0;
+	left: 0;
 }
 
 .loading div .dot {

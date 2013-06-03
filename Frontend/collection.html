@@ -10,6 +10,12 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/responsive.css" rel="stylesheet">
 		<link href="css/isotope.css" rel="stylesheet">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144x144.png" />
 		<script src="js/handlebars.js"></script>
 		<script src="js/handlebars_helpers.js"></script>
 		<script src="js/underscore.js"></script>
@@ -61,9 +67,6 @@
 								</ul>
 							</li>
 						</ul>
-						<form class="navbar-search pull-right">
-							<input type="text" class="search-query" placeholder="Search Library">
-						</form>
 					</div>
 				</div>
 			</div>
@@ -198,22 +201,7 @@
 				<h3>Add Wine</h3>
 			</div>
 			<div class="modal-body text-center">
-				<p>Take a picture of your wine's label or enter its name and Autocomplete will take care of the rest. Barcodes work too!</p>
-				<a href="#uploadlabel" class="btn btn-primary">Upload label image</a>
-				<a href="#uploadbarcode" class="btn btn-primary">Upload barcode image</a>
-                <form id = "wine-vision-form" enctype="multipart/form-data">
-                	<input name="image" type="file" style="display: none;" accept="image/*" id="imageselector"/>
-					<div class="loading text-center hide">
-					    <div>
-					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
-					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
-					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
-					    	<img class="dot" src="img/dot.png" alt="vinodex"/>
-					    	<img class="x" src="img/x.png" alt="vinodex"/>
-					    </div>
-					</div>
-                </form>
-				<hr>
+				<p>Take your wine's name and Autocomplete will take care of the rest.</p>
 				<form id="addwinemanual" style="margin: 0">
 					<div class="control-group">
 						<div class="controls">
