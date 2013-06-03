@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <th>Date Added</th>
-                        <td>{{bottle.created_at}}</td>
+                        <td>{{prettyDate bottle.created_at}}</td>
                     </tr>
                     <tr>
                         <th>Average Rating</th> <!-- TODO -->
@@ -80,7 +80,7 @@
                             <tbody>
                             {{#annotations}}
                                 <tr>
-                                    <td>{{created_at}}</td>
+                                    <td>{{prettyDate created_at}}</td>
                                     <td>{{value}}</td>
                                 </tr>
                             {{/annotations}}
