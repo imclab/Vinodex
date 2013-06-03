@@ -70,6 +70,7 @@ addListeners = ->
 
 $ ->
 
+  $("#sharelink").html("http://vinodex.us/print.html##{window.backend.userId}")
   addListeners()
   await
     backend.Bottle.get {cellar__owner: backend.userId, limit: 1000}, defer bottles

@@ -176,6 +176,7 @@
       _this = this;
     __iced_k = __iced_k_noop;
     ___iced_passed_deferral = iced.findDeferral(arguments);
+    $("#sharelink").html("http://vinodex.us/print.html#" + window.backend.userId);
     addListeners();
     (function(__iced_k) {
       __iced_deferrals = new iced.Deferrals(__iced_k, {
@@ -191,7 +192,7 @@
             return bottles = arguments[0];
           };
         })(),
-        lineno: 75
+        lineno: 76
       }));
       backend.Cellar.get({
         owner: backend.userId
@@ -201,7 +202,7 @@
             return cellars = arguments[0];
           };
         })(),
-        lineno: 76
+        lineno: 77
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -224,7 +225,7 @@
               return collection = arguments[0];
             };
           })(),
-          lineno: 80
+          lineno: 81
         }));
         window.frontend.renderTemplate("collection_nav", {
           wineTypes: _.map(wineTypes, function(type) {
@@ -241,7 +242,7 @@
               return nav = arguments[0];
             };
           })(),
-          lineno: 84
+          lineno: 85
         }));
         __iced_deferrals._fulfill();
       })(function() {
