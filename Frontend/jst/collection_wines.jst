@@ -6,7 +6,7 @@
      {{/wine.winery}}
      data-id="{{id}}">
 {{#wine.label_photo}}
-  <div class="wineimg" style="background-image: url({{wine.label_photo}})">
+  <div class="wineimg" style="background-image: url({{.}})">
 {{/wine.label_photo}}
 {{^wine.label_photo}}
   <div class="wineimg" style="background-image: url(img/WineBottle.jpg)">
