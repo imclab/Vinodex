@@ -366,6 +366,10 @@ h3 .btn {
 	margin-bottom: 10px;
 } 
 
+.typeahead {
+	text-align: left;
+}
+
 #cellars tr .editdelete a {
 	visibility: hidden;
 }
