@@ -8,6 +8,9 @@ env.key_filename = 'ec2-keypair'
 
 env.roles = ['web']
 
-def deploy():
+def deploy(verbose='no'):
     sudo('rm -rf /srv/app')
-    sudo('puppet agent --no-daemonize --onetime')
+    if verbose == 'yes':
+        sudo('puppet agent --no-daemonize --onetime -v')
+    else:
+        sudo('puppet agent --no-daemonize --onetime')
