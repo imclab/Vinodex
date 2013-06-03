@@ -165,4 +165,3 @@ function updateResults() {
 	$('#results').isotope({ filter: filters });
 	console.log(filters);
 }
-

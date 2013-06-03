@@ -46,8 +46,8 @@
   window.cellsPerRow = function() {
     var width;
     width = $("#results").width();
-    if (width > 960) 5;
-    if (width > 768) 4;
+    if (width > 960) return 5;
+    if (width > 768) return 4;
     if (width > 480) {
       return 3;
     } else {
@@ -110,7 +110,7 @@
           return {};
         });
       });
-      return $(".selected").remove();
+      return $("#results").isotope("remove",$(".selected"));
     });
     $("a[href='#uploadbarcode']").click(function(event) {
       event.preventDefault();
