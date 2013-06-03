@@ -8,4 +8,3 @@ class Annotation(Timestamped):
 
     class Meta:
         app_label ='wine'
-        unique_together = ["bottle", "key", "value"]

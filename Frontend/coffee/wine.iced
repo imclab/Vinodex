@@ -9,12 +9,19 @@ $ ->
     await backend.Bottle.delete bottleId, defer nothing
     window.location = "/collection.html"
 
-  renderPage = ->
+  $("a.fake").click (event) ->
+    event.preventDefault()
+
+  window.renderPage = ->
     $(".templateContent").remove()
     await
       backend.Bottle.getById bottleId, defer bottle
       backend.Cellar.get {owner: backend.userId}, defer cellars
-    await frontend.renderTemplate "wine", {bottle: bottle, cellars: cellars}, defer html
+      backend.Annotation.get {bottle: bottleId}, defer annotations
+    await frontend.renderTemplate "wine",
+      bottle: bottle,
+      cellars: cellars,
+      annotations: annotations, defer html
     $("#deletewine").before html
 
     $("#valaddwine").click (event) ->

@@ -173,6 +173,20 @@ class Backend
                  defer response
     callback JSON.parse response
 
+  removeBottles: (bottleId, reason, quantity, callback) ->
+    await
+      @Annotation.create
+        bottle: {id: bottleId}
+        key: "Removed Bottles"
+        value: "#{reason} #{quantity} bottles", defer nothing
+      @Bottle.getById bottleId, defer bottle
+
+    await @Bottle.update bottleId,
+      num_bottles: bottle.num_bottles - quantity, defer nothing
+
+    callback()
+
+
 window.Backend = Backend
 
 if not $.cookie "dev"

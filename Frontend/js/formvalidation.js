@@ -22,7 +22,7 @@ jQuery.fn.valnumber = function() {
 		$(this).valerror();
 		return null;
 	} else {
-		return $(this).val();
+		return parseInt($(this).val());
 	}
 };
 

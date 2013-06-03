@@ -75,8 +75,27 @@ window.init = function() {
 		var tab = $("#addannotation .nav-tabs .active a").attr("href");
 		var tastenotes = $("#tastenotes").vallength();
 		var winerating = $("#winerating").valrating();
-		var removereason = $("#removereason").html();
+		var removereason = $("#removeaction").html();
 		var removequantity = $("#removequantity").valnumber();
+
+        var closeModal = function(){
+          console.log("Close modal");
+          renderPage()
+        } 
+
+        if (tab == "#notes" && tastenotes){
+          backend.Annotation.create({
+            bottle: {id: parseInt(frontend.getHash())},
+            key: "taste_notes",
+            value: tastenotes
+          }, closeModal) 
+        }
+
+        if (tab == "#remove" && removereason && removequantity){
+          backend.removeBottles(parseInt(frontend.getHash()), 
+                                removereason, removequantity, closeModal);
+        }
+
 	});
 	$("#removereason a").click(function () {
 		console.log("clicked");

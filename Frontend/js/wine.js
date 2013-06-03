@@ -44,7 +44,6 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
-    var renderPage;
     window.bottleId = parseInt(window.location.hash.substr(1));
     if (!bottleId) window.location = "/collection.html";
     $("#deleteconfirm").click(function(event) {
@@ -71,8 +70,11 @@
         return window.location = "/collection.html";
       });
     });
-    renderPage = function() {
-      var bottle, cellars, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+    $("a.fake").click(function(event) {
+      return event.preventDefault();
+    });
+    window.renderPage = function() {
+      var annotations, bottle, cellars, html, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
       ___iced_passed_deferral = iced.findDeferral(arguments);
@@ -89,7 +91,7 @@
               return bottle = arguments[0];
             };
           })(),
-          lineno: 15
+          lineno: 18
         }));
         backend.Cellar.get({
           owner: backend.userId
@@ -99,7 +101,17 @@
               return cellars = arguments[0];
             };
           })(),
-          lineno: 16
+          lineno: 19
+        }));
+        backend.Annotation.get({
+          bottle: bottleId
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return annotations = arguments[0];
+            };
+          })(),
+          lineno: 20
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -111,14 +123,15 @@
           });
           frontend.renderTemplate("wine", {
             bottle: bottle,
-            cellars: cellars
+            cellars: cellars,
+            annotations: annotations
           }, __iced_deferrals.defer({
             assign_fn: (function() {
               return function() {
                 return html = arguments[0];
               };
             })(),
-            lineno: 17
+            lineno: 24
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -154,7 +167,7 @@
                     return winery = arguments[0];
                   };
                 })(),
-                lineno: 33
+                lineno: 40
               }));
               __iced_deferrals._fulfill();
             })(function() {
@@ -177,7 +190,7 @@
                       return wine = arguments[0];
                     };
                   })(),
-                  lineno: 42
+                  lineno: 49
                 }));
                 __iced_deferrals._fulfill();
               })(function() {
@@ -197,7 +210,7 @@
                         return nothing = arguments[0];
                       };
                     })(),
-                    lineno: 48
+                    lineno: 55
                   }));
                   __iced_deferrals._fulfill();
                 })(function() {

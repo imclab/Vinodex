@@ -509,6 +509,64 @@
       });
     };
 
+    Backend.prototype.removeBottles = function(bottleId, reason, quantity, callback) {
+      var bottle, nothing, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+        _this = this;
+      __iced_k = __iced_k_noop;
+      ___iced_passed_deferral = iced.findDeferral(arguments);
+      (function(__iced_k) {
+        __iced_deferrals = new iced.Deferrals(__iced_k, {
+          parent: ___iced_passed_deferral,
+          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+          funcname: "Backend.removeBottles"
+        });
+        _this.Annotation.create({
+          bottle: {
+            id: bottleId
+          },
+          key: "Removed Bottles",
+          value: "" + reason + " " + quantity + " bottles"
+        }, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return nothing = arguments[0];
+            };
+          })(),
+          lineno: 181
+        }));
+        _this.Bottle.getById(bottleId, __iced_deferrals.defer({
+          assign_fn: (function() {
+            return function() {
+              return bottle = arguments[0];
+            };
+          })(),
+          lineno: 183
+        }));
+        __iced_deferrals._fulfill();
+      })(function() {
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+            funcname: "Backend.removeBottles"
+          });
+          _this.Bottle.update(bottleId, {
+            num_bottles: bottle.num_bottles - quantity
+          }, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return nothing = arguments[0];
+              };
+            })(),
+            lineno: 186
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          return callback();
+        });
+      });
+    };
+
     return Backend;
 
   })();
