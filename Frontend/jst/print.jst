@@ -22,7 +22,14 @@
                 <tbody>
                   {{#bottles}}
                     <tr>
-                        <td class="wineimage"><img src="img/WineBottle.jpg"/></td>
+                      <td class="wineimage">
+                        {{^wine.label_photo}}
+                          <img src="img/WineBottle.jpg"/>
+                        {{/wine.label_photo}}
+                        {{#wine.label_photo}}
+                          <img src="{{.}}"/>
+                        {{/wine.label_photo}}
+                      </td>
                         <td>{{wine.name}}</td>
                         <td>{{wine.winery.name}}</td>
                         <td>{{cellar.name}}</td>
