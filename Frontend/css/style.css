@@ -266,8 +266,8 @@ h3 .btn {
 
 .gridview .numbottles, .gridview .retailprice, .gridview .alcoholcontent {
 	width: 33%;
-	display: inline-block;
 	text-align: center;
+	float: left;
 }
 
 .gridview .numbottles {
