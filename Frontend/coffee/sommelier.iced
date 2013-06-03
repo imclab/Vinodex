@@ -3,7 +3,9 @@ $ ->
   console.log sommelierData
   byPairs = _.groupBy sommelierData, "pairing"
   byWines = _.groupBy sommelierData, "wine_type"
-  await frontend.renderTemplate "select_meal_dropdown", meals: _.keys byPairs, defer html
+  foods = _.keys byPairs
+  foods.sort()
+  await frontend.renderTemplate "select_meal_dropdown", meals: foods, defer html
   $("#meal-select-form").append html
   $("select.span3").change ->
     pairs = byPairs[$(@).val()]

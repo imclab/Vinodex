@@ -44,7 +44,7 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
-    var byPairs, byWines, html, sommelierData, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+    var byPairs, byWines, foods, html, sommelierData, ___iced_passed_deferral, __iced_deferrals, __iced_k,
       _this = this;
     __iced_k = __iced_k_noop;
     ___iced_passed_deferral = iced.findDeferral(arguments);
@@ -68,20 +68,22 @@
       console.log(sommelierData);
       byPairs = _.groupBy(sommelierData, "pairing");
       byWines = _.groupBy(sommelierData, "wine_type");
+      foods = _.keys(byPairs);
+      foods.sort();
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/sommelier.iced"
         });
         frontend.renderTemplate("select_meal_dropdown", {
-          meals: _.keys(byPairs)
+          meals: foods
         }, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
               return html = arguments[0];
             };
           })(),
-          lineno: 6
+          lineno: 8
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -108,7 +110,7 @@
                   return wines = arguments[0];
                 };
               })(),
-              lineno: 16
+              lineno: 18
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -129,7 +131,7 @@
                     return wineHtml = arguments[0];
                   };
                 })(),
-                lineno: 22
+                lineno: 24
               }));
               frontend.renderTemplate("sommelier_winetypes", {
                 pairs: pairs
@@ -139,7 +141,7 @@
                     return wineTypeHtml = arguments[0];
                   };
                 })(),
-                lineno: 23
+                lineno: 25
               }));
               __iced_deferrals._fulfill();
             })(function() {
