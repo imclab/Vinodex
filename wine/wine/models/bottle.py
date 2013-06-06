@@ -16,10 +16,10 @@ class Bottle(Timestamped):
 
     def save(self, *args, **kwargs):
         if self.price is not None and self.price < 0:
-            raise ValidationError("Price must be greater than or equal to 0")
+            raise ValidationError("Please input a positive dollar amount")
         if self.rating is not None and self.rating <= 0:
-            raise ValidationError("Rating must be greater than 0")
+            raise ValidationError("Please rate your wine on a scale from 1-5")
         if self.rating > 5:
-            raise ValidationError("Rating must be less than or equal to 5")
+            raise ValidationError("Please rate your wine on a scale from 1-5")
 
         super(Bottle, self).save(*args, **kwargs)
