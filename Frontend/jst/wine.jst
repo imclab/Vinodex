@@ -12,7 +12,12 @@
 <div class="container main templateContent">
     <div class="row">
         <div class="span3">
+            {{#bottle.wine.label_photo}}
+            <img src="{{.}}" alt="wine"/>
+            {{/bottle.wine.label_photo}}
+            {{^bottle.wine.label_photo}}
             <img src="img/WineBottle.jpg" alt="wine"/>
+            {{/bottle.wine.label_photo}}
             <table class="table table-hover">
                 <tbody>
                     <tr>
