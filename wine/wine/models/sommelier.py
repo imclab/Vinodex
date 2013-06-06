@@ -8,4 +8,4 @@ class Sommelier(Timestamped):
     
     class Meta:
         app_label='wine'
-        unique_together = ['wine_type', 'pairing', 'comment', 'pairing']
+        unique_together = ['wine_type', 'pairing', 'comment', 'pronounce']
