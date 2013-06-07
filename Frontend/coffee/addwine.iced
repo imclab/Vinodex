@@ -25,18 +25,23 @@ $ ->
           alert "That file is too big! Try another one"
           return
 
+
       name = $("#winename").vallength()
       year = $("#year").valvintageyear()
-      alcohol = $("#alcoholcontent").vallength()
+      alcohol = $("#alcoholcontent").valnumber()
       cellar = $("#cellar").valselect()
       type = $("#winetype").valselect()
-      bottles = $("#numbottles").vallength()
-      winery = $("#wineryname").val()
-      price = $("#retailprice").val()
+      bottles = $("#numbottles").valnumber()
+      wineryName = $("#wineryname").vallength()
+      price = $("#retailprice").valnumber()
       if not name or not year or not alcohol or not cellar or not type or not bottles
         console.log("Error Condition")
         return
 
+	  # Loading stuff
+	  $("#loading").show()
+	  $("#valaddwine").addClass("disabled").html("Adding Wine...")
+	  
       # Create wine
       wine =
         name: name
