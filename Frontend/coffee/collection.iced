@@ -42,10 +42,16 @@ addListeners = ->
       window.location = "/addwine.html##{wineName}"
 
   $("#deleteconfirm").click (event) ->
-    $(".selected").each ->
-      bottleId = $(@).data("id")
-      backend.Bottle.delete bottleId, -> {}
-    $("#results").isotope("remove",$(".selected"));
+    event.preventDefault()
+    if $("#deletetext").val().trim() == "DELETE"
+      $(".selected").each ->
+        bottleId = $(@).data("id")
+        backend.Bottle.delete bottleId, -> {}
+      $("#results").isotope("remove",$(".selected"));
+      $("#deletewine").modal "hide"
+    else
+      event.preventDefault()
+      $("#deletetext").valerror()
 
   $("a[href='#uploadbarcode']").click (event) ->
       event.preventDefault()

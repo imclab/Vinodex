@@ -105,14 +105,21 @@
       }
     });
     $("#deleteconfirm").click(function(event) {
-      $(".selected").each(function() {
-        var bottleId;
-        bottleId = $(this).data("id");
-        return backend.Bottle["delete"](bottleId, function() {
-          return {};
+      event.preventDefault();
+      if ($("#deletetext").val().trim() === "DELETE") {
+        $(".selected").each(function() {
+          var bottleId;
+          bottleId = $(this).data("id");
+          return backend.Bottle["delete"](bottleId, function() {
+            return {};
+          });
         });
-      });
-      return $("#results").isotope("remove", $(".selected"));
+        $("#results").isotope("remove", $(".selected"));
+        return $("#deletewine").modal("hide");
+      } else {
+        event.preventDefault();
+        return $("#deletetext").valerror();
+      }
     });
     $("a[href='#uploadbarcode']").click(function(event) {
       event.preventDefault();
@@ -142,7 +149,7 @@
                   return wines = arguments[0];
                 };
               })(),
-              lineno: 62
+              lineno: 68
             }));
             __iced_deferrals._fulfill();
           })(__iced_k);
@@ -158,7 +165,7 @@
                   return wines = arguments[0];
                 };
               })(),
-              lineno: 65
+              lineno: 71
             }));
             __iced_deferrals._fulfill();
           })(__iced_k);
@@ -192,7 +199,7 @@
             return bottles = arguments[0];
           };
         })(),
-        lineno: 76
+        lineno: 82
       }));
       backend.Cellar.get({
         owner: backend.userId
@@ -202,7 +209,7 @@
             return cellars = arguments[0];
           };
         })(),
-        lineno: 77
+        lineno: 83
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -225,7 +232,7 @@
               return collection = arguments[0];
             };
           })(),
-          lineno: 81
+          lineno: 87
         }));
         window.frontend.renderTemplate("collection_nav", {
           wineTypes: _.map(wineTypes, function(type) {
@@ -242,7 +249,7 @@
               return nav = arguments[0];
             };
           })(),
-          lineno: 85
+          lineno: 91
         }));
         __iced_deferrals._fulfill();
       })(function() {

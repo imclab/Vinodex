@@ -32,6 +32,7 @@
 		<script src="js/util.js"></script>
 		<script src="js/collection.js"></script>
 		<script src="js/pronounce.js"></script>
+		<script src="js/formvalidation.js"></script>
 	</head>
 	<body class="navbarpadding">
 		<div class="navbar navbar-fixed-top navbar-inverse">
@@ -244,9 +245,10 @@
 						<div class="control-group">
 							<div class="controls">
 								<div class="input-append">
-									<input type="text" placeholder="Type DELETE to delete.">
-									<a class="btn btn-danger" data-dismiss="modal" href="#" id="deleteconfirm">Delete</a>
+									<input id="deletetext" type="text" placeholder="Type DELETE to delete.">
+									<a class="btn btn-danger" href="#" id="deleteconfirm">Delete</a>
 								</div>
+								<span class="help-block hide">Type "DELETE" (case sensitive)</span>
 							</div>
 						</div>
 					</form>
