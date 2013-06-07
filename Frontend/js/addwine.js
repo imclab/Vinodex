@@ -69,6 +69,12 @@
       ___iced_passed_deferral1 = iced.findDeferral(arguments);
       $("#addwine").valreset();
       event.preventDefault();
+      if ($("#imagefile").val()) {
+        if ($("#imagefile")[0].files[0].size / (1024 * 1024) > 10) {
+          alert("That file is too big! Try another one");
+          return;
+        }
+      }
       name = $("#winename").vallength();
       year = $("#year").valvintageyear();
       alcohol = $("#alcoholcontent").vallength();
@@ -103,7 +109,7 @@
                   return wineryObj = arguments[0];
                 };
               })(),
-              lineno: 44
+              lineno: 50
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -126,7 +132,7 @@
                 return wineObj = arguments[0];
               };
             })(),
-            lineno: 49
+            lineno: 55
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -150,7 +156,7 @@
                   return newbottle = arguments[0];
                 };
               })(),
-              lineno: 57
+              lineno: 63
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -167,7 +173,7 @@
                         return nothing = arguments[0];
                       };
                     })(),
-                    lineno: 61
+                    lineno: 67
                   }));
                   __iced_deferrals._fulfill();
                 })(__iced_k);
@@ -194,7 +200,7 @@
             return cellars = arguments[0];
           };
         })(),
-        lineno: 66
+        lineno: 72
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -211,7 +217,7 @@
               return html = arguments[0];
             };
           })(),
-          lineno: 67
+          lineno: 73
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -229,7 +235,7 @@
                   return wine = arguments[0];
                 };
               })(),
-              lineno: 72
+              lineno: 78
             }));
             __iced_deferrals._fulfill();
           })(function() {

@@ -17,8 +17,14 @@ $ ->
       $("#addwine").valreset()
       event.preventDefault()
 
+
       # Validation
       
+      if $("#imagefile").val()
+        if $("#imagefile")[0].files[0].size / (1024 * 1024) > 10
+          alert "That file is too big! Try another one"
+          return
+
       name = $("#winename").vallength()
       year = $("#year").valvintageyear()
       alcohol = $("#alcoholcontent").vallength()
