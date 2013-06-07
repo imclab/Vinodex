@@ -37,12 +37,12 @@ $ ->
 
         name = $("#winename").vallength()
         year = $("#year").valvintageyear()
-        alcohol = $("#alcoholcontent").vallength()
+        alcohol = $("#alcoholcontent").valnumber()
         cellar = $("#cellar").valselect()
         type = $("#winetype").valselect()
-        bottles = $("#numbottles").vallength()
-        wineryName = $("#wineryname").val()
-        price = $("#retailprice").val()
+        bottles = $("#numbottles").valnumber()
+        wineryName = $("#wineryname").vallength()
+        price = $("#retailprice").valnumber()
         if not name or not year or not alcohol or not cellar or not type or not bottles
           console.log("Error Condition")
           return
