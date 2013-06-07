@@ -29,6 +29,12 @@ $ ->
 
     $("#valaddwine").click (event) ->
         event.preventDefault()
+
+        if $("#imagefile").val() and window.FileReader
+          if $("#imagefile")[0].files[0].size / (1024 * 1024) > 10
+            alert "That file is too big! Try another one"
+            return
+
         name = $("#winename").vallength()
         year = $("#year").valvintageyear()
         alcohol = $("#alcoholcontent").vallength()
@@ -56,6 +62,8 @@ $ ->
           num_bottles: bottles
 
         await backend.Bottle.update bottle.id, _bottle, defer nothing
+        if $("#imagefile").val()
+          await backend.uploadImage new FormData($("#upload-photo-form")[0]), bottle.id, defer nothing
         $("#editwine").modal "hide"
         renderPage()
 

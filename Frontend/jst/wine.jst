@@ -106,14 +106,16 @@
         <h3>Edit Wine</h3>
     </div>
     <div class="modal-body">
-        <form class="form-horizontal" id="addwine">
+        <form id="upload-photo-form" class="form-horizontal">
             <div class="control-group">
                 <label class="control-label" for="imagefile">Image</label>
                 <div class="controls">
                     <div id="apiphoto"></div>
-                    <input type="file" id="imagefile">
+                    <input name="image" type="file" id="imagefile">
                 </div>
             </div>
+        </form>
+        <form class="form-horizontal" id="addwine">
             <div class="control-group">
                 <label class="control-label" for="winename">Wine*</label>
                 <div class="controls">

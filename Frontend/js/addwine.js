@@ -69,7 +69,7 @@
       ___iced_passed_deferral1 = iced.findDeferral(arguments);
       $("#addwine").valreset();
       event.preventDefault();
-      if ($("#imagefile").val()) {
+      if ($("#imagefile").val() && window.FileReader) {
         if ($("#imagefile")[0].files[0].size / (1024 * 1024) > 10) {
           alert("That file is too big! Try another one");
           return;

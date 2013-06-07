@@ -146,6 +146,12 @@
             __iced_k = __iced_k_noop;
             ___iced_passed_deferral1 = iced.findDeferral(arguments);
             event.preventDefault();
+            if ($("#imagefile").val() && window.FileReader) {
+              if ($("#imagefile")[0].files[0].size / (1024 * 1024) > 10) {
+                alert("That file is too big! Try another one");
+                return;
+              }
+            }
             name = $("#winename").vallength();
             year = $("#year").valvintageyear();
             alcohol = $("#alcoholcontent").vallength();
@@ -171,7 +177,7 @@
                     return winery = arguments[0];
                   };
                 })(),
-                lineno: 43
+                lineno: 49
               }));
               __iced_deferrals._fulfill();
             })(function() {
@@ -194,7 +200,7 @@
                       return wine = arguments[0];
                     };
                   })(),
-                  lineno: 52
+                  lineno: 58
                 }));
                 __iced_deferrals._fulfill();
               })(function() {
@@ -216,12 +222,34 @@
                         return nothing = arguments[0];
                       };
                     })(),
-                    lineno: 58
+                    lineno: 64
                   }));
                   __iced_deferrals._fulfill();
                 })(function() {
-                  $("#editwine").modal("hide");
-                  return renderPage();
+                  (function(__iced_k) {
+                    if ($("#imagefile").val()) {
+                      (function(__iced_k) {
+                        __iced_deferrals = new iced.Deferrals(__iced_k, {
+                          parent: ___iced_passed_deferral1,
+                          filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/wine.iced"
+                        });
+                        backend.uploadImage(new FormData($("#upload-photo-form")[0]), bottle.id, __iced_deferrals.defer({
+                          assign_fn: (function() {
+                            return function() {
+                              return nothing = arguments[0];
+                            };
+                          })(),
+                          lineno: 66
+                        }));
+                        __iced_deferrals._fulfill();
+                      })(__iced_k);
+                    } else {
+                      return __iced_k();
+                    }
+                  })(function() {
+                    $("#editwine").modal("hide");
+                    return renderPage();
+                  });
                 });
               });
             });

@@ -20,7 +20,7 @@ $ ->
 
       # Validation
       
-      if $("#imagefile").val()
+      if $("#imagefile").val() and window.FileReader
         if $("#imagefile")[0].files[0].size / (1024 * 1024) > 10
           alert "That file is too big! Try another one"
           return
