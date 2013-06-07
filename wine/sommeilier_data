@@ -29,7 +29,6 @@ Montreal Seasoned Beef
 -Merlot(mer-LOH) (Lush red wine with notes of plum, black cherry, and caramel) (12-15% ABV)
 
 Braised Beef
--Burgundy
 -Malbec (mahl-BEHK) (A red wine with blackberry, mocha, & spice) (13.5-14.5% ABV)
 
 Corned Beef
@@ -42,7 +41,6 @@ Beef Stroganoff
 -Barbera (bar-BEH-rah) (Acidic, juicy red wine with flavors of black cherry)
 
 Gamy or highly flavored braised beef 
--Amarone
 -Brunello di Montalcino (broo-NELL-oh) (A smooth red wine with flavors of chestnuts, plum, and earth)
 -Chateauneuf-du-Pape (sha-toh-nuhf-doo-PAHP) (Spicy red wine with ripe flavors of black fruit, coffee, and pepper) (13.5-15% ABV)
 -Pinot Noir (PEE-noh NWAHR) (A light to medium-bodied, food friendly red wine with red berry and cherry flavors)
@@ -237,7 +235,7 @@ Southwestern Tri-Tip Steak
 -Merlot(mer-LOH) (Lush red wine with notes of plum, black cherry, and caramel) (12-15% ABV)
 -Chateauneuf-du-Pape (sha-toh-nuhf-doo-PAHP) (Spicy red wine with ripe flavors of black fruit, coffee, and pepper) (13.5-15% ABV)
 
-Marinated London Broil
+Marinated London 
 -Cabernet Sauvignon(ka-behr-NAY soh-vihn-YOHN) (A rich, dry red wine with black fruit, oak and pepper) (13.5-15.5% ABV)
 -Syrah (see-RAH) (Red wine with blackberry, plum, and jamminess) (12-18% ABV)
 -Tempranillo (tem-prah-NEE-yoh) (Red wine with tart berries and plum with oak)
@@ -448,7 +446,6 @@ Buffalo chicken
 
 Chicken in a cream sauce
 -Chardonnay (shar-doh-NAY) (A ripe and crisp wine with fruit flavors such as apple, pear, and citrus)
--Burgundy
 -Chianti (kee-AHN-tee) (A spicy red wine with red cherry and pepper flavors from the Tuscany region of Italy)
 -Sangiovese (san-joh-VAY-zeh) (Red wine with tart cherry, plum, and spice flavors)
 
@@ -548,7 +545,6 @@ Chicken-Spicy/Smoky
 
 Turkey-Roast
 -Chardonnay (shar-doh-NAY) (A ripe and crisp wine with fruit flavors such as apple, pear, and citrus)
--Burgundy
 -Pinot Noir (PEE-noh NWAHR) (Light to medium-bodied, food friendly red wine with red berry and cherry flavors)
 -Vinho Verde (VEE-nyoh VEHR-deh) (A zesty red wine with citrus flavor)
 -Viognier (vee-oh-NYAY) (Dry white wine with peach and apricot flavors)
@@ -657,7 +653,6 @@ Swordfish
 
 Salmon
 -Pinot Noir (PEE-noh NWAHR) (A light to medium-bodied, food friendly red wine with red berry and cherry flavors)
--Red Burgundy
 -Pinot Gris (PEE-noh GREE) (Same as Pinot Grigio, but a different name, with honeydew melon and kiwi flavors)
 -Chardonnay (shar-doh-NAY) (A ripe and crisp wine with fruit flavors such as apple, pear, and citrus)
 -Syrah (see-RAH) (Red wine with blackberry, plum, and jamminess) (12-18% ABV)
@@ -673,8 +668,6 @@ Crab
 
 Lobster
 -Chardonnay (shar-doh-NAY) (A ripe and crisp wine with fruit flavors such as apple, pear, and citrus)
--Corton-Charlemagne 
--brut Champagne 
 -Vouvray (voo-VRAY) (A wine with flavors of pear, fig, apple, & honey)
 -Blanc de Blanc (BLAHNGK duh BLAHNGK) (A dry and zesty white sparkling wine with flavors of peach & apricot)
 
@@ -811,7 +804,7 @@ Apple-Based Desserts
 Bittersweet chocolate
 -Cabernet Sauvignon(ka-behr-NAY soh-vihn-YOHN) (A rich, dry red wine with black fruit, oak and pepper) (13.5-15.5% ABV)
 -Syrah (see-RAH) (Red wine with blackberry, plum, and jamminess) (12-18% ABV)
--Ruby Port (Sweet red wine with powerful fruit like plum, cherry, & berries)
+-Ruby Port ()(Sweet red wine with powerful fruit like plum, cherry, & berries)
 
 Semisweet chocolate
 -Syrah (see-RAH) (Red wine with blackberry, plum, and jamminess) (12-18% ABV)
@@ -819,24 +812,24 @@ Semisweet chocolate
 -Banyuls (bah-NYUHLS) (Sweet but not syrupy French dessert wine with espresso, plums, and mocha)
 
 Milk chocolate
--Tawny Port (A sweet wine with baking spice, almond, & caramel)
+-Tawny Port ()(A sweet wine with baking spice, almond, & caramel)
 -Moscato (MUH-skat-OH) (Sweet white wine)
 -Tokaji (toh-KAY) (Sweet wine with dried raisins, cocoa, spice, & coffee)
 
 White chocolate
 -Sparkling Rose wine (roh-ZAY) (A fruity pink wine with flavors of wild strawberry, watermelon & cherry) (12.5-13.5% ABV)
 -Moscato (MUH-skat-OH) (Sweet white wine)
--Tawny Port (A sweet wine with baking spice, almond, & caramel)
+-Tawny Port () (A sweet wine with baking spice, almond, & caramel)
 
 Chocolate with Fruit
 -Cabernet Sauvignon (ka-behr-NAY soh-vihn-YOHN) (A rich, dry red wine with black fruit, oak and pepper) (13.5-15.5% ABV)
 -Madeira (muh-DEER-uh) (Sweet wine with caramel, almonds, & hazelnuts)
--Sherry (A rich wine that smells and tastes of raisins, walnuts, & caramel)
+-Sherry () (A rich wine that smells and tastes of raisins, walnuts, & caramel)
 
 Chocolate with Nuts
 -Cabernet Sauvignon(ka-behr-NAY soh-vihn-YOHN) (A rich, dry red wine with black fruit, oak and pepper) (13.5-15.5% ABV)
--Tawny Port (A sweet wine with baking spice, almond, & caramel)
--Ruby Port (Sweet red wine with powerful fruit like plum, cherry, & berries)
+-Tawny Port ()(A sweet wine with baking spice, almond, & caramel)
+-Ruby Port ()(Sweet red wine with powerful fruit like plum, cherry, & berries)
 
 Mozarella cheese
 -Pinot Grigio (PEE-noh GREE-geo) (A light white wine with crisp citrus flavor)
@@ -946,7 +939,7 @@ Asiago cheese
 Blue cheese
 -Cabernet Sauvignon(ka-behr-NAY soh-vihn-YOHN) (A rich, dry red wine with black fruit, oak and pepper) (13.5-15.5% ABV)
 -Madeira (muh-DEER-uh) (Sweet wine with caramel, almonds, & hazelnuts)
--Tawny Port (A sweet wine with baking spice, almond, & caramel)
+-Tawny Port ()(A sweet wine with baking spice, almond, & caramel)
 
 Edam cheese
 -Pinot Noir (PEE-noh NWAHR) (A light to medium-bodied, food friendly red wine with red berry and cherry flavors)
@@ -973,12 +966,6 @@ Swiss cheese
 -Merlot (mer-LOH) (Lush red wine with notes of plum, black cherry, and caramel) (12-15% ABV)
 -Gewurztraminer (guh-VURTS-trah-mee-ner) (Dry, semi-sweet aromatic white wine with a tangerine, white peach smell and lychee flavor)
 -Sauvignon Blanc (SOH-vee-nyawn BLAHNGK) (A grassy white wine with herbs & smoke)
-
-Parmigiano Reggiano cheese
--Amarone
-
-Stilton cheese
--Port
 
 Candied Walnuts
 -Riesling (REEZ-ling) (Semi-sweet white wine with peach and citrus notes)
