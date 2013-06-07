@@ -100,6 +100,7 @@
       ___iced_passed_deferral = iced.findDeferral(arguments);
       event.preventDefault();
       name = $("#create-cellar-name").val();
+      $("#create-cellar-name").val("");
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
           parent: ___iced_passed_deferral,
@@ -114,7 +115,7 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 12
+          lineno: 13
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -139,7 +140,7 @@
                 return nothing = arguments[0];
               };
             })(),
-            lineno: 18
+            lineno: 19
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -169,7 +170,7 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 26
+          lineno: 27
         }));
         __iced_deferrals._fulfill();
       })(function() {

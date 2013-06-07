@@ -6,8 +6,11 @@ $ ->
 
   $("#deleteconfirm").click (event) ->
     event.preventDefault()
-    await backend.Bottle.delete bottleId, defer nothing
-    window.location = "/collection.html"
+    if $("#deletetext").val().trim() == "DELETE"
+      await backend.Bottle.delete bottleId, defer nothing
+      window.location = "/collection.html"
+    else
+      $("#deletetext").valerror()
 
   $("a.fake").click (event) ->
     event.preventDefault()
