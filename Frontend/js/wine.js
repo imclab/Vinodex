@@ -154,12 +154,12 @@
             }
             name = $("#winename").vallength();
             year = $("#year").valvintageyear();
-            alcohol = $("#alcoholcontent").vallength();
+            alcohol = $("#alcoholcontent").valnumber();
             cellar = $("#cellar").valselect();
             type = $("#winetype").valselect();
-            bottles = $("#numbottles").vallength();
-            wineryName = $("#wineryname").val();
-            price = $("#retailprice").val();
+            bottles = $("#numbottles").valnumber();
+            wineryName = $("#wineryname").vallength();
+            price = $("#retailprice").valnumber();
             if (!name || !year || !alcohol || !cellar || !type || !bottles) {
               console.log("Error Condition");
               return;
