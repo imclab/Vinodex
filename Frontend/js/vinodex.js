@@ -80,6 +80,7 @@ window.init = function() {
 
         var closeModal = function(){
           console.log("Close modal");
+          $("#addannotation").modal('hide');
           renderPage()
         } 
 
