@@ -39,7 +39,7 @@ $ ->
         return
 
       # Loading stuff
-      $("#loading").show()
+      $(".loading").show()
       $("#valaddwine").addClass("disabled").html("Adding Wine...")
 
       # Create wine

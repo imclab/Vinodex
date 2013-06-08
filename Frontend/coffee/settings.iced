@@ -12,7 +12,7 @@ $ ->
         return
 
 	  # Loading stuff
-      $("#loading").show()
+      $(".loading").show()
       $("#validatesettings").addClass("disabled").html("Saving Changes...")
 
       await backend.updateUserAccount name, email, pass, defer response
