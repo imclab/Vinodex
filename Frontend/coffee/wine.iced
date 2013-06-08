@@ -27,6 +27,11 @@ $ ->
       annotations: annotations, defer html
     $("#deletewine").before html
 
+    $(".deleteannotation").click (event) ->
+      event.preventDefault()
+      backend.Annotation.delete parseInt($(@).data 'id')
+      $(@).parents("tr").slideUp()
+
     $("#valaddwine").click (event) ->
         event.preventDefault()
 

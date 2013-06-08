@@ -77,16 +77,18 @@
       }
       name = $("#winename").vallength();
       year = $("#year").valvintageyear();
-      alcohol = $("#alcoholcontent").vallength();
+      alcohol = $("#alcoholcontent").valnumber();
       cellar = $("#cellar").valselect();
       type = $("#winetype").valselect();
-      bottles = $("#numbottles").vallength();
-      winery = $("#wineryname").val();
-      price = $("#retailprice").val();
+      bottles = $("#numbottles").valnumber();
+      winery = $("#wineryname").vallength();
+      price = $("#retailprice").valnumber();
       if (!name || !year || !alcohol || !cellar || !type || !bottles) {
         console.log("Error Condition");
         return;
       }
+      $("#loading").show();
+      $("#valaddwine").addClass("disabled").html("Adding Wine...");
       wine = {
         name: name,
         vintage: year,
@@ -109,7 +111,7 @@
                   return wineryObj = arguments[0];
                 };
               })(),
-              lineno: 50
+              lineno: 55
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -132,7 +134,7 @@
                 return wineObj = arguments[0];
               };
             })(),
-            lineno: 55
+            lineno: 60
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -156,7 +158,7 @@
                   return newbottle = arguments[0];
                 };
               })(),
-              lineno: 63
+              lineno: 68
             }));
             __iced_deferrals._fulfill();
           })(function() {
@@ -173,7 +175,7 @@
                         return nothing = arguments[0];
                       };
                     })(),
-                    lineno: 67
+                    lineno: 72
                   }));
                   __iced_deferrals._fulfill();
                 })(__iced_k);
@@ -200,7 +202,7 @@
             return cellars = arguments[0];
           };
         })(),
-        lineno: 72
+        lineno: 77
       }));
       __iced_deferrals._fulfill();
     })(function() {
@@ -217,7 +219,7 @@
               return html = arguments[0];
             };
           })(),
-          lineno: 73
+          lineno: 78
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -235,7 +237,7 @@
                   return wine = arguments[0];
                 };
               })(),
-              lineno: 78
+              lineno: 83
             }));
             __iced_deferrals._fulfill();
           })(function() {

@@ -140,6 +140,11 @@
           __iced_deferrals._fulfill();
         })(function() {
           $("#deletewine").before(html);
+          $(".deleteannotation").click(function(event) {
+            event.preventDefault();
+            backend.Annotation["delete"](parseInt($(this).data('id')));
+            return $(this).parents("tr").slideUp();
+          });
           return $("#valaddwine").click(function(event) {
             var alcohol, bottles, cellar, name, nothing, price, type, wine, winery, wineryName, year, ___iced_passed_deferral1, __iced_deferrals, __iced_k, _bottle, _wine,
               _this = this;
@@ -177,7 +182,7 @@
                     return winery = arguments[0];
                   };
                 })(),
-                lineno: 49
+                lineno: 54
               }));
               __iced_deferrals._fulfill();
             })(function() {
@@ -200,7 +205,7 @@
                       return wine = arguments[0];
                     };
                   })(),
-                  lineno: 58
+                  lineno: 63
                 }));
                 __iced_deferrals._fulfill();
               })(function() {
@@ -222,7 +227,7 @@
                         return nothing = arguments[0];
                       };
                     })(),
-                    lineno: 64
+                    lineno: 69
                   }));
                   __iced_deferrals._fulfill();
                 })(function() {
@@ -239,7 +244,7 @@
                               return nothing = arguments[0];
                             };
                           })(),
-                          lineno: 66
+                          lineno: 71
                         }));
                         __iced_deferrals._fulfill();
                       })(__iced_k);
