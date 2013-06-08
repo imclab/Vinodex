@@ -21,7 +21,7 @@ $ ->
   $("#deleteacctconfirm").click (event) ->
     event.preventDefault()
     if $("#deleteconfirmtext").val() == "DELETE"
-      await backend.deleteUserAccount defer response
+      await backend.deleteUserAccount defer nothing
       window.location="index.html"
 
   await backend.Profile.getById backend.userId, defer profile

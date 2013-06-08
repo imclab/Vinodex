@@ -17,7 +17,7 @@ class UserResource(ModelResource):
         resource_name = "auth/user"
         queryset = User.objects.all()
         authorization = Authorization()
-        allowed_methods = ['get', 'post']
+        allowed_methods = ['get', 'post', 'delete']
 
     def override_urls(self):
         return [

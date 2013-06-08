@@ -42,6 +42,7 @@ class Backend
     @Annotation = new Resource("/api/v1/annotation/")
     @Sommelier = new Resource("/api/v1/sommelier/")
     @Profile = new Resource("/api/v1/profile/")
+    @User = new Resource("/api/v1/auth/user/")
     @userId = @getUserCookie()
     @profileUri = "/api/v1/profile/#{@userId}/"
 
@@ -132,9 +133,9 @@ class Backend
     callback response
 
   deleteUserAccount: (callback) ->
-    await @delete "/api/v1/profile/#{@userId}/", defer response
-    @logout()
-    callback response
+    await @Profile.getById @userId, defer profile
+    await @User.delete profile.user.id, defer nothing
+    callback()
 
 
   setUserCookie: (userId) ->

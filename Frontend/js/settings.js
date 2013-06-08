@@ -83,7 +83,7 @@
       });
     });
     $("#deleteacctconfirm").click(function(event) {
-      var response, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
+      var nothing, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
       ___iced_passed_deferral1 = iced.findDeferral(arguments);
@@ -97,7 +97,7 @@
           backend.deleteUserAccount(__iced_deferrals.defer({
             assign_fn: (function() {
               return function() {
-                return response = arguments[0];
+                return nothing = arguments[0];
               };
             })(),
             lineno: 24

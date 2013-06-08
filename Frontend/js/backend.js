@@ -221,6 +221,7 @@
       this.Annotation = new Resource("/api/v1/annotation/");
       this.Sommelier = new Resource("/api/v1/sommelier/");
       this.Profile = new Resource("/api/v1/profile/");
+      this.User = new Resource("/api/v1/auth/user/");
       this.userId = this.getUserCookie();
       this.profileUri = "/api/v1/profile/" + this.userId + "/";
     }
@@ -293,7 +294,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 99
+          lineno: 100
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -332,7 +333,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 118
+          lineno: 119
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -367,7 +368,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 131
+          lineno: 132
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -376,7 +377,7 @@
     };
 
     Backend.prototype.deleteUserAccount = function(callback) {
-      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+      var nothing, profile, ___iced_passed_deferral, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
       ___iced_passed_deferral = iced.findDeferral(arguments);
@@ -386,18 +387,34 @@
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
           funcname: "Backend.deleteUserAccount"
         });
-        _this["delete"]("/api/v1/profile/" + _this.userId + "/", __iced_deferrals.defer({
+        _this.Profile.getById(_this.userId, __iced_deferrals.defer({
           assign_fn: (function() {
             return function() {
-              return response = arguments[0];
+              return profile = arguments[0];
             };
           })(),
-          lineno: 135
+          lineno: 136
         }));
         __iced_deferrals._fulfill();
       })(function() {
-        _this.logout();
-        return callback(response);
+        (function(__iced_k) {
+          __iced_deferrals = new iced.Deferrals(__iced_k, {
+            parent: ___iced_passed_deferral,
+            filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/backend.iced",
+            funcname: "Backend.deleteUserAccount"
+          });
+          _this.User["delete"](profile.user.id, __iced_deferrals.defer({
+            assign_fn: (function() {
+              return function() {
+                return nothing = arguments[0];
+              };
+            })(),
+            lineno: 137
+          }));
+          __iced_deferrals._fulfill();
+        })(function() {
+          return callback();
+        });
       });
     };
 
@@ -446,7 +463,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 163
+          lineno: 164
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -471,7 +488,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 167
+          lineno: 168
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -496,7 +513,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 171
+          lineno: 172
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -523,7 +540,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 175
+          lineno: 176
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -551,7 +568,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 181
+          lineno: 182
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -582,7 +599,7 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 189
+          lineno: 190
         }));
         _this.Bottle.getById(bottleId, __iced_deferrals.defer({
           assign_fn: (function() {
@@ -590,7 +607,7 @@
               return bottle = arguments[0];
             };
           })(),
-          lineno: 191
+          lineno: 192
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -608,7 +625,7 @@
                 return nothing = arguments[0];
               };
             })(),
-            lineno: 194
+            lineno: 195
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -636,7 +653,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 198
+          lineno: 199
         }));
         __iced_deferrals._fulfill();
       })(function() {
