@@ -50,18 +50,33 @@ window.init = function() {
 		}
 	});
 	$(window).scroll(function() {
-		if(!$("#toolbarspacer").hasClass("show") && $(window).scrollTop() > 275) {
-			$("#toolbarspacer").addClass("show");
-			$("#results").isotope("reLayout");
-		}
-		if($("#toolbarspacer").hasClass("show") && $(window).scrollTop() <= 275) {
-			$("#toolbarspacer").removeClass("show");
-		}
-		if($("#loading").is(":not(:visible)") && $(window).scrollTop()+$(window).height() > $("#results").offset().top+$("#results").height()) {
-			$("#loading").show();
-		}
-		if($("#loading").is(":visible") && $(window).scrollTop()+$(window).height() <= $("#results").offset().top+$("#results").height()) {
-			$("#loading").hide();
+		if($("#filterselector").height() < $("#filterselector").next().height() && $(window).width() > 765) {
+			var navbaroffset = 0;
+			if($(".navbar-fixed-top").css("position") === "fixed") {
+				navbaroffset = $(".navbar-fixed-top").height();
+			}
+			if(!$("#toolbarspacer").hasClass("show") && $(window).scrollTop() > $("#toolbarspacer").offset().top) {
+			    $("#toolbarspacer").addClass("show");
+			    $("#results").isotope("reLayout");
+			}
+			if($("#toolbarspacer").hasClass("show") && $(window).scrollTop() <= $("#toolbarspacer").offset().top) {
+			    $("#toolbarspacer").removeClass("show");
+			}
+			if($(window).scrollTop()+navbaroffset+25 > $("#filterselector").offset().top) {
+				if($("#filterselector .well").offset().top + $("#filterselector .well").height() >= $("#filterselector").next().height() + $("#filterselector").next().offset().top) {
+					$("#filterselector .well").addClass("filterfixedbottom");
+				}
+				if($("#filterselector .well").offset().top > $(window).scrollTop()+navbaroffset+25){
+					$("#filterselector .well").removeClass("filterfixedbottom");
+				}
+				$("#filterselector .well").addClass("filterfixed");
+				$("#toolbar").addClass("affix");
+			} else {
+				$("#filterselector .well").removeClass("filterfixed").removeClass("filterfixedbottom");
+				$("#toolbar").removeClass("affix");
+			}	
+		} else {
+			$("#filterselector .well").removeClass("filterfixed");
 		}
 	});
 	$(".gridbtn").click(function(event) {

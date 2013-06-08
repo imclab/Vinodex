@@ -131,11 +131,20 @@ h3 .btn {
 
 #filterselector .well {
 	padding: 8px 0;
+	margin-bottom: 0;
 }
 
-#filterselector .well.affix {
+#filterselector .filterfixed {
+	position: fixed;
 	top: 65px;
 	z-index: 3;
+}
+
+div#filterselector div.filterfixedbottom.well.span2 {
+	position: absolute;
+	bottom: 0;
+	z-index: 3;
+	top: auto;
 }
 
 #toolbar.affix {

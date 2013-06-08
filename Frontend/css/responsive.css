@@ -44,7 +44,7 @@
 	#header, #miniheader {
 		width: 100%;
 	}
-	#filterselector .well.affix {
+	#filterselector .filterfixed {
 		top: 25px;
 	}
 	#toolbar.affix {
