@@ -96,7 +96,7 @@ jQuery.fn.valerror = function(errorType) {
     var errorMessageClass = ".help-block"
 
     // Remove previous errors
-	if($(this).parent().hasClass("input-append")) {
+	if($(this).parent().hasClass("input-append") || $(this).parent().hasClass("input-prepend")) {
 		$(this).parent()
                .siblings(".help-block")
                .addClass("hide")
@@ -113,7 +113,7 @@ jQuery.fn.valerror = function(errorType) {
     }
 
     // Show error
-	if($(this).parent().hasClass("input-append")) {
+	if($(this).parent().hasClass("input-append") || $(this).parent().hasClass("input-prepend")) {
 		$(this).parent()
                .siblings(errorMessageClass)
                .removeClass("hide")
