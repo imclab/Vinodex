@@ -28,11 +28,15 @@ jQuery.fn.valnumber = function() {
 
 jQuery.fn.valvintageyear = function() {
 	"use strict";
-	if($(this).val().trim().length === 0 && !$("#nv").prop("checked")) {
-		$(this).valerror();
-		return null;
+	if($("#nv").prop("checked")) {
+		return "NV";
 	} else {
-		return $(this).val();
+		if($(this).val().trim().length === 4) {
+			return $(this).valnumber();	
+		} else {
+			$(this).valerror();
+			return null;
+		}
 	}
 };
 
@@ -92,7 +96,7 @@ jQuery.fn.valerror = function(errorType) {
     var errorMessageClass = ".help-block"
 
     // Remove previous errors
-	if($(this).parent().hasClass("input-append")) {
+	if($(this).parent().hasClass("input-append") || $(this).parent().hasClass("input-prepend")) {
 		$(this).parent()
                .siblings(".help-block")
                .addClass("hide")
@@ -109,7 +113,7 @@ jQuery.fn.valerror = function(errorType) {
     }
 
     // Show error
-	if($(this).parent().hasClass("input-append")) {
+	if($(this).parent().hasClass("input-append") || $(this).parent().hasClass("input-prepend")) {
 		$(this).parent()
                .siblings(errorMessageClass)
                .removeClass("hide")

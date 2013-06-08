@@ -83,7 +83,7 @@
       bottles = $("#numbottles").valnumber();
       winery = $("#wineryname").vallength();
       price = $("#retailprice").valnumber();
-      if (!name || !year || !alcohol || !cellar || !type || !bottles) {
+      if (!name || !year || !alcohol || !cellar || !type || !bottles || !price) {
         console.log("Error Condition");
         return;
       }

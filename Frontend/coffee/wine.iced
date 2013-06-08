@@ -48,7 +48,7 @@ $ ->
         bottles = $("#numbottles").valnumber()
         wineryName = $("#wineryname").vallength()
         price = $("#retailprice").valnumber()
-        if not name or not year or not alcohol or not cellar or not type or not bottles
+        if not name or not year or not alcohol or not cellar or not type or not bottles or not price
           console.log("Error Condition")
           return
         await backend.Winery.getOrCreate {name: wineryName}, defer winery
