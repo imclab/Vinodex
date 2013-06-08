@@ -132,6 +132,13 @@ window.init = function() {
 		history.back();
 	});
 	$("#suggestions li span").tooltip();
+	$("#nv").change(function() {
+		if(this.checked) {
+		    $("#year").val("").prop('disabled', true);
+		} else {
+		    $("#year").prop('disabled', false);
+		}
+	})
 };
 
 $(document).ready(window.init);

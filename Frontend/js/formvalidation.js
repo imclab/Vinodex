@@ -28,11 +28,15 @@ jQuery.fn.valnumber = function() {
 
 jQuery.fn.valvintageyear = function() {
 	"use strict";
-	if($(this).val().trim().length === 0 && !$("#nv").prop("checked")) {
-		$(this).valerror();
-		return null;
+	if($("#nv").prop("checked")) {
+		return "NV";
 	} else {
-		return $(this).val();
+		if($(this).val().trim().length === 4) {
+			return $(this).valnumber();	
+		} else {
+			$(this).valerror();
+			return null;
+		}
 	}
 };
 
