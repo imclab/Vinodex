@@ -1,7 +1,7 @@
 /* Larger desktop */
 @media (min-width: 1200px) {
 	#about #autocomplete {
-		margin-top: 38px;
+		margin-top: 54px;
 	}
 	#about #cellars {
 		margin-top: 72px;
@@ -14,7 +14,7 @@
 /* Large desktop */
 @media (max-width: 1200px) {
 	#about #autocomplete {
-		margin-top: 0;
+		margin-top: 9px;
 	}
 	#about #cellars {
 		margin-top: 44px;
