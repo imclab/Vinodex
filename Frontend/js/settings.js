@@ -44,19 +44,29 @@
   __iced_k = __iced_k_noop = function() {};
 
   $(function() {
+    var profile, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+      _this = this;
+    __iced_k = __iced_k_noop;
+    ___iced_passed_deferral = iced.findDeferral(arguments);
     $("#validatesettings").click(function(event) {
-      var email, name, pass, response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+      var email, name, pass, response, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
-      ___iced_passed_deferral = iced.findDeferral(arguments);
+      ___iced_passed_deferral1 = iced.findDeferral(arguments);
       event.preventDefault();
       $("#settings").valreset();
       name = $("#name").vallength();
       email = $("#email").valemail();
       pass = $("#newpass").valnewpassword();
+      if (!name || !email || (pass == null)) {
+        console.log("Error Condition");
+        return;
+      }
+      $("#loading").show();
+      $("#validatesettings").addClass("disabled").html("Saving Changes...");
       (function(__iced_k) {
         __iced_deferrals = new iced.Deferrals(__iced_k, {
-          parent: ___iced_passed_deferral,
+          parent: ___iced_passed_deferral1,
           filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/settings.iced"
         });
         backend.updateUserAccount(name, email, pass, __iced_deferrals.defer({
@@ -65,23 +75,23 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 9
+          lineno: 18
         }));
         __iced_deferrals._fulfill();
       })(function() {
         return window.location = "collection.html";
       });
     });
-    return $("#deleteacctconfirm").click(function(event) {
-      var response, ___iced_passed_deferral, __iced_deferrals, __iced_k,
+    $("#deleteacctconfirm").click(function(event) {
+      var response, ___iced_passed_deferral1, __iced_deferrals, __iced_k,
         _this = this;
       __iced_k = __iced_k_noop;
-      ___iced_passed_deferral = iced.findDeferral(arguments);
+      ___iced_passed_deferral1 = iced.findDeferral(arguments);
       event.preventDefault();
       if ($("#deleteconfirmtext").val() === "DELETE") {
         (function(__iced_k) {
           __iced_deferrals = new iced.Deferrals(__iced_k, {
-            parent: ___iced_passed_deferral,
+            parent: ___iced_passed_deferral1,
             filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/settings.iced"
           });
           backend.deleteUserAccount(__iced_deferrals.defer({
@@ -90,7 +100,7 @@
                 return response = arguments[0];
               };
             })(),
-            lineno: 15
+            lineno: 24
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -99,6 +109,24 @@
       } else {
         return __iced_k();
       }
+    });
+    (function(__iced_k) {
+      __iced_deferrals = new iced.Deferrals(__iced_k, {
+        parent: ___iced_passed_deferral,
+        filename: "/Users/zgrannan/Dropbox/cse110/Frontend/coffee/settings.iced"
+      });
+      backend.Profile.getById(backend.userId, __iced_deferrals.defer({
+        assign_fn: (function() {
+          return function() {
+            return profile = arguments[0];
+          };
+        })(),
+        lineno: 27
+      }));
+      __iced_deferrals._fulfill();
+    })(function() {
+      $("#name").val(profile.name);
+      return $("#email").val(profile.user.email);
     });
   });
 
