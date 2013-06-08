@@ -51,6 +51,10 @@ $ ->
         if not name or not year or not alcohol or not cellar or not type or not bottles or not price
           console.log("Error Condition")
           return
+        if bottles > parseInt($("#curbottles").val())
+          $("#numbottles").valerror()
+          console.log("Error Condition")
+          return
         await backend.Winery.getOrCreate {name: wineryName}, defer winery
         _wine =
           name: name
