@@ -413,6 +413,7 @@
           }));
           __iced_deferrals._fulfill();
         })(function() {
+          _this.removeUserCookie();
           return callback();
         });
       });
@@ -463,7 +464,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 164
+          lineno: 165
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -488,7 +489,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 168
+          lineno: 169
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -513,7 +514,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 172
+          lineno: 173
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -540,7 +541,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 176
+          lineno: 177
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -568,7 +569,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 182
+          lineno: 183
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -599,7 +600,7 @@
               return nothing = arguments[0];
             };
           })(),
-          lineno: 190
+          lineno: 191
         }));
         _this.Bottle.getById(bottleId, __iced_deferrals.defer({
           assign_fn: (function() {
@@ -607,7 +608,7 @@
               return bottle = arguments[0];
             };
           })(),
-          lineno: 192
+          lineno: 193
         }));
         __iced_deferrals._fulfill();
       })(function() {
@@ -625,7 +626,7 @@
                 return nothing = arguments[0];
               };
             })(),
-            lineno: 195
+            lineno: 196
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -653,7 +654,7 @@
               return response = arguments[0];
             };
           })(),
-          lineno: 199
+          lineno: 200
         }));
         __iced_deferrals._fulfill();
       })(function() {

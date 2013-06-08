@@ -135,6 +135,7 @@ class Backend
   deleteUserAccount: (callback) ->
     await @Profile.getById @userId, defer profile
     await @User.delete profile.user.id, defer nothing
+    @removeUserCookie()
     callback()
 
 
